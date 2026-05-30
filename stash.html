@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stash 使用教程 - 柳如烟</title>
+    <meta name="description" content="详细图文教程：如何在 iOS/macOS 端的 Stash 中导入机场订阅链接并开始使用。">
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .article-container {
+            max-width: 800px;
+            margin: 120px auto 60px;
+            padding: 50px;
+            background: #ffffff;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+        .article-title {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-weight: 800;
+        }
+        .article-meta {
+            color: var(--text-light);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.95rem;
+            display: flex;
+            gap: 20px;
+        }
+        .article-content h2 {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            position: relative;
+            padding-left: 14px;
+        }
+        .article-content h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 20px;
+            background-color: var(--accent-blue);
+            border-radius: 2px;
+        }
+        .article-content p {
+            margin-bottom: 16px;
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        .article-content ol {
+            margin-left: 20px;
+            margin-bottom: 24px;
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        .article-content li {
+            margin-bottom: 12px;
+            padding-left: 8px;
+        }
+        .article-content li strong {
+            color: var(--primary-color);
+        }
+        .step-box {
+            background-color: #f0fdf4;
+            padding: 20px 24px;
+            border-radius: var(--radius-md);
+            margin-bottom: 24px;
+            border-left: 4px solid var(--accent-green);
+        }
+        .step-box p {
+            margin-bottom: 0;
+            color: #166534;
+        }
+        .step-box strong {
+            color: #14532d;
+        }
+        
+        @media (max-width: 768px) {
+            .article-container {
+                margin-top: 100px;
+                padding: 30px 20px;
+            }
+            .article-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="logo.png" alt="柳如烟 Logo" class="logo-img">
+                    柳如烟
+                </a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html#hero">首页</a>
+                <a href="recommend.html">机场推荐</a>
+                <a href="airport-reviews.html">机场测评</a>
+                <a href="index.html#tutorials">使用教程</a>
+                <a href="index.html#faq">常见问题</a>
+            </nav>
+            <button class="menu-toggle" aria-label="打开菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <article class="container article-container">
+            <h1 class="article-title">Stash 客户端订阅导入教程</h1>
+            <div class="article-meta">
+                <span><i class="icon-monitor"></i> 适用平台：iOS / macOS</span>
+                <span><i class="icon-clock"></i> 更新时间：2026-05-17</span>
+            </div>
+            <div class="article-content">
+                <p>Stash 是一款在 iOS 和 macOS 平台上非常优秀的代理工具，它完美支持 Clash 的配置文件规则，界面现代、交互友好。本文将指导您如何在 Stash 中导入机场订阅并开启网络代理。</p>
+
+                <h2>第一步：下载并安装 Stash</h2>
+                <div class="step-box" style="background-color: #eff6ff; border-left-color: var(--accent-blue);">
+                    <p>由于 App Store 国区政策限制，下载 Stash 需要使用<strong>非中国大陆地区（如美区、港区）的 Apple ID</strong>。<br>
+                    <strong>注意：</strong>Stash 是付费软件（通常为 3.99 美元）。在 App Store 搜索 "Stash" 并购买下载。</p>
+                </div>
+
+                <h2>第二步：获取机场订阅链接</h2>
+                <div class="step-box">
+                    <p>1. 使用手机或电脑的浏览器，登录您购买的机场官网后台。<br>
+                    2. 进入控制台或仪表盘（Dashboard）。<br>
+                    3. 找到<strong>“一键订阅”</strong>或<strong>“导入到 Clash”</strong>的功能按钮。<br>
+                    4. 点击并选择<strong>“复制 Clash 订阅链接”</strong>（因为 Stash 完美兼容 Clash 格式）。</p>
+                </div>
+
+                <h2>第三步：在 Stash 中导入配置</h2>
+                <ol>
+                    <li>打开您设备上的 <strong>Stash</strong> 客户端应用。</li>
+                    <li>在底部导航栏中点击 <strong>“设置” (Settings)</strong> 选项卡。</li>
+                    <li>在设置列表中，找到并点击进入 <strong>“配置文件” (Profiles)</strong>。</li>
+                    <li>点击界面上的 <strong>“从 URL 下载” (Download from URL)</strong>。</li>
+                    <li>在弹出的输入框中，<strong>粘贴</strong>您刚刚复制的机场订阅链接。</li>
+                    <li>点击 <strong>“下载” (Download)</strong>，Stash 会自动拉取服务器节点信息。</li>
+                    <li>下载完成后，在配置文件列表中<strong>勾选</strong>刚刚下载的这份配置。</li>
+                </ol>
+
+                <h2>第四步：开启代理与选择节点</h2>
+                <ol>
+                    <li>返回到 Stash 客户端的 <strong>“首页” (Home)</strong>。</li>
+                    <li>首先，在首页找到路由模式选项，建议选择 <strong>“规则” (Rule)</strong> 模式。这样国内流量将直连，国际流量走代理。</li>
+                    <li>点击进入底部的 <strong>“策略组” (Policies)</strong>（如果是 iPad/Mac，通常在侧边栏）。</li>
+                    <li>在 Proxy 或节点选择策略组中，选择一个延迟较低的节点。您可以点击右上角的闪电图标进行测速。</li>
+                    <li>回到首页，点击顶部那个大大的 <strong>“启动” (Start)</strong> 按钮。</li>
+                    <li>如果是首次使用，系统会提示请求添加 VPN 权限，点击 <strong>“允许” (Allow)</strong> 并验证密码或面容。</li>
+                </ol>
+                
+                <div class="step-box" style="background-color: #fffbeb; border-left-color: var(--accent-orange);">
+                    <p><strong>🎉 恭喜！配置完成！</strong><br>只要首页的状态显示为“运行中”，您就可以畅快地访问外网服务了。</p>
+                </div>
+                
+                <div style="margin-top: 50px; text-align: center;">
+                    <a href="index.html#tutorials" class="btn btn-outline btn-lg">&larr; 返回教程列表</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer 底部区域 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2 class="footer-title">柳如烟</h2>
+                    <p class="footer-desc">专注整理稳定高速、低延迟、多平台支持的机场服务，并提供常见客户端使用教程，帮助用户更快完成订阅导入与节点选择。</p>
+                </div>
+                <div class="footer-links-group">
+                    <h3 class="footer-subtitle">快速导航</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html#hero">首页</a></li>
+                        <li><a href="recommend.html">机场推荐</a></li>
+                        <li><a href="airport-reviews.html">机场测评</a></li>
+                        <li><a href="index.html#tutorials">使用教程</a></li>
+                        <li><a href="index.html#faq">常见问题</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 柳如烟. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

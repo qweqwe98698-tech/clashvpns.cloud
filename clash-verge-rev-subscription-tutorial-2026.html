@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clash Verge Rev 机场订阅导入教程：Windows / macOS 新手完整指南 - 柳如烟</title>
+    <meta name="description" content="Clash Verge Rev 是 Windows、macOS 用户常用的 Clash 客户端。本文介绍机场订阅链接如何导入 Clash Verge Rev，包括下载安装、导入订阅、选择节点、切换规则模式、测速和常见问题排查。">
+    <meta name="geo.region" content="CN" />
+    <meta name="geo.placename" content="China" />
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .article-container { max-width: 800px; margin: 120px auto 60px; padding: 50px; background: rgba(255,255,255,0.8); backdrop-filter: blur(12px); border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.5); box-shadow: 0 10px 30px -5px rgba(0,0,0,0.02); }
+        .article-title { font-size: 2.2rem; margin-bottom: 15px; color: var(--primary-color); font-weight: 800; }
+        .article-meta { color: var(--text-light); margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); font-size: 0.95rem; display: flex; gap: 20px; }
+        .article-content h2 { margin-top: 40px; margin-bottom: 20px; color: var(--text-main); font-size: 1.5rem; position: relative; padding-left: 14px; }
+        .article-content h2::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 20px; background-color: var(--accent-blue); border-radius: 2px; }
+        .article-content p { margin-bottom: 16px; color: var(--text-light); line-height: 1.8; font-size: 1.05rem; }
+        .internal-links { margin-top: 50px; padding: 20px; background: var(--bg-gray); border-radius: var(--radius-md); }
+        .internal-links h3 { margin-bottom: 15px; font-size: 1.2rem; color: var(--text-main); }
+        .internal-links ul { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .internal-links li { margin-bottom: 5px; }
+        .internal-links a { color: var(--accent-blue); text-decoration: none; font-size: 0.95rem; }
+        .internal-links a:hover { text-decoration: underline; }
+        @media (max-width: 768px) { .article-container { margin-top: 100px; padding: 30px 20px; } .article-title { font-size: 1.8rem; } .internal-links ul { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body style="background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);">
+    <header class="navbar">
+        <div class="container nav-container">
+            <div class="nav-logo">
+                <a href="index.html"><img src="logo.png" alt="柳如烟 Logo" class="logo-img">柳如烟</a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html#hero">首页</a>
+                <a href="recommend.html">机场推荐</a>
+                <a href="airport-reviews.html">机场测评</a>
+                <a href="index.html#guides">指南文章</a>
+                <a href="index.html#faq">常见问题</a>
+            </nav>
+            <button class="menu-toggle" aria-label="打开菜单"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <main>
+        <article class="container article-container">
+            <h1 class="article-title">Clash Verge Rev 机场订阅导入教程：Windows / macOS 新手完整指南</h1>
+            <div class="article-meta">
+                <span><i class="icon-calendar"></i> 更新时间：2026-05-17</span>
+                <span><i class="icon-user"></i> 作者：柳如烟</span>
+            </div>
+            <div class="article-content">
+<p>Clash Verge Rev 是很多 Windows 和 macOS 用户常用的代理客户端，适合导入机场订阅链接后使用。对于新手来说，最重要的是理解三个东西：机场订阅链接、客户端配置、代理模式。
+机场订阅链接是你购买机场套餐后，在机场后台获得的一串链接。它不是普通网页链接，而是包含节点配置的信息。Clash Verge Rev 则是用来读取这些节点配置，并帮助你选择节点、管理规则和开启代理的客户端。
+第一步，下载并安装 Clash Verge Rev。新手建议从可信来源获取客户端，安装完成后打开软件。Windows 用户通常安装 exe 程序，macOS 用户根据芯片选择对应版本。
+第二步，复制机场订阅链接。进入你的机场网站后台，找到“订阅链接”“一键订阅”“Clash 订阅”“复制订阅”等按钮。不同机场叫法不同，但核心都是复制一条订阅 URL。
+第三步，打开 Clash Verge Rev，进入“订阅”或“配置”页面。点击新增订阅，将刚才复制的机场订阅链接粘贴进去。填写名称时可以写机场名字，方便以后区分。然后点击保存、导入或更新。
+第四步，等待订阅更新成功。成功后，你应该能在代理页面看到香港、日本、新加坡、美国等节点。如果导入后没有节点，可能是订阅链接复制错误、套餐过期、流量用完、订阅格式不支持或机场后台异常。
+第五步，选择节点。新手可以先选择香港、日本、新加坡等低延迟节点。如果主要使用 ChatGPT，可以测试美国、日本、新加坡等节点；如果主要看 YouTube，可以选择速度稳定的香港、日本或美国节点；如果需要 Netflix，则选择机场标注的流媒体节点。
+第六步，选择代理模式。常见模式有规则模式、全局模式、直连模式。新手日常使用建议选择规则模式。规则模式下，国内网站通常直连，海外网站走代理，体验更自然。全局模式会让所有流量都走代理，适合临时测试。直连模式则是不走代理。
+第七步，测试是否成功。可以打开 Google、YouTube、ChatGPT 等网站测试。如果网页可以打开，说明基础代理正常。如果 YouTube 卡顿，可以换节点。如果 ChatGPT 提示不可用，可以换美国、日本、新加坡等地区节点。如果 Netflix 提示代理错误，则需要换支持流媒体解锁的节点。
+常见问题一：订阅导入失败。解决方法是重新复制订阅链接，确认没有空格或缺失字符；检查机场套餐是否有效；尝试更新客户端；更换网络环境后再导入。
+常见问题二：节点全部超时。可能是机场节点异常、本地网络问题、订阅过期、流量用完或系统代理没有开启。可以先更新订阅，再切换节点，最后查看机场公告。
+常见问题三：代理打开了但网页打不开。可以检查系统代理是否开启、模式是否选择正确、浏览器是否使用了其他代理插件、防火墙是否拦截客户端。
+总结
+Clash Verge Rev 的使用流程并不复杂：复制机场订阅链接，导入客户端，更新订阅，选择节点，开启规则模式，再测试访问。新手遇到问题时，优先检查订阅链接、套餐状态、节点延迟和代理模式。熟悉之后，Clash Verge Rev 会比一键 VPN 更灵活，也更适合多场景使用。</p>
+
+                <div style="margin-top: 50px; text-align: center;">
+                    <a href="recommend.html" class="btn btn-primary" style="padding: 15px 40px; font-size: 1.2rem; border-radius: var(--radius-full); background-color: #1a1025; color: #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">查看柳如烟精选机场推荐</a>
+                </div>
+
+                <div class="internal-links">
+                    <h3>更多相关阅读</h3>
+                    <ul>
+                        <li><a href="guide-2026-airport-recommendation.html">2026 机场推荐指南｜新手如何选择稳定高速的机场节点</a></li>
+                        <li><a href="vpn-vs-airport-nodes.html">VPN 加速器和机场节点区别｜日常使用哪个更合适？</a></li>
+                        <li><a href="2026-beginner-guide-stable-nodes.html">2026 新手选机场必看：稳定高速节点这样选更省心</a></li>
+                        <li><a href="what-is-airport-vpn.html">VPN 机场是什么？为什么越来越多人选择机场节点</a></li>
+                        <li><a href="how-to-choose-stable-airport.html">稳定机场 VPN 怎么选？便宜高速节点选择建议</a></li>
+                        <li><a href="longmaoyun-airport-review.html">龙猫云机场值得买吗？套餐、速度和稳定性全面分析</a></li>
+                        <li><a href="airport-vs-nordvpn.html">机场节点和 NordVPN、Proton VPN 哪个更值得选择？</a></li>
+                        <li><a href="is-free-vpn-worth-it.html">免费 VPN 值得用吗？长期使用前一定要了解这些问题</a></li>
+                        <li><a href="vpn-plugin-vs-client.html">VPN 插件还是机场客户端？新手更推荐哪一种</a></li>
+                        <li><a href="what-is-ladder-proxy.html">梯子是什么？新手科学上网从这里开始</a></li>
+                        <li><a href="vpn-accelerator-vs-airport.html">VPN 加速器还是机场节点？日常使用更建议这样选</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- 底部区域也会被统一更新，这里先占位 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2 class="footer-title">柳如烟</h2>
+                    <p class="footer-desc">专注整理稳定高速、低延迟、多平台支持的机场服务，并提供常见客户端使用教程，帮助用户更快完成订阅导入与节点选择。</p>
+                </div>
+                <div class="footer-links-group">
+                    <h3 class="footer-subtitle">快速导航</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html#hero">首页</a></li>
+                        <li><a href="recommend.html">机场推荐</a></li>
+                        <li><a href="airport-reviews.html">机场测评</a></li>
+                        <li><a href="index.html#guides">指南文章</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <h3 class="footer-subtitle">关于我们</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://jichangpingce.club/" target="_blank" rel="nofollow noopener">关于我</a></li>
+                        <li><a href="index.html#disclaimer">免责声明</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 柳如烟. All Rights Reserved. 本站仅供技术交流与学习，请自觉遵守当地法律法规。</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

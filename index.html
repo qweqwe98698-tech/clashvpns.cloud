@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>柳如烟 - 稳定高速机场推荐与 Clash 使用教程</title>
+    <meta name="description" content="柳如烟专注整理稳定高速、低延迟、多平台支持的机场服务，并提供 Clash、Shadowrocket、Stash、v2rayN 等主流客户端订阅导入教程，帮助新手快速选择和使用机场节点。">
+    <meta name="keywords" content="机场推荐, 柳如烟, 稳定机场, 高速机场, Clash 教程, Shadowrocket 教程, Stash 教程, v2rayN 教程, 机场订阅导入">
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <div class="nav-logo">
+                <a href="#">
+                    <img src="logo.png" alt="柳如烟 Logo" class="logo-img">
+                    柳如烟
+                </a>
+            </div>
+            <nav class="nav-links">
+                <a href="#hero">首页</a>
+                <a href="recommend.html">机场推荐</a>
+                <a href="airport-reviews.html">机场测评</a>
+                <a href="#tutorials">使用教程</a>
+                <a href="#guides">机场指南</a>
+                <a href="#reviews">用户评价</a>
+                <a href="#faq">常见问题</a>
+            </nav>
+            <button class="menu-toggle" aria-label="打开菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero 首屏区域 -->
+        <section id="hero" class="hero section">
+            <div class="grid-bg"></div>
+            <!-- 左侧人物立绘 -->
+            <div class="hero-character hero-char-left"></div>
+            <!-- 右侧人物立绘 -->
+            <div class="hero-character hero-char-right"></div>
+            <div class="container hero-container">
+                <h1 class="hero-title">稳定高速的机场推荐与使用指南</h1>
+                <p class="hero-subtitle">精选稳定、低延迟、多平台支持的机场服务，帮助用户快速选择适合自己的节点方案，并提供 Clash、Shadowrocket、Stash、v2rayN 等主流客户端订阅导入教程。</p>
+                <div class="hero-tags">
+                    <span class="tag"><i class="icon-zap"></i> 稳定高速</span>
+                    <span class="tag"><i class="icon-activity"></i> 低延迟连接</span>
+                    <span class="tag"><i class="icon-monitor"></i> 多平台支持</span>
+                    <span class="tag"><i class="icon-smile"></i> 新手友好</span>
+                    <span class="tag"><i class="icon-book-open"></i> 订阅导入教程</span>
+                </div>
+                <div class="hero-actions">
+                    <a href="recommend.html" class="btn btn-primary btn-lg">查看机场推荐</a>
+                    <a href="#tutorials" class="btn btn-outline btn-lg">查看使用教程</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">20+</span>
+                        <span class="stat-label">精选机场</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">4 大</span>
+                        <span class="stat-label">教程覆盖客户端</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">每周</span>
+                        <span class="stat-label">持续维护更新</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">全平台</span>
+                        <span class="stat-label">Windows/Mac/iOS/Android</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <!-- 核心卖点区 -->
+        <section id="features" class="features section">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                </svg>
+                            </div>
+                            <div class="feature-number">01</div>
+                        </div>
+                        <h3 class="feature-title">稳定高速</h3>
+                        <p class="feature-desc">精选速度表现较好的机场服务，适合日常浏览、视频观看与跨境访问，告别卡顿。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                                </svg>
+                            </div>
+                            <div class="feature-number">02</div>
+                        </div>
+                        <h3 class="feature-title">低延迟连接</h3>
+                        <p class="feature-desc">关注节点延迟、线路质量与高峰期表现，帮助用户选择更稳定的专线级节点方案。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line>
+                                </svg>
+                            </div>
+                            <div class="feature-number">03</div>
+                        </div>
+                        <h3 class="feature-title">多平台支持</h3>
+                        <p class="feature-desc">覆盖 Windows、macOS、iOS、Android 等常见设备，一键订阅即可全平台通用。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line>
+                                </svg>
+                            </div>
+                            <div class="feature-number">04</div>
+                        </div>
+                        <h3 class="feature-title">新手友好</h3>
+                        <p class="feature-desc">整理详尽的客户端导入教程和常见问题，让从未接触过节点的新用户也能快速上手。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 使用教程区 -->
+        <section id="tutorials" class="guides section" style="padding-top: 60px; padding-bottom: 60px;">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">柳如烟订阅导入教程</h2>
+                    <p class="section-desc">支持多平台常见代理客户端，按照教程复制订阅链接并导入，即可快速开始使用。</p>
+                </div>
+                <div class="guides-grid guides-grid-2">
+                    <a href="clash-verge-rev.html" class="guide-card" target="_blank">
+                        <span class="guide-tag tag-purple">Windows / macOS</span>
+                        <h3 class="guide-title">Clash Verge Rev</h3>
+                        <p class="guide-summary">复制机场订阅链接，打开 Clash Verge Rev，进入订阅页面，粘贴订阅地址并点击导入，即可选择节点使用。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">查看教程 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="shadowrocket.html" class="guide-card" target="_blank">
+                        <span class="guide-tag tag-blue">iOS</span>
+                        <h3 class="guide-title">Shadowrocket</h3>
+                        <p class="guide-summary">复制订阅链接，打开 Shadowrocket，点击右上角添加，选择 Subscribe，粘贴订阅链接并保存。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">查看教程 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="stash.html" class="guide-card" target="_blank">
+                        <span class="guide-tag tag-green">iOS / macOS</span>
+                        <h3 class="guide-title">Stash</h3>
+                        <p class="guide-summary">复制订阅链接，打开 Stash，进入配置管理，添加远程配置，粘贴订阅地址并下载配置。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">查看教程 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="v2rayn.html" class="guide-card" target="_blank">
+                        <span class="guide-tag tag-orange">Windows</span>
+                        <h3 class="guide-title">v2rayN</h3>
+                        <p class="guide-summary">复制订阅链接，打开 v2rayN，进入订阅分组设置，添加订阅地址后更新订阅，即可选择节点连接。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">查看教程 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        
+        <!-- 柳如烟机场指南 -->
+        <section id="guides" class="guides section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">柳如烟机场指南</h2>
+                    <p class="section-desc">2026 最新科学上网、机场节点、VPN 加速器相关知识与选购建议</p>
+                </div>
+                <div class="guides-grid">
+                    <a href="airport-annual-plan-risk-analysis-2026.html" class="guide-card">
+                        <span class="guide-tag tag-gray">避坑指南</span>
+                        <h3 class="guide-title">机场年付套餐能不能买？为什么更建议新手先月付或季付</h3>
+                        <p class="guide-summary">买一年省一半？揭秘低价年付套餐背后的资金流逻辑，告诉你为什么聪明的老手宁可月付也不接盘传家宝。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="vpn-airport-proxy-differences-2026.html" class="guide-card">
+                        <span class="guide-tag tag-green">新手教程</span>
+                        <h3 class="guide-title">VPN、机场、梯子、加速器有什么区别？科学上网新手入门指南</h3>
+                        <p class="guide-summary">一文理清各种黑话：什么是梯子、机场、魔法上网和加速器？帮你走出新手村，精准选择科学上网工具。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="clash-modes-explained-2026.html" class="guide-card">
+                        <span class="guide-tag tag-green">新手教程</span>
+                        <h3 class="guide-title">Clash 规则模式、全局模式、直连模式有什么区别？新手一看就懂</h3>
+                        <p class="guide-summary">为什么节点连上了还是打不开网页？一文搞懂 Clash 的核心灵魂：规则模式与全局模式的区别。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="airport-node-slow-troubleshooting-2026.html" class="guide-card">
+                        <span class="guide-tag tag-green">新手教程</span>
+                        <h3 class="guide-title">机场节点突然变慢怎么办？晚高峰卡顿、延迟高、丢包排查方法</h3>
+                        <p class="guide-summary">节点全红、延迟飙升、视频缓冲？教你通过 10 步神级排障法，迅速定位网络卡顿元凶！</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="high-cost-performance-airport-standard-2026.html" class="guide-card">
+                        <span class="guide-tag tag-orange">硬核评测</span>
+                        <h3 class="guide-title">2026 高性价比机场推荐标准：流量、线路、延迟、客服怎么判断</h3>
+                        <p class="guide-summary">高性价比 ≠ 便宜！手把手教你建立 9 维度的机场评估模型，把每一分钱都花在刀刃上。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="free-airport-vpn-worth-it-2026.html" class="guide-card">
+                        <span class="guide-tag tag-gray">避坑指南</span>
+                        <h3 class="guide-title">免费机场和免费 VPN 值得用吗？新手避坑指南</h3>
+                        <p class="guide-summary">免费的往往是最贵的！揭秘免费节点背后的隐私风险与账号风控问题，教你为什么不要用免费梯子登录核心账号。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="shadowrocket-airport-subscription-tutorial-2026.html" class="guide-card">
+                        <span class="guide-tag tag-green">新手教程</span>
+                        <h3 class="guide-title">Shadowrocket 小火箭机场使用教程：iOS 用户订阅导入完整步骤</h3>
+                        <p class="guide-summary">手把手教 iOS 新手如何玩转 Shadowrocket（小火箭），轻松导入订阅链接，告别配置报错与连接失败。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="airport-subscription-link-invalid-troubleshooting-2026.html" class="guide-card">
+                        <span class="guide-tag tag-green">新手教程</span>
+                        <h3 class="guide-title">机场订阅链接失效怎么办？Clash、Shadowrocket、v2rayN 排查教程</h3>
+                        <p class="guide-summary">节点全红、更新失败、导入报错？一文教你快速排查 90% 的机场订阅失效问题，拒绝盲目焦虑。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="iplc-iepl-dedicated-line-airport-guide-2026.html" class="guide-card">
+                        <span class="guide-tag tag-orange">硬核评测</span>
+                        <h3 class="guide-title">IPLC / IEPL 专线机场区别详解：普通机场和专线机场怎么选</h3>
+                        <p class="guide-summary">一文看懂直连、中转、专线（IPLC/IEPL）到底有什么区别，告别智商税，精准匹配你的真实翻墙需求。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="netflix-youtube-airport-node-guide-2026.html" class="guide-card">
+                        <span class="guide-tag tag-orange">硬核评测</span>
+                        <h3 class="guide-title">Netflix / YouTube 机场节点怎么选？流媒体解锁和 4K 播放指南</h3>
+                        <p class="guide-summary">为什么网速很快，看 Netflix 却提示代理错误？手把手教你挑选真正适合 4K 晚高峰的流媒体原生解锁节点。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="chatgpt-airport-node-selection-2026.html" class="guide-card">
+                        <span class="guide-tag tag-orange">硬核评测</span>
+                        <h3 class="guide-title">ChatGPT 机场节点怎么选？OpenAI、Claude、Gemini 访问稳定性优化</h3>
+                        <p class="guide-summary">告别 ChatGPT Oops 和频繁验证！教你如何通过 IP 质量与地区策略，打造最稳固的 AI 生产力网络环境。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="clash-verge-rev-subscription-tutorial-2026.html" class="guide-card">
+                        <span class="guide-tag tag-green">新手教程</span>
+                        <h3 class="guide-title">Clash Verge Rev 机场订阅导入教程：Windows / macOS 新手完整指南</h3>
+                        <p class="guide-summary">从零开始教你玩转 2026 年最流行的 Clash 客户端，告别配置恐惧，一键开启科学上网。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="airport-runaway-8-signals-2026.html" class="guide-card">
+                        <span class="guide-tag tag-gray">避坑指南</span>
+                        <h3 class="guide-title">机场跑路前的 8 个信号：新手买机场前一定要看</h3>
+                        <p class="guide-summary">揭秘机场跑路前的蛛丝马迹，教你通过 8 个关键细节判断手里的梯子是否面临暴毙风险。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="cheap-airport-risk-analysis-2026.html" class="guide-card">
+                        <span class="guide-tag tag-gray">避坑指南</span>
+                        <h3 class="guide-title">低价机场靠谱吗？一元机场、年付机场和跑路风险完整分析</h3>
+                        <p class="guide-summary">低价机场、一元机场看起来很划算，但背后可能隐藏跑路风险。本文带你从成本逻辑分析便宜机场到底能不能买。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="stable-vpn-airport-recommendation-2026.html" class="guide-card">
+                        <span class="guide-tag tag-green">新手教程</span>
+                        <h3 class="guide-title">2026 稳定机场推荐：新手如何选择高速稳定的 VPN 机场节点 (精简版)</h3>
+                        <p class="guide-summary">2026 年选择稳定机场，不能只看价格和节点数量。本文从新手角度讲清楚 VPN 机场怎么选，帮助用户避开低价陷阱和跑路风险。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="stable-airport-recommendation-guide-2026.html" class="guide-card">
+                        <span class="guide-tag tag-green">新手教程</span>
+                        <h3 class="guide-title">2026 稳定机场推荐：新手如何选择高速稳定的 VPN 机场节点</h3>
+                        <p class="guide-summary">从测速盲区到跑路预警，手把手教你避开低价年付陷阱，找到真正靠谱的 2026 稳定机场。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="vpn-airport-combo-strategy-2026.html" class="guide-card">
+                        <span class="guide-tag tag-gray">行业趋势</span>
+                        <h3 class="guide-title">2026 年翻墙工具选择总结：没有一劳永逸，只有主力与备用组合</h3>
+                        <p class="guide-summary">终极避坑指南！抛弃“一个梯子走天下”的幻想，为你量身定制 2026 最稳健的翻墙组合策略。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="letsvpn-vs-iepl-speedtest-2026.html" class="guide-card">
+                        <span class="guide-tag tag-orange">硬核评测</span>
+                        <h3 class="guide-title">晚高峰测速图大比拼：快连 vs IEPL/IPLC 真专线机场，谁才是真稳定？</h3>
+                        <p class="guide-summary">扒开“白天百兆，晚上断流”的测速伪装，教你用最真实的网络极限测试看清谁在裸泳。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="fake-website-phishing-trap-2026.html" class="guide-card">
+                        <span class="guide-tag tag-gray">防骗必读</span>
+                        <h3 class="guide-title">假官网与搜索引擎钓鱼陷阱：2026 年下载快连和机场客户端为什么一定要认准官方？</h3>
+                        <p class="guide-summary">深度揭秘搜索引擎排名第一的“假官网”套路，手把手教你如何安全下载 VPN 客户端。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="sing-box-vs-letsvpn-2026.html" class="guide-card">
+                        <span class="guide-tag tag-green">新手教程</span>
+                        <h3 class="guide-title">Sing-box 时代的门槛焦虑：为什么 2026 年很多新手又回去用快连？</h3>
+                        <p class="guide-summary">当机场配置变成写代码，深度剖析为什么‘无脑一键连’依然是 2026 年小白的最爱。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="residential-ip-vs-ai-risk-control-2026.html" class="guide-card">
+                        <span class="guide-tag tag-gray">行业趋势</span>
+                        <h3 class="guide-title">住宅 IP 与 AI 风控对抗：2026 年 ChatGPT / Claude 机场为什么越来越看重 IP 洁净度？</h3>
+                        <p class="guide-summary">揭秘原生住宅 IP 机场的溢价真相，教你在 ChatGPT 频频报 Oops 的时代找到纯净节点。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="wechat-alipay-vs-usdt-privacy-2026.html" class="guide-card">
+                        <span class="guide-tag tag-gray">行业趋势</span>
+                        <h3 class="guide-title">微信 / 支付宝直接付款的便利与隐私风险：2026 年买机场为什么越来越难？</h3>
+                        <p class="guide-summary">揭秘机场圈支付方式大洗牌，带你客观分析实名支付与数字货币（USDT）背后的隐私与跑路风险。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="airport-recommendation-fake-ranking-2026.html" class="guide-card">
+                        <span class="guide-tag tag-gray">行业趋势</span>
+                        <h3 class="guide-title">2026 机场推荐榜单含水量大揭秘：为什么越来越多用户不再相信“最好用 VPN 排行榜”？</h3>
+                        <p class="guide-summary">扒开测评圈的底裤，教你如何在一堆恰饭软文和返利链接中找到真正靠谱的机场评测。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="letsvpn-last-defense-backup-2026.html" class="guide-card">
+                        <span class="guide-tag tag-gray">避坑指南</span>
+                        <h3 class="guide-title">快连作为最后防线：2026 年为什么重度机场用户也要准备一个备用 VPN？</h3>
+                        <p class="guide-summary">深度剖析“主力失效，满盘皆输”的翻墙痛点，揭秘重度机场玩家手机里隐藏的“救命稻草”。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="letsvpn-vs-airport-ecosystem-2026.html" class="guide-card">
+                        <span class="guide-tag tag-gray">行业趋势</span>
+                        <h3 class="guide-title">2026 科学上网生态观察：机场订阅节点与快连 VPN 的路线之争</h3>
+                        <p class="guide-summary">高自由度 vs 低门槛，带你深度解析 2026 年翻墙工具背后的两派生态博弈。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="letsvpn-short-term-business-travel-2026.html" class="guide-card">
+                        <span class="guide-tag tag-green">新手教程</span>
+                        <h3 class="guide-title">跨境商旅与短期回国用户为什么更推荐快连？2026 年小白 VPN 使用场景分析</h3>
+                        <p class="guide-summary">揭秘商旅人群和海外留学生的真实网络痛点，帮你分析“傻瓜式一键 VPN”到底凭什么火。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="letsvpn-fake-website-warning-2026.html" class="guide-card">
+                        <span class="guide-tag tag-gray">防骗必读</span>
+                        <h3 class="guide-title">快连假官网大规模爆发：2026 年下载 LetsVPN 为什么一定要认准官方正版？</h3>
+                        <p class="guide-summary">深度曝光 VPN 圈钓鱼网站与假官网套路，守护你的网络连接与账号财产安全。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="letsvpn-vs-airport-routing-2026.html" class="guide-card">
+                        <span class="guide-tag tag-green">新手教程</span>
+                        <h3 class="guide-title">快连自主分流 vs 机场规则分流：2026 年中国应用分流谁更智能？</h3>
+                        <p class="guide-summary">揭秘 VPN 误伤国内 App 的真相，教你如何选择分流更智能的科学上网工具。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="letsvpn-vs-airport-pricing-2026.html" class="guide-card">
+                        <span class="guide-tag tag-green">新手教程</span>
+                        <h3 class="guide-title">快连为什么这么贵？2026 年快连高客单价与普通机场性价比对比</h3>
+                        <p class="guide-summary">揭秘快连高昂月费背后的真实价值，教你如何在专线机场和成品 VPN 之间做出性价比最优选。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="letsvpn-payment-privacy-controversy-2026.html" class="guide-card">
+                        <span class="guide-tag tag-gray">避坑指南</span>
+                        <h3 class="guide-title">微信 / 支付宝便捷支付的双刃剑：快连为什么一边方便，一边引发隐私争议？</h3>
+                        <p class="guide-summary">揭秘机场圈支付方式大洗牌，带你客观分析实名支付与数字货币（USDT）背后的隐私与跑路风险。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="letsvpn-ai-streaming-ip-quality-2026.html" class="guide-card">
+                        <span class="guide-tag tag-gray">行业趋势</span>
+                        <h3 class="guide-title">快连流媒体与 AI 风控表现：2026 年 ChatGPT / Claude 用户为什么更看重 IP 质量？</h3>
+                        <p class="guide-summary">揭秘 AI 时代的节点风控逻辑，告诉你为什么 YouTube 跑满 4K 的节点却打不开 ChatGPT。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="letsvpn-device-limit-2026.html" class="guide-card">
+                        <span class="guide-tag tag-green">新手教程</span>
+                        <h3 class="guide-title">快连 2 台设备限制争议：2026 年多设备时代，为什么用户会产生“设备数焦虑”？</h3>
+                        <p class="guide-summary">分析一键 VPN 工具的设备连接瓶颈，教你如何在多设备和家庭全屋代理场景下做出正确选择。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="backup-vpn-letsvpn-2026.html" class="guide-card">
+                        <span class="guide-tag tag-gray">避坑指南</span>
+                        <h3 class="guide-title">备用梯子的绝对神位：为什么 2026 年很多机场用户都会准备一个快连 VPN？</h3>
+                        <p class="guide-summary">深度解析“主力机场+备用VPN”的黄金组合，教你在节点全红时如何完美自救。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="letsvpn-vs-hysteria2-2026.html" class="guide-card">
+                        <span class="guide-tag tag-green">新手教程</span>
+                        <h3 class="guide-title">快连私有协议 vs Hysteria 2 机场协议：2026 年谁更适合大陆用户？</h3>
+                        <p class="guide-summary">从底层技术到真实体验，全面对比一键式成品 VPN 与最新 Hysteria 2 机场协议的优劣。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="letsvpn-refund-incident-2026.html" class="guide-card">
+                        <span class="guide-tag tag-gray">行业趋势</span>
+                        <h3 class="guide-title">快连大陆部分地区无法运行与退款风波：2026 年机场行业诚信分水岭</h3>
+                        <p class="guide-summary">从快连事件看 2026 机场售后标准的升级：不出问题是运气，出问题敢退款才是实力。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="airport-status-summary-2026.html" class="guide-card">
+                        <span class="guide-tag tag-gray">行业趋势</span>
+                        <h3 class="guide-title">2026 年机场圈现状总结：便宜、好用、稳定的时代已经过去</h3>
+                        <p class="guide-summary">全景式盘点 2026 科学上网圈大盘走向，告诉你为什么现在买机场必须打破“性价比至上”的幻想。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="cheap-airport-free-nodes-risk.html" class="guide-card">
+                        <span class="guide-tag tag-gray">避坑指南</span>
+                        <h3 class="guide-title">低价机场与公益节点批量暴毙：2026 年为什么不建议再迷信“几块钱机场”？</h3>
+                        <p class="guide-summary">揭露低价机场与免费节点的运营黑幕，教你认清机场行业的真实成本与陷阱。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="airport-audit-rules-streaming-unlock.html" class="guide-card">
+                        <span class="guide-tag tag-gray">行业趋势</span>
+                        <h3 class="guide-title">2026 机场审计规则变严：流媒体解锁降级后，无审计机场为什么越来越热门？</h3>
+                        <p class="guide-summary">揭露机场限制BT与流媒体解锁降级的真相，教你如何选择真正规则透明且不限速的机场。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="buy-airport-vs-build-vps-2026.html" class="guide-card">
+                        <span class="guide-tag tag-green">新手教程</span>
+                        <h3 class="guide-title">自建 VPS 节点文艺复兴：2026 年买机场好，还是自己搭节点更安全？</h3>
+                        <p class="guide-summary">客观对比 2026 年购买机场与自建 VPS 的利弊，帮你选择最稳妥的科学上网方案组合。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="airport-payment-methods-usdt.html" class="guide-card">
+                        <span class="guide-tag tag-gray">行业趋势</span>
+                        <h3 class="guide-title">2026 机场支付方式变化：人民币支付收紧后，USDT 支付为什么越来越常见？</h3>
+                        <p class="guide-summary">深度解析机场圈支付方式的转变，揭示 USDT 支付背后的风险与防骗指南。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="ai-airport-clean-ip-chatgpt-claude.html" class="guide-card">
+                        <span class="guide-tag tag-gray">行业趋势</span>
+                        <h3 class="guide-title">AI 时代的机场新标准：IP 洁净度决定 ChatGPT / Claude 机场节点能不能长期稳定</h3>
+                        <p class="guide-summary">深度解析机场节点 IP 洁净度对 AI 工具访问的影响，帮助重度 AI 用户挑选不封号、不报错的纯净机场。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="sing-box-cross-platform-trend.html" class="guide-card">
+                        <span class="guide-tag tag-green">新手教程</span>
+                        <h3 class="guide-title">2026 跨平台客户端大一统：Sing-box 为什么成为机场用户的新主力？</h3>
+                        <p class="guide-summary">从 Clash 时代到 Sing-box 大一统，全面解析跨平台客户端的新趋势与新手使用指南。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="fake-iepl-iplc-airport-expose.html" class="guide-card">
+                        <span class="guide-tag tag-gray">避坑指南</span>
+                        <h3 class="guide-title">IEPL / IPLC 专线机场真假大揭秘：2026 年如何识别“伪专线机场”？</h3>
+                        <p class="guide-summary">深度剖析专线机场的运作套路，教你通过真实体验指标识破伪装成专线的公网中转机场。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="airport-runaway-warning-2026.html" class="guide-card">
+                        <span class="guide-tag tag-gray">避坑指南</span>
+                        <h3 class="guide-title">老牌大厂机场密集跑路后，2026 年用户该如何判断机场跑路预警？</h3>
+                        <p class="guide-summary">揭秘机场跑路前的常见信号，教你如何避开促销陷阱并安全选择长期稳定的机场。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="direct-vs-transit-airport.html" class="guide-card">
+                        <span class="guide-tag tag-gray">行业趋势</span>
+                        <h3 class="guide-title">纯直连 / 公网中转机场的生存空间恐慌：2026 年稳定机场为什么越来越贵？</h3>
+                        <p class="guide-summary">揭秘 2026 年机场行业的底层变化，分析为什么专线机场正在逐渐淘汰廉价直连与公网中转。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="hysteria2-tuic-airport-trend.html" class="guide-card">
+                        <span class="guide-tag tag-gray">行业趋势</span>
+                        <h3 class="guide-title">2026 机场协议趋势：Hysteria 2 与 TUIC v5 普及后，稳定机场该怎么选？</h3>
+                        <p class="guide-summary">详解 Hysteria 2 与 TUIC v5 协议在晚高峰和复杂网络环境下的优势，教你如何科学挑选主力机场。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="brand-airport-review.html" class="guide-card">
+                        <span class="guide-tag tag-orange">深度评测</span>
+                        <h3 class="guide-title">2026 实力派机场 [品牌名] 深度测评：晚高峰 YouTube 4K/8K 表现到底稳不稳？</h3>
+                        <p class="guide-summary">全面测评 [品牌名] 机场的晚高峰速度、流媒体解锁与 AI 工具访问体验，分析其真实性价比。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="guide-2026-airport-recommendation.html" class="guide-card">
+                        <span class="guide-tag tag-blue">机场推荐</span>
+                        <h3 class="guide-title">2026 机场推荐指南｜新手如何选择稳定高速的机场节点</h3>
+                        <p class="guide-summary">全面盘点值得入手的优质专线机场，教你避开常见的选购陷阱。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="vpn-vs-airport-nodes.html" class="guide-card">
+                        <span class="guide-tag tag-purple">VPN 对比</span>
+                        <h3 class="guide-title">VPN 加速器和机场节点区别｜日常使用哪个更合适？</h3>
+                        <p class="guide-summary">深入分析传统 VPN 与现代机场节点的技术架构差异与适用场景。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="2026-beginner-guide-stable-nodes.html" class="guide-card">
+                        <span class="guide-tag tag-green">新手教程</span>
+                        <h3 class="guide-title">2026 新手选机场必看：稳定高速节点这样选更省心</h3>
+                        <p class="guide-summary">从延迟、带宽到协议类型，手把手教你挑选最适合的网络节点。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="what-is-airport-vpn.html" class="guide-card">
+                        <span class="guide-tag tag-gray">常见问题</span>
+                        <h3 class="guide-title">VPN 机场是什么？为什么越来越多人选择机场节点</h3>
+                        <p class="guide-summary">解析“机场”概念的由来，以及它在速度和流媒体解锁上的核心优势。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="clash-airport-tutorial.html" class="guide-card">
+                        <span class="guide-tag tag-green">Clash 教程</span>
+                        <h3 class="guide-title">Clash 机场使用教程：快速导入订阅，一键选择节点</h3>
+                        <p class="guide-summary">超详细的 Clash 客户端配置指南，三步完成节点订阅与测试。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="how-to-choose-stable-airport.html" class="guide-card">
+                        <span class="guide-tag tag-blue">机场推荐</span>
+                        <h3 class="guide-title">稳定机场 VPN 怎么选？便宜高速节点选择建议</h3>
+                        <p class="guide-summary">平衡价格与性能，为预算有限的用户推荐高性价比的优质节点。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="longmaoyun-airport-review.html" class="guide-card">
+                        <span class="guide-tag tag-orange">深度评测</span>
+                        <h3 class="guide-title">龙猫云机场值得买吗？套餐、速度和稳定性全面分析</h3>
+                        <p class="guide-summary">对龙猫云的 IPLC 专线、流媒体解锁效果及日常延迟进行全方位实测。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="airport-vs-nordvpn.html" class="guide-card">
+                        <span class="guide-tag tag-purple">VPN 对比</span>
+                        <h3 class="guide-title">机场节点和 NordVPN、Proton VPN 哪个更值得选择？</h3>
+                        <p class="guide-summary">海外知名 VPN 与优质中转/专线机场在实际网络环境下的表现对比。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="is-free-vpn-worth-it.html" class="guide-card">
+                        <span class="guide-tag tag-gray">常见问题</span>
+                        <h3 class="guide-title">免费 VPN 值得用吗？长期使用前一定要了解这些问题</h3>
+                        <p class="guide-summary">揭秘免费工具背后的隐私风险、带宽限制以及频繁断线的原因。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="vpn-plugin-vs-client.html" class="guide-card">
+                        <span class="guide-tag tag-green">新手教程</span>
+                        <h3 class="guide-title">VPN 插件还是机场客户端？新手更推荐哪一种</h3>
+                        <p class="guide-summary">对比浏览器代理插件与系统全局客户端的优缺点，找到最轻松的上手方式。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="what-is-ladder-proxy.html" class="guide-card">
+                        <span class="guide-tag tag-green">新手教程</span>
+                        <h3 class="guide-title">梯子是什么？新手科学上网从这里开始</h3>
+                        <p class="guide-summary">用最通俗易懂的语言解释翻墙原理、代理协议以及必备基础工具。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                    <a href="vpn-accelerator-vs-airport.html" class="guide-card">
+                        <span class="guide-tag tag-purple">VPN 对比</span>
+                        <h3 class="guide-title">VPN 加速器还是机场节点？日常使用更建议这样选</h3>
+                        <p class="guide-summary">针对外贸、流媒体与日常办公，量身定制网络加速器选购方案。</p>
+                        <div class="guide-footer">
+                            <span class="guide-readmore">阅读全文 <span class="arrow">&rarr;</span></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 用户评价 -->
+        <section id="reviews" class="reviews section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">用户评价</h2>
+                    <p class="section-desc">真实用户的反馈与推荐</p>
+                </div>
+                <div class="reviews-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+                    <div class="review-card" style="background: var(--bg-gray); padding: 30px; border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
+                        <div class="stars" style="color: var(--accent-orange); font-size: 1.2rem; margin-bottom: 15px;">★★★★★</div>
+                        <p style="color: var(--text-main); line-height: 1.6; font-style: italic;">"通过这篇指南选了专线节点，晚上看 Netflix 4K 再也不卡了，教程写得非常详细，对新手极其友好！"</p>
+                        <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-blue); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">J</div>
+                            <span style="color: var(--text-light); font-size: 0.9rem;">- Jason, 外贸从业者</span>
+                        </div>
+                    </div>
+                    <div class="review-card" style="background: var(--bg-gray); padding: 30px; border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
+                        <div class="stars" style="color: var(--accent-orange); font-size: 1.2rem; margin-bottom: 15px;">★★★★★</div>
+                        <p style="color: var(--text-main); line-height: 1.6; font-style: italic;">"终于明白 VPN 和机场的区别了，按月付买的备用机场很香，再也不用担心大把钱充进去跑路了。"</p>
+                        <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-green); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">L</div>
+                            <span style="color: var(--text-light); font-size: 0.9rem;">- Li Hua, 自由开发者</span>
+                        </div>
+                    </div>
+                    <div class="review-card" style="background: var(--bg-gray); padding: 30px; border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
+                        <div class="stars" style="color: var(--accent-orange); font-size: 1.2rem; margin-bottom: 15px;">★★★★★</div>
+                        <p style="color: var(--text-main); line-height: 1.6; font-style: italic;">"以前一直到处找免费节点，天天掉线。按推荐选了个平价套餐，一个月几十块，省下的时间太值了。"</p>
+                        <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-orange); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">M</div>
+                            <span style="color: var(--text-light); font-size: 0.9rem;">- Mike, 学生</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 常见问题区 -->
+        <section id="faq" class="faq section bg-gray">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">常见问题</h2>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item active">
+                        <button class="faq-question">机场是什么？<span class="faq-icon"></span></button>
+                        <div class="faq-answer">
+                            <p>机场通常指提供代理节点订阅服务的平台，用户可以通过 Clash、Shadowrocket、Stash、v2rayN 等客户端导入订阅链接后使用。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">机场和 VPN 有什么区别？<span class="faq-icon"></span></button>
+                        <div class="faq-answer">
+                            <p>VPN 通常是独立客户端一键连接，机场一般通过订阅链接配合第三方客户端使用，灵活性更高，节点选择更多。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">新手应该怎么选择机场？<span class="faq-icon"></span></button>
+                        <div class="faq-answer">
+                            <p>建议优先选择价格门槛较低、教程清楚、支持多平台、节点稳定且支持短周期套餐的机场服务。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">购买机场后怎么使用？<span class="faq-icon"></span></button>
+                        <div class="faq-answer">
+                            <p>购买后通常会获得一个订阅链接，将订阅链接导入 Clash、Shadowrocket、Stash 或 v2rayN 等客户端，即可选择节点连接。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">为什么不建议一次买太久？<span class="faq-icon"></span></button>
+                        <div class="faq-answer">
+                            <p>机场服务存在不确定性，新用户建议先选择月付或短周期套餐，确认稳定性和速度表现后再考虑长期套餐。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer 底部区域 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2 class="footer-title">柳如烟</h2>
+                    <p class="footer-desc">专注整理稳定高速、低延迟、多平台支持的机场服务，并提供常见客户端使用教程，帮助用户更快完成订阅导入与节点选择。</p>
+                </div>
+                <div class="footer-links-group">
+                    <h3 class="footer-subtitle">快速导航</h3>
+                    <ul class="footer-links">
+                        <li><a href="#hero">首页</a></li>
+                        <li><a href="recommend.html">机场推荐</a></li>
+                        <li><a href="airport-reviews.html">机场测评</a></li>
+                        <li><a href="#guides">机场指南</a></li>
+                        <li><a href="#faq">常见问题</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <h3 class="footer-subtitle">关于我们</h3>
+                    <ul class="footer-links">
+                        <li><a href="sitemap.html" target="_blank">站点地图</a></li>
+                        <li><a href="https://jichangpingce.club/" target="_blank" rel="nofollow noopener">关于我</a></li>
+                        <li><a href="#disclaimer">免责声明</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="disclaimer" class="footer-disclaimer">
+                <p><strong>免责声明：</strong>本站内容仅用于信息整理与使用教程分享，不提供任何违法用途支持。用户应遵守所在地区相关法律法规，合理使用网络服务。机场服务具有不确定性，购买前建议优先选择短周期套餐。</p>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 柳如烟. All Rights Reserved. 本站仅供技术交流与学习，请自觉遵守当地法律法规。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="globe.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
