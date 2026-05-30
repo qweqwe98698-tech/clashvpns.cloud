@@ -100,7 +100,7 @@ async function main() {
 
         // 3. 读取 HTML 模板并生成最终文件
         // 使用您已有的生成模板逻辑
-        const template = \`<!DOCTYPE html>
+        const template = `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -152,7 +152,7 @@ async function main() {
     <script src="script.js"></script>
     <script src="fix_footer.js"></script>
 </body>
-</html>\`;
+</html>`;
         
         fs.writeFileSync(metaData.filename, template, 'utf8');
         console.log(`成功写入文件: ${metaData.filename}`);
@@ -160,12 +160,12 @@ async function main() {
         // 4. 更新 update_guides.js，将新文章注入到首页指南列表
         console.log(`正在将文章追加到 update_guides.js 中...`);
         let guidesCode = fs.readFileSync('update_guides.js', 'utf8');
-        const newArticleItem = \`    {
+        const newArticleItem = `    {
         title: "\${metaData.title}",
         link: "\${metaData.filename}",
         tag: "\${metaData.tag}",
         summary: "\${metaData.summary}"
-    },\n\`;
+    },\n`;
         
         // 插入到 const articles = [ 之后
         guidesCode = guidesCode.replace('const articles = [\\n', 'const articles = [\\n' + newArticleItem);
