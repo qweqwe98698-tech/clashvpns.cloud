@@ -192,4 +192,5 @@ async function main() {
 
 main().catch(err => {
     console.error('执行失败:', err);
+    process.exit(1);
 });
