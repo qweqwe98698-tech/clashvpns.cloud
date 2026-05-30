@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${metaData.title} - 柳如烟推荐机场</title>
+    <meta name="description" content="${metaData.summary}">
+    <meta name="geo.region" content="CN" />
+    <meta name="geo.placename" content="China" />
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .article-container { max-width: 800px; margin: 120px auto 60px; padding: 50px; background: rgba(255,255,255,0.8); backdrop-filter: blur(12px); border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.5); box-shadow: 0 10px 30px -5px rgba(0,0,0,0.02); }
+        .article-title { font-size: 2.2rem; margin-bottom: 15px; color: var(--primary-color); font-weight: 800; }
+        .article-meta { color: var(--text-light); margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); font-size: 0.95rem; display: flex; gap: 20px; }
+        .article-content h2 { margin-top: 40px; margin-bottom: 20px; color: var(--text-main); font-size: 1.5rem; position: relative; padding-left: 14px; }
+        .article-content h2::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 20px; background-color: var(--accent-blue); border-radius: 2px; }
+        .article-content p { margin-bottom: 16px; color: var(--text-light); line-height: 1.8; font-size: 1.05rem; }
+    </style>
+</head>
+<body style="background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);">
+    <header class="navbar">
+        <div class="container nav-container">
+            <div class="nav-logo">
+                <a href="index.html"><img src="logo.png" alt="柳如烟推荐机场 Logo" class="logo-img">柳如烟推荐机场</a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html#hero">首页</a>
+                <a href="recommend.html">机场推荐</a>
+                <a href="airport-reviews.html">机场测评</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <article class="container article-container">
+            <h1 class="article-title">${metaData.title}</h1>
+            <div class="article-meta">
+                <span><i class="icon-calendar"></i> 更新时间：${new Date().toISOString().split('T')[0]}</span>
+                <span><i class="icon-user"></i> 作者：柳如烟</span>
+            </div>
+            <div class="article-content">
+                ${articleHtmlContent}
+                <div style="margin-top: 50px; text-align: center;">
+                    <a href="recommend.html" class="btn btn-primary" style="padding: 15px 40px; font-size: 1.2rem; border-radius: var(--radius-full); background-color: #1a1025; color: #fff;">查看柳如烟精选机场推荐</a>
+                </div>
+            </div>
+        </article>
+    </main>
+    <script src="script.js"></script>
+    <script src="fix_footer.js"></script>
+</body>
+</html>
