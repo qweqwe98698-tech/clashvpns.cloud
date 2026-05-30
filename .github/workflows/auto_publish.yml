@@ -1,0 +1,50 @@
+name: Daily Auto Content Generation
+
+on:
+  schedule:
+    # 每天北京时间早上 8:00 执行 (UTC 时间 0:00)
+    - cron: '0 0 * * *'
+  workflow_dispatch: # 允许在 GitHub 网页上手动点击运行
+
+jobs:
+  generate-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # 允许 GitHub Actions 推送代码回仓库
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 获取完整历史以确保可以正常提交
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # 使用较新的 Node.js，原生支持 fetch 接口
+
+      - name: Generate New Articles
+        env:
+          # 将从 GitHub Secrets 中读取您的 API 密钥
+          API_KEY: ${{ secrets.API_KEY }}
+          API_BASE_URL: ${{ secrets.API_BASE_URL || 'https://api.openai.com/v1' }}
+          MODEL_NAME: ${{ secrets.MODEL_NAME || 'gpt-4o' }}
+        run: |
+          # 运行我们写好的自动更新脚本
+          node auto_daily_update.js
+
+      - name: Commit and Push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # 添加所有新生成或修改的文件（包括新 HTML、修改过的 index.html 和 sitemap）
+          git add .
+          
+          # 如果有改动，则提交并推送
+          if git diff --staged --quiet; then
+            echo "没有生成新内容，跳过提交"
+          else
+            git commit -m "Auto-generated daily articles [skip ci]"
+            git push origin HEAD:${{ github.ref }}
+          fi
