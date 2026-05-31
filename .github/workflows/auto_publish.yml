@@ -60,4 +60,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./ready_to_upload/
-          server-dir: ./
+          server-dir: /public_html/clashvpns.cloud/
