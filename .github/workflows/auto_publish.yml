@@ -2,8 +2,8 @@ name: Daily Auto Content Generation
 
 on:
   schedule:
-    # 每天北京时间早上 8:00 执行 (UTC 时间 0:00)
-    - cron: '0 0 * * *'
+    # 每天北京时间凌晨 1:15 执行 (UTC 时间 17:15)
+    - cron: '15 17 * * *'
   workflow_dispatch: # 允许在 GitHub 网页上手动点击运行
 
 jobs:
