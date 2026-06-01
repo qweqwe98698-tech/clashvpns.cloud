@@ -2,6 +2,18 @@ const fs = require('fs');
 
 const articles = [
     {
+        title: "2024最强机场推荐：Netflix高清无卡顿，高速翻墙节点深度评测与优选指南",
+        link: "2024-best-vpn-airport-netflix-nodes-review-guide.html",
+        tag: "硬核评测",
+        summary: "还在为Netflix卡顿和翻墙不稳烦恼？本文揭秘2024最佳机场推荐，独家评测Netflix节点与高速翻墙方案，助你畅享丝滑网络体验！"
+    },
+    {
+        title: "2024年最佳机场推荐：ChatGPT专用高速翻墙节点深度评测",
+        link: "best-airport-vpn-nodes-chatgpt-review-2024.html",
+        tag: "硬核评测",
+        summary: "资深专家揭秘2024最佳机场推荐，深度评测ChatGPT专用高速翻墙节点，告别卡顿，畅享极速网络体验。"
+    },
+    {
         title: "机场年付套餐能不能买？为什么更建议新手先月付或季付",
         link: "airport-annual-plan-risk-analysis-2026.html",
         tag: "避坑指南",
