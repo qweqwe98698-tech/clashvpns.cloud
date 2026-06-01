@@ -3,12 +3,13 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 // ================= 配置区域 =================
-// 自动读取您的智谱 API 密码
-const API_KEY = process.env.API_KEY || process.env.GEMINI_API_KEY || 'YOUR_API_KEY_HERE';
-// 强制将大门指向智谱 AI 的官方服务器！
-const BASE_URL = 'https://open.bigmodel.cn/api/paas/v4';
-// 使用智谱响应最快、性价比最高的 glm-4-flash 模型
-const MODEL_NAME = 'glm-4-flash'; 
+// 自动读取您的正版 Gemini API 密码
+const API_KEY = process.env.GEMINI_API_KEY || process.env.API_KEY || 'YOUR_API_KEY_HERE';
+
+// 重点：使用 Google 官方提供的 OpenAI 兼容通道！
+const BASE_URL = 'https://generativelanguage.googleapis.com/v1beta/openai';
+// 使用 Gemini 1.5 Flash
+const MODEL_NAME = 'gemini-1.5-flash'; 
 
 const DAILY_ARTICLE_COUNT = 2;
 
@@ -24,7 +25,7 @@ function getRandomKeywords(count) {
     return shuffled.slice(0, count).join('、');
 }
 
-// 采用 OpenAI 兼容格式，但精准对接智谱服务器
+// 采用 OpenAI 兼容格式，直接对接 Gemini 的兼容通道
 async function callAI(systemPrompt, userPrompt) {
     if (API_KEY === 'YOUR_API_KEY_HERE' || !API_KEY) {
         throw new Error("请先在代码中或者环境变量中配置您的 API_KEY");
