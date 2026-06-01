@@ -3,11 +3,9 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 // ================= 配置区域 =================
-// 请在这里填入您的 AI 服务 API Key (如 OpenAI, DeepSeek, 硅基流动 等兼容 OpenAI 格式的接口)
-const API_KEY = process.env.API_KEY || 'YOUR_API_KEY_HERE';
-// API Base URL, 例如 https://api.deepseek.com/v1 或 https://api.openai.com/v1
-const BASE_URL = process.env.API_BASE_URL || 'https://api.openai.com/v1';
-const MODEL_NAME = process.env.MODEL_NAME || 'gpt-4o'; // 推荐用 gpt-4o 或 deepseek-chat
+// 自动读取环境变量中的密码，优先读取 GEMINI_API_KEY，完美兼容您之前的设置！
+const API_KEY = process.env.GEMINI_API_KEY || process.env.API_KEY || 'YOUR_API_KEY_HERE';
+const MODEL_NAME = 'gemini-1.5-flash'; 
 
 // 每日生成文章数量
 const DAILY_ARTICLE_COUNT = 2;
@@ -22,31 +20,34 @@ const KEYWORDS = [
 
 // ================= 工具函数 =================
 
-// 随机获取 N 个关键词
 function getRandomKeywords(count) {
     const shuffled = KEYWORDS.sort(() => 0.5 - Math.random());
     return shuffled.slice(0, count).join('、');
 }
 
-// 调用 AI 接口
+// 经过手术改造的全新 AI 接口（已完美适配 Gemini 1.5 Flash）
 async function callAI(systemPrompt, userPrompt) {
     if (API_KEY === 'YOUR_API_KEY_HERE') {
         throw new Error("请先在代码中或者环境变量中配置您的 API_KEY");
     }
 
-    const response = await fetch(`${BASE_URL}/chat/completions`, {
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
+
+    const response = await fetch(url, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${API_KEY}`
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            model: MODEL_NAME,
-            messages: [
-                { role: "system", content: systemPrompt },
-                { role: "user", content: userPrompt }
+            systemInstruction: {
+                parts: [{ text: systemPrompt }]
+            },
+            contents: [
+                { role: "user", parts: [{ text: userPrompt }] }
             ],
-            temperature: 0.7
+            generationConfig: {
+                temperature: 0.7
+            }
         })
     });
 
@@ -56,7 +57,7 @@ async function callAI(systemPrompt, userPrompt) {
     }
 
     const data = await response.json();
-    return data.choices[0].message.content.trim();
+    return data.candidates[0].content.parts[0].text.trim();
 }
 
 // ================= 核心流程 =================
@@ -80,18 +81,18 @@ async function main() {
 }`;
         
         let metaJsonStr = await callAI("你只输出合法的 JSON，不要输出其他任何废话。", metaPrompt);
-        metaJsonStr = metaJsonStr.replace(/```json/g, '').replace(/```/g, ''); // 容错处理
+        metaJsonStr = metaJsonStr.replace(/```json/g, '').replace(/```/g, ''); 
         const metaData = JSON.parse(metaJsonStr);
         console.log(`成功生成元数据: ${metaData.title}`);
 
         // 2. 让 AI 生成正文内容
         const articlePrompt = `你是一个化名为“柳如烟”的资深科学上网/机场评测老炮儿。请根据标题：【${metaData.title}】撰写一篇文章。
 要求：
-1. 【人设与语气】：你是砸钱替大家踩过无数坑的老手，语气要犀利、接地气、敢于揭露行业黑幕（如“别再交智商税了”、“实测发现”、“说句得罪同行的话”）。
-2. 【内容深度】：正文字数不少于 800 字，提供硬核干货。尽量用具体的“数字”说话（例如“晚高峰实测 YouTube 4K 跑分可达 180,000 Kbps，延迟稳定在 45ms 以内”），通过量化数据和对比显得极其专业。
+1. 【人设与语气】：你是砸钱替大家踩过无数坑的老手，语气要犀利、接地气、敢于揭露行业黑幕。
+2. 【内容深度】：正文字数不少于 800 字，提供硬核干货。尽量用具体的“数字”说话，通过量化数据显得极其专业。
 3. 【SEO 与结构】：合理穿插关键词：${targetKeywords}。排版必须清晰，多用 <ul><li> 列表和 <strong> 加粗重点。
 4. 【内链引流】：必须在正文的某个自然段落中，极其自然地插入一句完整的 HTML 超链接引流代码：前往 <a href="recommend.html" style="color: #007bff; font-weight: bold;">柳如烟精选节点榜单</a> 看实测结果。
-5. 【FAQ 板块】：在文章结尾，必须固定加一个 <h2>常见问题解答 (FAQ)</h2> 的板块，以 Q&A 的形式自问自答 2-3 个与主题相关的高频搜索问题。
+5. 【FAQ 板块】：在文章结尾，必须固定加一个 <h2>常见问题解答 (FAQ)</h2> 的板块。
 6. 【格式规范】：只输出文章主体的 HTML 代码（只包含 <p>, <h2>, <h3>, <ul>, <li>, <strong>, <a> 等标签），绝对不要输出 <html>、<body> 或 \`\`\`html 这种代码块标记。千万不要写“结语”二字。`;
         
         console.log(`正在生成文章正文 (请稍候，可能需要 10-30 秒)...`);
@@ -99,14 +100,13 @@ async function main() {
         console.log(`文章正文生成完毕，字数: ${articleHtmlContent.length}`);
 
         // 3. 读取 HTML 模板并生成最终文件
-        // 使用您已有的生成模板逻辑
         const template = `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>\${metaData.title} - 柳如烟推荐机场</title>
-    <meta name="description" content="\${metaData.summary}">
+    <title>${metaData.title} - 柳如烟推荐机场</title>
+    <meta name="description" content="${metaData.summary}">
     <meta name="geo.region" content="CN" />
     <meta name="geo.placename" content="China" />
     <link rel="icon" href="logo.png" type="image/png">
@@ -136,13 +136,13 @@ async function main() {
 
     <main>
         <article class="container article-container">
-            <h1 class="article-title">\${metaData.title}</h1>
+            <h1 class="article-title">${metaData.title}</h1>
             <div class="article-meta">
-                <span><i class="icon-calendar"></i> 更新时间：\${new Date().toISOString().split('T')[0]}</span>
+                <span><i class="icon-calendar"></i> 更新时间：${new Date().toISOString().split('T')[0]}</span>
                 <span><i class="icon-user"></i> 作者：柳如烟</span>
             </div>
             <div class="article-content">
-                \${articleHtmlContent}
+                ${articleHtmlContent}
                 <div style="margin-top: 50px; text-align: center;">
                     <a href="recommend.html" class="btn btn-primary" style="padding: 15px 40px; font-size: 1.2rem; border-radius: var(--radius-full); background-color: #1a1025; color: #fff;">查看柳如烟精选机场推荐</a>
                 </div>
@@ -157,17 +157,16 @@ async function main() {
         fs.writeFileSync(metaData.filename, template, 'utf8');
         console.log(`成功写入文件: ${metaData.filename}`);
 
-        // 4. 更新 update_guides.js，将新文章注入到首页指南列表
+        // 4. 更新 update_guides.js
         console.log(`正在将文章追加到 update_guides.js 中...`);
         let guidesCode = fs.readFileSync('update_guides.js', 'utf8');
         const newArticleItem = `    {
-        title: "\${metaData.title}",
-        link: "\${metaData.filename}",
-        tag: "\${metaData.tag}",
-        summary: "\${metaData.summary}"
+        title: "${metaData.title}",
+        link: "${metaData.filename}",
+        tag: "${metaData.tag}",
+        summary: "${metaData.summary}"
     },\n`;
         
-        // 插入到 const articles = [ 之后
         guidesCode = guidesCode.replace('const articles = [\\n', 'const articles = [\\n' + newArticleItem);
         fs.writeFileSync('update_guides.js', guidesCode, 'utf8');
 
@@ -176,7 +175,7 @@ async function main() {
     }
 
     // 5. 重新生成首页和 Sitemap
-    console.log(`\\n--- 开始更新站点结构 ---`);
+    console.log(`\n--- 开始更新站点结构 ---`);
     console.log('执行: node update_guides.js');
     execSync('node update_guides.js');
     
