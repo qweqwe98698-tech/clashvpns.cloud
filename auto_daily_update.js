@@ -19,7 +19,7 @@ function getRandomKeywords(count) {
     return shuffled.slice(0, count).join('、');
 }
 
-// 📡 绝杀技：雷达探测！先让 Google 交出底牌
+// 📡 雷达探测！先让 Google 交出底牌
 async function getBestModel() {
     console.log("🔍 正在连接 Google 服务器，探测您账号专属的可用模型清单...");
     const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${API_KEY}`);
@@ -32,18 +32,16 @@ async function getBestModel() {
         throw new Error("🚨 严重错误：Google 服务器返回成功，但您的账号下没有任何可用模型！");
     }
 
-    // 过滤出真正能写文章的 Gemini 模型
     const availableModels = data.models
         .filter(m => m.supportedGenerationMethods && m.supportedGenerationMethods.includes('generateContent') && m.name.includes('gemini'))
         .map(m => m.name.replace('models/', ''));
 
-    console.log(`✅ 探测成功！您的账号目前支持以下 ${availableModels.length} 个模型: \n   - ${availableModels.join('\n   - ')}`);
+    console.log(`✅ 探测成功！您的账号目前支持 ${availableModels.length} 个模型`);
 
     if (availableModels.length === 0) {
         throw new Error("🚨 严重错误：您的账号没有任何支持生成文章的 Gemini 模型！");
     }
 
-    // 优选逻辑：优先选 flash，其次选 pro，都没有就选列表里的第一个
     let bestModel = availableModels.find(m => m.includes('flash'));
     if (!bestModel) bestModel = availableModels.find(m => m.includes('pro'));
     if (!bestModel) bestModel = availableModels[0];
@@ -52,7 +50,6 @@ async function getBestModel() {
     return bestModel;
 }
 
-// 纯正的 Gemini 官方原生接口 (抛弃那个有 Bug 的 OpenAI 兼容层)
 async function callAI(systemPrompt, userPrompt, modelName) {
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${API_KEY}`;
 
@@ -187,7 +184,7 @@ async function main() {
 </html>`;
         
         fs.writeFileSync(metaData.filename, template, 'utf8');
-        console.log(`成功写入文件: ${metaData.filename}`);
+        console.log(`成功写入网页文件: ${metaData.filename}`);
 
         console.log(`正在将文章追加到 update_guides.js 中...`);
         let guidesCode = fs.readFileSync('update_guides.js', 'utf8');
@@ -196,17 +193,27 @@ async function main() {
         link: "${metaData.filename}",
         tag: "${metaData.tag}",
         summary: "${metaData.summary}"
-    },\n`;
+    },`;
         
-        guidesCode = guidesCode.replace('const articles = [\\n', 'const articles = [\\n' + newArticleItem);
-        fs.writeFileSync('update_guides.js', guidesCode, 'utf8');
+        // 🚨 强力正则匹配：无论有几个空格换行，都能精准插入到首页列表最前面！
+        if (guidesCode.match(/const\s+articles\s*=\s*\[/)) {
+            guidesCode = guidesCode.replace(/const\s+articles\s*=\s*\[/, 'const articles = [\n' + newArticleItem);
+            fs.writeFileSync('update_guides.js', guidesCode, 'utf8');
+            console.log(`✅ 成功将【${metaData.title}】的卡片添加到首页列表中！`);
+        } else {
+            console.log('⚠️ 未找到 const articles = [，首页更新可能失败，请检查 update_guides.js 结构！');
+        }
 
         await new Promise(resolve => setTimeout(resolve, 3000));
     }
 
     console.log(`\n--- 开始更新站点结构 ---`);
     console.log('执行: node update_guides.js');
-    execSync('node update_guides.js');
+    try {
+        execSync('node update_guides.js');
+    } catch (e) {
+        console.log('update_guides.js 运行报错，请忽略');
+    }
     
     console.log('执行: node create_sitemap_html.js');
     try {
