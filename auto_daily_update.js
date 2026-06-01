@@ -3,14 +3,15 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 // ================= 配置区域 =================
-// 自动读取环境变量中的密码，优先读取 GEMINI_API_KEY，完美兼容您之前的设置！
-const API_KEY = process.env.GEMINI_API_KEY || process.env.API_KEY || 'YOUR_API_KEY_HERE';
-const MODEL_NAME = 'gemini-1.5-flash'; 
+// 自动读取您的智谱 API 密码
+const API_KEY = process.env.API_KEY || process.env.GEMINI_API_KEY || 'YOUR_API_KEY_HERE';
+// 强制将大门指向智谱 AI 的官方服务器！
+const BASE_URL = 'https://open.bigmodel.cn/api/paas/v4';
+// 使用智谱响应最快、性价比最高的 glm-4-flash 模型
+const MODEL_NAME = 'glm-4-flash'; 
 
-// 每日生成文章数量
 const DAILY_ARTICLE_COUNT = 2;
 
-// 核心关键词库，AI 会根据这些关键词随机生成新主题
 const KEYWORDS = [
     "机场推荐", "科学上网", "稳定梯子", "翻墙节点", "高速机场",
     "IPLC专线", "IEPL专线", "流媒体解锁", "Netflix节点", "Clash订阅",
@@ -18,36 +19,30 @@ const KEYWORDS = [
     "ChatGPT节点", "AI免封号节点", "原生住宅IP"
 ];
 
-// ================= 工具函数 =================
-
 function getRandomKeywords(count) {
     const shuffled = KEYWORDS.sort(() => 0.5 - Math.random());
     return shuffled.slice(0, count).join('、');
 }
 
-// 经过手术改造的全新 AI 接口（已完美适配 Gemini 1.5 Flash）
+// 采用 OpenAI 兼容格式，但精准对接智谱服务器
 async function callAI(systemPrompt, userPrompt) {
-    if (API_KEY === 'YOUR_API_KEY_HERE') {
+    if (API_KEY === 'YOUR_API_KEY_HERE' || !API_KEY) {
         throw new Error("请先在代码中或者环境变量中配置您的 API_KEY");
     }
 
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
-
-    const response = await fetch(url, {
+    const response = await fetch(`${BASE_URL}/chat/completions`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${API_KEY}`
         },
         body: JSON.stringify({
-            systemInstruction: {
-                parts: [{ text: systemPrompt }]
-            },
-            contents: [
-                { role: "user", parts: [{ text: userPrompt }] }
+            model: MODEL_NAME,
+            messages: [
+                { role: "system", content: systemPrompt },
+                { role: "user", content: userPrompt }
             ],
-            generationConfig: {
-                temperature: 0.7
-            }
+            temperature: 0.7
         })
     });
 
@@ -57,11 +52,10 @@ async function callAI(systemPrompt, userPrompt) {
     }
 
     const data = await response.json();
-    return data.candidates[0].content.parts[0].text.trim();
+    return data.choices[0].message.content.trim();
 }
 
 // ================= 核心流程 =================
-
 async function main() {
     console.log(`[${new Date().toLocaleString()}] 开始执行每日自动更新任务...`);
 
@@ -70,7 +64,6 @@ async function main() {
         const targetKeywords = getRandomKeywords(3);
         console.log(`选中关键词: ${targetKeywords}`);
 
-        // 1. 让 AI 构思标题、简介、文件名和标签
         const metaPrompt = `你是一个资深的 SEO 专家和机场评测博主。请根据以下关键词：【${targetKeywords}】，构思一篇全新、专业、深度长文的元数据。
 要求输出严格的 JSON 格式（不要带有 markdown 代码块，只输出纯 JSON）：
 {
@@ -85,7 +78,6 @@ async function main() {
         const metaData = JSON.parse(metaJsonStr);
         console.log(`成功生成元数据: ${metaData.title}`);
 
-        // 2. 让 AI 生成正文内容
         const articlePrompt = `你是一个化名为“柳如烟”的资深科学上网/机场评测老炮儿。请根据标题：【${metaData.title}】撰写一篇文章。
 要求：
 1. 【人设与语气】：你是砸钱替大家踩过无数坑的老手，语气要犀利、接地气、敢于揭露行业黑幕。
@@ -99,7 +91,6 @@ async function main() {
         const articleHtmlContent = await callAI("你是一个专业的 HTML 文章内容生成器，只输出 HTML 代码。", articlePrompt);
         console.log(`文章正文生成完毕，字数: ${articleHtmlContent.length}`);
 
-        // 3. 读取 HTML 模板并生成最终文件
         const template = `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -157,7 +148,6 @@ async function main() {
         fs.writeFileSync(metaData.filename, template, 'utf8');
         console.log(`成功写入文件: ${metaData.filename}`);
 
-        // 4. 更新 update_guides.js
         console.log(`正在将文章追加到 update_guides.js 中...`);
         let guidesCode = fs.readFileSync('update_guides.js', 'utf8');
         const newArticleItem = `    {
@@ -170,11 +160,9 @@ async function main() {
         guidesCode = guidesCode.replace('const articles = [\\n', 'const articles = [\\n' + newArticleItem);
         fs.writeFileSync('update_guides.js', guidesCode, 'utf8');
 
-        // 等待几秒避免触发 API 限流
         await new Promise(resolve => setTimeout(resolve, 3000));
     }
 
-    // 5. 重新生成首页和 Sitemap
     console.log(`\n--- 开始更新站点结构 ---`);
     console.log('执行: node update_guides.js');
     execSync('node update_guides.js');
