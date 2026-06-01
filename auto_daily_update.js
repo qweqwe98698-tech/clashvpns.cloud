@@ -6,10 +6,17 @@ const { execSync } = require('child_process');
 // 自动读取您的正版 Gemini API 密码
 const API_KEY = process.env.GEMINI_API_KEY || process.env.API_KEY || 'YOUR_API_KEY_HERE';
 
-// 重点：使用 Google 官方提供的 OpenAI 兼容通道！
+// 使用 Google 官方提供的 OpenAI 兼容通道！
 const BASE_URL = 'https://generativelanguage.googleapis.com/v1beta/openai';
-// 使用 Gemini 1.5 Flash
-const MODEL_NAME = 'gemini-1.5-flash'; 
+
+// 🚀 备用模型库：如果某一个报 404 找不到，代码会自动秒切下一个！
+const MODELS_TO_TRY = [
+    'gemini-1.5-flash-latest',
+    'gemini-2.0-flash',
+    'gemini-1.5-flash',
+    'gemini-1.5-pro',
+    'gemini-pro'
+];
 
 const DAILY_ARTICLE_COUNT = 2;
 
@@ -25,35 +32,44 @@ function getRandomKeywords(count) {
     return shuffled.slice(0, count).join('、');
 }
 
-// 采用 OpenAI 兼容格式，直接对接 Gemini 的兼容通道
+// 采用轮询机制，自动寻找可用的模型
 async function callAI(systemPrompt, userPrompt) {
     if (API_KEY === 'YOUR_API_KEY_HERE' || !API_KEY) {
         throw new Error("请先在代码中或者环境变量中配置您的 API_KEY");
     }
 
-    const response = await fetch(`${BASE_URL}/chat/completions`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${API_KEY}`
-        },
-        body: JSON.stringify({
-            model: MODEL_NAME,
-            messages: [
-                { role: "system", content: systemPrompt },
-                { role: "user", content: userPrompt }
-            ],
-            temperature: 0.7
-        })
-    });
+    let lastError = null;
 
-    if (!response.ok) {
-        const err = await response.text();
-        throw new Error(`API 请求失败: ${response.status} ${err}`);
+    // 自动挨个尝试所有模型
+    for (const model of MODELS_TO_TRY) {
+        console.log(`🔍 正在尝试连接模型: ${model}...`);
+        const response = await fetch(`${BASE_URL}/chat/completions`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${API_KEY}`
+            },
+            body: JSON.stringify({
+                model: model,
+                messages: [
+                    { role: "system", content: systemPrompt },
+                    { role: "user", content: userPrompt }
+                ],
+                temperature: 0.7
+            })
+        });
+
+        if (response.ok) {
+            console.log(`✅ 模型 ${model} 连接成功！`);
+            const data = await response.json();
+            return data.choices[0].message.content.trim();
+        } else {
+            lastError = await response.text();
+            console.log(`⚠️ 模型 ${model} 不可用 (404)，自动切换下一个...`);
+        }
     }
 
-    const data = await response.json();
-    return data.choices[0].message.content.trim();
+    throw new Error(`所有模型尝试均失败。最后一次报错: ${lastError}`);
 }
 
 // ================= 核心流程 =================
