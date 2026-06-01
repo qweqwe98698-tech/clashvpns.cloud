@@ -5,19 +5,6 @@ const { execSync } = require('child_process');
 // ================= 配置区域 =================
 // 自动读取您的正版 Gemini API 密码
 const API_KEY = process.env.GEMINI_API_KEY || process.env.API_KEY || 'YOUR_API_KEY_HERE';
-
-// 使用 Google 官方提供的 OpenAI 兼容通道！
-const BASE_URL = 'https://generativelanguage.googleapis.com/v1beta/openai';
-
-// 🚀 备用模型库：如果某一个报 404 找不到，代码会自动秒切下一个！
-const MODELS_TO_TRY = [
-    'gemini-1.5-flash-latest',
-    'gemini-2.0-flash',
-    'gemini-1.5-flash',
-    'gemini-1.5-pro',
-    'gemini-pro'
-];
-
 const DAILY_ARTICLE_COUNT = 2;
 
 const KEYWORDS = [
@@ -32,49 +19,86 @@ function getRandomKeywords(count) {
     return shuffled.slice(0, count).join('、');
 }
 
-// 采用轮询机制，自动寻找可用的模型
-async function callAI(systemPrompt, userPrompt) {
-    if (API_KEY === 'YOUR_API_KEY_HERE' || !API_KEY) {
-        throw new Error("请先在代码中或者环境变量中配置您的 API_KEY");
+// 📡 绝杀技：雷达探测！先让 Google 交出底牌
+async function getBestModel() {
+    console.log("🔍 正在连接 Google 服务器，探测您账号专属的可用模型清单...");
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${API_KEY}`);
+    if (!response.ok) {
+        throw new Error(`无法获取模型列表: ${response.status} ${await response.text()}`);
+    }
+    
+    const data = await response.json();
+    if (!data.models || data.models.length === 0) {
+        throw new Error("🚨 严重错误：Google 服务器返回成功，但您的账号下没有任何可用模型！");
     }
 
-    let lastError = null;
+    // 过滤出真正能写文章的 Gemini 模型
+    const availableModels = data.models
+        .filter(m => m.supportedGenerationMethods && m.supportedGenerationMethods.includes('generateContent') && m.name.includes('gemini'))
+        .map(m => m.name.replace('models/', ''));
 
-    // 自动挨个尝试所有模型
-    for (const model of MODELS_TO_TRY) {
-        console.log(`🔍 正在尝试连接模型: ${model}...`);
-        const response = await fetch(`${BASE_URL}/chat/completions`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${API_KEY}`
+    console.log(`✅ 探测成功！您的账号目前支持以下 ${availableModels.length} 个模型: \n   - ${availableModels.join('\n   - ')}`);
+
+    if (availableModels.length === 0) {
+        throw new Error("🚨 严重错误：您的账号没有任何支持生成文章的 Gemini 模型！");
+    }
+
+    // 优选逻辑：优先选 flash，其次选 pro，都没有就选列表里的第一个
+    let bestModel = availableModels.find(m => m.includes('flash'));
+    if (!bestModel) bestModel = availableModels.find(m => m.includes('pro'));
+    if (!bestModel) bestModel = availableModels[0];
+
+    console.log(`🎯 最终系统为您自动选择的最优模型是: ${bestModel}，准备起飞！`);
+    return bestModel;
+}
+
+// 纯正的 Gemini 官方原生接口 (抛弃那个有 Bug 的 OpenAI 兼容层)
+async function callAI(systemPrompt, userPrompt, modelName) {
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${API_KEY}`;
+
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            systemInstruction: {
+                parts: [{ text: systemPrompt }]
             },
-            body: JSON.stringify({
-                model: model,
-                messages: [
-                    { role: "system", content: systemPrompt },
-                    { role: "user", content: userPrompt }
-                ],
+            contents: [
+                { role: "user", parts: [{ text: userPrompt }] }
+            ],
+            generationConfig: {
                 temperature: 0.7
-            })
-        });
+            }
+        })
+    });
 
-        if (response.ok) {
-            console.log(`✅ 模型 ${model} 连接成功！`);
-            const data = await response.json();
-            return data.choices[0].message.content.trim();
-        } else {
-            lastError = await response.text();
-            console.log(`⚠️ 模型 ${model} 不可用 (404)，自动切换下一个...`);
-        }
+    if (!response.ok) {
+        const err = await response.text();
+        throw new Error(`API 请求失败: ${response.status} ${err}`);
     }
 
-    throw new Error(`所有模型尝试均失败。最后一次报错: ${lastError}`);
+    const data = await response.json();
+    return data.candidates[0].content.parts[0].text.trim();
 }
 
 // ================= 核心流程 =================
 async function main() {
     console.log(`[${new Date().toLocaleString()}] 开始执行每日自动更新任务...`);
+
+    if (API_KEY === 'YOUR_API_KEY_HERE' || !API_KEY) {
+        console.error("🚨 请先配置 API_KEY！");
+        process.exit(1);
+    }
+
+    let modelName;
+    try {
+        modelName = await getBestModel();
+    } catch (e) {
+        console.error(e.message);
+        process.exit(1);
+    }
 
     for (let i = 0; i < DAILY_ARTICLE_COUNT; i++) {
         console.log(`\n--- 开始生成第 ${i + 1} 篇文章 ---`);
@@ -90,7 +114,7 @@ async function main() {
     "tag": "四字标签（如：硬核评测/新手教程/行业趋势/避坑指南）"
 }`;
         
-        let metaJsonStr = await callAI("你只输出合法的 JSON，不要输出其他任何废话。", metaPrompt);
+        let metaJsonStr = await callAI("你只输出合法的 JSON，不要输出其他任何废话。", metaPrompt, modelName);
         metaJsonStr = metaJsonStr.replace(/```json/g, '').replace(/```/g, ''); 
         const metaData = JSON.parse(metaJsonStr);
         console.log(`成功生成元数据: ${metaData.title}`);
@@ -105,7 +129,7 @@ async function main() {
 6. 【格式规范】：只输出文章主体的 HTML 代码（只包含 <p>, <h2>, <h3>, <ul>, <li>, <strong>, <a> 等标签），绝对不要输出 <html>、<body> 或 \`\`\`html 这种代码块标记。千万不要写“结语”二字。`;
         
         console.log(`正在生成文章正文 (请稍候，可能需要 10-30 秒)...`);
-        const articleHtmlContent = await callAI("你是一个专业的 HTML 文章内容生成器，只输出 HTML 代码。", articlePrompt);
+        const articleHtmlContent = await callAI("你是一个专业的 HTML 文章内容生成器，只输出 HTML 代码。", articlePrompt, modelName);
         console.log(`文章正文生成完毕，字数: ${articleHtmlContent.length}`);
 
         const template = `<!DOCTYPE html>
