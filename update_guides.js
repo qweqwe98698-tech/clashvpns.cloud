@@ -2,6 +2,18 @@ const fs = require('fs');
 
 const articles = [
     {
+        title: "Shadowrocket节点终极指南：游戏加速、稳定翻墙与高速连接的秘密",
+        link: "shadowrocket-nodes-gaming-vpn-guide.html",
+        tag: "深度解析",
+        summary: "深度解析Shadowrocket节点，助你实现游戏加速、稳定翻墙，告别卡顿与限制，畅享无界网络体验。"
+    },
+    {
+        title: "IPLC专线与原生住宅IP：打造极速ChatGPT节点的专业评测与配置指南",
+        link: "iplc-native-ip-chatgpt-node-speed-guide.html",
+        tag: "硬核评测",
+        summary: "深度解析IPLC专线与原生住宅IP如何协同，助你搭建稳定极速的ChatGPT节点，告别封锁与限速。"
+    },
+    {
         title: "2024终极指南：如何选择最佳翻墙节点，无缝解锁Netflix与全球流媒体内容",
         link: "best-vpn-netflix-streaming-unblock-guide-2024.html",
         tag: "避坑指南",
