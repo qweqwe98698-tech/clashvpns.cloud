@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>龙猫云 详细评测与介绍 - 柳如烟</title>
+    <meta name="description" content="龙猫云机场详细评测：专注于高速、稳定、低延迟的全球网络加速服务，提供香港、日本、新加坡、美国、台湾等多个地区节点。">
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .article-container {
+            max-width: 800px;
+            margin: 120px auto 60px;
+            padding: 50px;
+            background: #ffffff;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+        .article-title {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-weight: 800;
+        }
+        .article-meta {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.95rem;
+            display: flex;
+            gap: 20px;
+        }
+        .article-content h2 {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            position: relative;
+            padding-left: 14px;
+        }
+        .article-content h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 20px;
+            background-color: var(--accent-blue);
+            border-radius: 2px;
+        }
+        .article-content p {
+            margin-bottom: 16px;
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        
+        /* 标签栏 */
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        .tag-badge {
+            padding: 6px 12px;
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            font-weight: 500;
+            background: var(--bg-gray);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            display: inline-flex;
+            align-items: center;
+        }
+
+        /* 功能卡片列表 */
+        .feature-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .feature-item {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+            padding: 20px;
+            background-color: var(--bg-gray);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+        }
+        .feature-icon {
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+        .feature-content h4 {
+            margin: 0 0 6px;
+            color: var(--text-main);
+            font-size: 1.1rem;
+        }
+        .feature-content p {
+            margin: 0;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* 价格表格 */
+        .table-responsive {
+            overflow-x: auto;
+            margin-bottom: 40px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+        }
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+        .price-table th, .price-table td {
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--border-color);
+            text-align: left;
+            font-size: 0.95rem;
+        }
+        .price-table th {
+            background-color: var(--bg-gray);
+            font-weight: 600;
+            color: var(--text-main);
+        }
+        .price-table tr:last-child td {
+            border-bottom: none;
+        }
+        .price-table tbody tr:hover {
+            background-color: #f8fafc;
+        }
+        .price-table td:nth-child(2) {
+            color: var(--accent-orange);
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .article-container { margin-top: 100px; padding: 30px 20px; }
+            .article-title { font-size: 1.8rem; }
+            .feature-list { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="logo.png" alt="柳如烟 Logo" class="logo-img">
+                    柳如烟
+                </a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html#hero">首页</a>
+                <a href="recommend.html">机场推荐</a>
+                <a href="airport-reviews.html">机场测评</a>
+                <a href="index.html#tutorials">使用教程</a>
+                <a href="index.html#faq">常见问题</a>
+            </nav>
+            <button class="menu-toggle" aria-label="打开菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <article class="container article-container">
+            <h1 class="article-title">龙猫云</h1>
+            <div class="article-meta">
+                <span><i class="icon-calendar"></i> 更新时间：2026-05-17</span>
+            </div>
+            <div class="article-content">
+                <div style="background: var(--bg-gray); padding: 20px; border-radius: var(--radius-md); border-left: 4px solid var(--accent-blue); margin-bottom: 30px;">
+                    <p style="margin: 0; font-weight: 600; color: var(--primary-color);">龙猫云机场｜高速稳定 · 全球节点 · 多端支持</p>
+                    <p style="margin: 10px 0 0; color: var(--text-light); font-size: 0.95rem;">龙猫云提供优质全球加速节点，支持多平台客户端一键导入订阅，适合日常浏览、高清视频、AI 工具访问、跨境办公与学习使用。节点丰富、连接稳定、操作简单，让海外网络访问更加顺畅。</p>
+                </div>
+
+                <div class="tag-row">
+                    <span class="tag-badge">🟦 IPLC 专线</span>
+                    <span class="tag-badge">🟩 新手友好</span>
+                    <span class="tag-badge">🟪 流媒体支持</span>
+                    <span class="tag-badge">🟧 稳定体验</span>
+                </div>
+                
+                <p><strong>龙猫云机场</strong> 专注于高速、稳定、低延迟的全球网络加速服务，提供香港、日本、新加坡、美国、台湾等多个地区节点，支持 Windows、macOS、Android、iOS 多平台使用。无论是访问 Google、YouTube、ChatGPT，还是观看 Netflix、进行跨境办公与学习，龙猫云都能带来更加流畅稳定的网络体验。</p>
+
+                <h2>一、套餐功能说明与价格</h2>
+                <p>龙猫云公开套餐资料显示，VIP1 为 100GB / ¥15 月付，VIP2 为 200GB / ¥30 月付，VIP3 为 400GB / ¥60 月付，VIP4 为 1000GB / ¥120 月付。套餐通常包含以下功能：根据套餐等级提供不同月流量、支持多设备同时在线使用、覆盖多个海外热门地区、按月或按套餐周期重置、支持所有主流平台及客户端。</p>
+                <div class="table-responsive">
+                    <table class="price-table">
+                        <thead>
+                            <tr>
+                                <th>套餐名称</th>
+                                <th>价格</th>
+                                <th>流量</th>
+                                <th>适合人群</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>VIP1</td>
+                                <td>¥15 / 月</td>
+                                <td>100GB / 月</td>
+                                <td>轻度用户</td>
+                            </tr>
+                            <tr>
+                                <td>VIP2</td>
+                                <td>¥30 / 月</td>
+                                <td>200GB / 月</td>
+                                <td>日常主力</td>
+                            </tr>
+                            <tr>
+                                <td>VIP3</td>
+                                <td>¥60 / 月</td>
+                                <td>400GB / 月</td>
+                                <td>多设备 / 视频</td>
+                            </tr>
+                            <tr>
+                                <td>VIP4</td>
+                                <td>¥120 / 月</td>
+                                <td>1000GB / 月</td>
+                                <td>重度用户</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="margin-top: 30px; margin-bottom: 40px; text-align: center;">
+                    <a href="https://inv06.lmaff01.cc/register?aff=e58zhdpc" target="_blank" rel="nofollow noopener" class="btn btn-primary" style="padding: 12px 36px; font-size: 1.15rem; font-weight: 700; border-radius: var(--radius-full); box-shadow: var(--shadow-md); background-color: #000; color: #fff;">官网注册</a>
+                </div>
+
+                <h2>二、核心功能介绍</h2>
+                
+                <h3 style="margin-top: 25px; margin-bottom: 10px;">1. 全球多地区节点覆盖</h3>
+                <p>龙猫云提供多个海外热门地区节点，用户可以根据自己的使用需求自由切换。<br>
+                <strong>常见节点地区包括：</strong>香港节点、台湾节点、日本节点、新加坡节点、韩国节点、美国节点、欧洲节点及其他海外地区节点。<br>
+                不同节点适合不同场景使用，例如日常浏览可以选择香港、日本、新加坡节点；流媒体观看可以选择对应地区的流媒体节点；AI 工具访问可以选择美国、日本或新加坡等线路。</p>
+
+                <h3 style="margin-top: 25px; margin-bottom: 10px;">2. 高速稳定连接体验</h3>
+                <p>龙猫云机场主打高速稳定连接，适合长时间在线使用。节点线路经过优化，能够减少网页加载慢、视频卡顿、连接不稳定等问题。<br>
+                <strong>适合使用场景：</strong>日常网页浏览、YouTube 高清播放、Netflix 流媒体观看、ChatGPT / OpenAI 访问、Google 搜索与 Gmail 使用、Telegram / Discord 通讯、跨境电商与外贸办公、海外社交媒体运营。</p>
+
+                <h3 style="margin-top: 25px; margin-bottom: 10px;">3. 低延迟线路优化</h3>
+                <p>龙猫云支持低延迟节点选择，用户可以在客户端内查看节点延迟，根据实际网络情况选择更快的线路。<br>
+                <strong>低延迟优势包括：</strong>网站打开更快、视频加载更顺畅、AI 对话响应更稳定、社交软件消息收发更及时、游戏或语音场景体验更流畅、跨境办公平台连接更稳定。<br>
+                建议用户优先选择延迟较低、距离较近的节点，例如香港、日本、新加坡等地区。</p>
+
+                <h3 style="margin-top: 25px; margin-bottom: 10px;">4. 多平台设备支持</h3>
+                <p>龙猫云支持电脑、手机、平板等多种设备使用，满足不同用户的日常需求。<br>
+                <strong>支持系统包括：</strong>Windows、macOS、Android、iOS、iPadOS、Linux。<br>
+                <strong>常用客户端支持：</strong>Clash Verge Rev、Clash Meta、Shadowrocket、Stash、v2rayN、v2rayNG、Sing-box、Hiddify、Quantumult X。<br>
+                用户只需要复制订阅链接，在对应客户端中导入配置，即可快速连接使用。</p>
+
+                <h2>三、主要使用场景</h2>
+                <h3 style="margin-top: 25px; margin-bottom: 10px;">1. 海外网站访问</h3>
+                <p>龙猫云适合用于访问常见海外网站和平台，满足学习、办公、查询资料、社交娱乐等需求。<br>
+                <strong>常见平台包括：</strong>Google、YouTube、Gmail、Facebook、Instagram、X / Twitter、Reddit、Telegram、Discord、GitHub。</p>
+
+                <h3 style="margin-top: 25px; margin-bottom: 10px;">2. 流媒体观看</h3>
+                <p>龙猫云部分节点适合流媒体观看，用户可以根据平台和地区选择对应节点。<br>
+                <strong>适合场景：</strong>YouTube 高清视频播放、Netflix 影视观看、Disney+ 内容访问、Spotify 音乐播放、TikTok 海外内容浏览、Prime Video 等平台访问。<br>
+                <em>实际播放效果会受到节点地区、平台策略和本地网络环境影响，建议选择对应地区节点进行测试。</em></p>
+
+                <h3 style="margin-top: 25px; margin-bottom: 10px;">3. AI 工具访问</h3>
+                <p>龙猫云适合用于访问海外 AI 工具和开发者平台，帮助用户完成学习、写作、编程、办公和内容创作。<br>
+                <strong>常见 AI / 开发工具包括：</strong>ChatGPT、OpenAI、Claude、Gemini、Perplexity、GitHub、GitHub Copilot、Notion AI。<br>
+                适合学生、开发者、设计师、运营人员、内容创作者和跨境办公用户使用。</p>
+
+                <h3 style="margin-top: 25px; margin-bottom: 10px;">4. 跨境办公与学习</h3>
+                <p>龙猫云也适合需要跨境网络环境的办公和学习用户。<br>
+                <strong>适合人群：</strong>外贸从业者、跨境电商卖家、海外社媒运营人员、程序员与开发者、留学生与资料查询用户、远程办公用户、需要访问海外平台的内容创作者。</p>
+
+                <h2>四、产品优势</h2>
+                <ol>
+                    <li><strong>一键导入，简单易用：</strong>龙猫云支持订阅链接一键导入，配置过程简单，新手也能快速完成设置。基本使用流程：登录官网 &rarr; 选择套餐 &rarr; 复制订阅链接 &rarr; 导入客户端 &rarr; 选择节点并开启代理。整个流程不需要复杂操作，适合新手用户使用。</li>
+                    <li><strong>节点选择灵活：</strong>用户可以根据不同用途选择不同节点。日常浏览选港日新，看视频选流媒体节点，用ChatGPT选美日新，低延迟需求选距离近的，办公/运营选目标地区。</li>
+                    <li><strong>套餐选择多样：</strong>龙猫云可提供不同流量、不同周期的套餐选择（月付/季付/半年付/年付/小流量/大流量/高速专线），轻度用户可选基础套餐，重度用户可选更高流量或长期套餐。</li>
+                    <li><strong>安全加密传输：</strong>通过加密传输方式提升网络连接安全性，降低数据暴露风险，提升连接隐私性，减少公共网络环境下的信息泄露风险。</li>
+                    <li><strong>节点持续维护优化：</strong>平台会对节点线路进行持续维护，包括速度优化、延迟监控、不稳定替换、高峰期线路调整、流媒体优化等，尽量保证可用性。</li>
+                </ol>
+
+                <h2>五、适合哪些用户？</h2>
+                <p>龙猫云适合以下用户使用：</p>
+                <ul>
+                    <li>需要访问海外网站的用户</li>
+                    <li>经常观看 YouTube / Netflix 的用户</li>
+                    <li>需要使用 ChatGPT 等 AI 工具的用户</li>
+                    <li>跨境电商与外贸办公用户 / 海外社交媒体运营人员</li>
+                    <li>程序员、开发者与技术学习用户</li>
+                    <li>留学生、资料查询与在线学习用户</li>
+                    <li>需要稳定网络环境的办公用户 / 需要多设备使用的家庭或个人用户</li>
+                </ul>
+
+                <h2>六、龙猫云机场推荐理由</h2>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">⚡</div>
+                        <div class="feature-content">
+                            <h4>速度表现</h4>
+                            <p>专线定位，适合高清视频和 AI 工具</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🌍</div>
+                        <div class="feature-content">
+                            <h4>节点布局</h4>
+                            <p>常见热门地区节点，适合多场景切换</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🛡️</div>
+                        <div class="feature-content">
+                            <h4>稳定保障</h4>
+                            <p>适合长时间使用，减少卡顿和断连</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📱</div>
+                        <div class="feature-content">
+                            <h4>新手体验</h4>
+                            <p>文档清晰，客户端导入门槛低</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 50px; margin-bottom: 20px; text-align: center;">
+                    <a href="https://inv06.lmaff01.cc/register?aff=e58zhdpc" target="_blank" rel="nofollow noopener" class="btn btn-primary" style="padding: 16px 48px; font-size: 1.25rem; font-weight: 700; border-radius: var(--radius-full); box-shadow: var(--shadow-lg); background-color: #000; color: #fff;">官网注册</a>
+                </div>
+                
+                <div style="text-align: center;">
+                    <a href="recommend.html" class="btn btn-outline" style="border: none;">&larr; 返回机场推荐列表</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer 底部区域 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2 class="footer-title">柳如烟</h2>
+                    <p class="footer-desc">专注整理稳定高速、低延迟、多平台支持的机场服务，并提供常见客户端使用教程，帮助用户更快完成订阅导入与节点选择。</p>
+                </div>
+                <div class="footer-links-group">
+                    <h3 class="footer-subtitle">快速导航</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html#hero">首页</a></li>
+                        <li><a href="recommend.html">机场推荐</a></li>
+                        <li><a href="airport-reviews.html">机场测评</a></li>
+                        <li><a href="index.html#tutorials">使用教程</a></li>
+                        <li><a href="index.html#faq">常见问题</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 柳如烟. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

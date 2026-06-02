@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadowrocket (小火箭) 使用教程 - 柳如烟</title>
+    <meta name="description" content="详细图文教程：如何在 iOS 端的 Shadowrocket (小火箭) 中导入机场订阅链接并开始使用。">
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .article-container {
+            max-width: 800px;
+            margin: 120px auto 60px;
+            padding: 50px;
+            background: #ffffff;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+        .article-title {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-weight: 800;
+        }
+        .article-meta {
+            color: var(--text-light);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.95rem;
+            display: flex;
+            gap: 20px;
+        }
+        .article-content h2 {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            position: relative;
+            padding-left: 14px;
+        }
+        .article-content h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 20px;
+            background-color: var(--accent-blue);
+            border-radius: 2px;
+        }
+        .article-content p {
+            margin-bottom: 16px;
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        .article-content ol {
+            margin-left: 20px;
+            margin-bottom: 24px;
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        .article-content li {
+            margin-bottom: 12px;
+            padding-left: 8px;
+        }
+        .article-content li strong {
+            color: var(--primary-color);
+        }
+        .step-box {
+            background-color: #f0fdf4;
+            padding: 20px 24px;
+            border-radius: var(--radius-md);
+            margin-bottom: 24px;
+            border-left: 4px solid var(--accent-green);
+        }
+        .step-box p {
+            margin-bottom: 0;
+            color: #166534;
+        }
+        .step-box strong {
+            color: #14532d;
+        }
+        
+        @media (max-width: 768px) {
+            .article-container {
+                margin-top: 100px;
+                padding: 30px 20px;
+            }
+            .article-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="logo.png" alt="柳如烟 Logo" class="logo-img">
+                    柳如烟
+                </a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html#hero">首页</a>
+                <a href="recommend.html">机场推荐</a>
+                <a href="airport-reviews.html">机场测评</a>
+                <a href="index.html#tutorials">使用教程</a>
+                <a href="index.html#faq">常见问题</a>
+            </nav>
+            <button class="menu-toggle" aria-label="打开菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <article class="container article-container">
+            <h1 class="article-title">Shadowrocket (小火箭) 订阅导入教程</h1>
+            <div class="article-meta">
+                <span><i class="icon-monitor"></i> 适用平台：iOS / iPadOS</span>
+                <span><i class="icon-clock"></i> 更新时间：2026-05-17</span>
+            </div>
+            <div class="article-content">
+                <p>Shadowrocket，俗称“小火箭”，是 iOS 平台上最强大且用户最多的代理客户端软件。本文将手把手教你如何在使用小火箭导入机场订阅并科学上网。</p>
+
+                <h2>第一步：下载安装 Shadowrocket</h2>
+                <div class="step-box" style="background-color: #eff6ff; border-left-color: var(--accent-blue);">
+                    <p>由于 App Store 国区无法下载 Shadowrocket，您需要使用<strong>非中国大陆地区（如美区、港区）的 Apple ID</strong> 登录 App Store 进行购买和下载。<br>
+                    <strong>注意：</strong>该软件为付费软件（美区通常为 2.99 美元），请认准带有火箭图标的官方应用。</p>
+                </div>
+
+                <h2>第二步：获取机场订阅链接</h2>
+                <div class="step-box">
+                    <p>1. 使用手机浏览器登录您购买的机场后台界面。<br>
+                    2. 在用户中心找到<strong>“一键订阅”</strong>区域。<br>
+                    3. 点击<strong>“复制 Shadowrocket 订阅链接”</strong>（如果没有专属选项，选择复制普通的 V2ray 或 Clash 订阅链接也可以被小火箭识别）。</p>
+                </div>
+
+                <h2>第三步：在小火箭中导入订阅</h2>
+                <ol>
+                    <li>打开手机上的 <strong>Shadowrocket</strong> 客户端。</li>
+                    <li>点击界面右上角的 <strong>“+” (加号)</strong> 按钮进入添加节点页面。</li>
+                    <li>在顶部的 <strong>“类型” (Type)</strong> 选项中，点击并选择 <strong>“Subscribe” (订阅)</strong>。</li>
+                    <li>在 <strong>“URL”</strong> 输入框中，<strong>粘贴</strong>您刚刚复制的机场订阅链接。</li>
+                    <li>在 <strong>“备注” (Remarks)</strong> 输入框中，随意填入一个名字（例如您的机场名字），然后点击右上角的 <strong>“保存” (Save)</strong>。</li>
+                    <li>回到首页，软件会自动下载节点列表。如果没有自动刷新，您可以在首页列表按住屏幕下拉进行刷新。</li>
+                </ol>
+
+                <h2>第四步：选择节点并连接</h2>
+                <ol>
+                    <li>在首页的节点列表中，选择一个延迟较低的节点（点击该节点，左侧会出现黄色的小圆点代表已选中）。</li>
+                    <li>您可以点击底部的 <strong>“连通性测试”</strong> 来测试各节点的真实延迟情况。</li>
+                    <li>在全局路由 (Global Routing) 设置中，一般选择 <strong>“配置” (Config)</strong> 模式（这会让国内网站直连，国外网站走代理）。</li>
+                    <li>最后，点击页面最上方的 <strong>“未连接”</strong> 旁边的开关，将其打开。</li>
+                    <li>如果是首次使用，系统会弹出提示请求添加 VPN 配置，点击 <strong>“Allow” (允许)</strong> 并验证密码或面容即可。</li>
+                </ol>
+                
+                <div class="step-box" style="background-color: #fffbeb; border-left-color: var(--accent-orange);">
+                    <p><strong>🎉 恭喜完成！</strong><br>当手机顶部状态栏出现“VPN”图标时，表示您已经连接成功，可以自由畅游网络了。</p>
+                </div>
+                
+                <div style="margin-top: 50px; text-align: center;">
+                    <a href="index.html#tutorials" class="btn btn-outline btn-lg">&larr; 返回教程列表</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer 底部区域 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2 class="footer-title">柳如烟</h2>
+                    <p class="footer-desc">专注整理稳定高速、低延迟、多平台支持的机场服务，并提供常见客户端使用教程，帮助用户更快完成订阅导入与节点选择。</p>
+                </div>
+                <div class="footer-links-group">
+                    <h3 class="footer-subtitle">快速导航</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html#hero">首页</a></li>
+                        <li><a href="recommend.html">机场推荐</a></li>
+                        <li><a href="airport-reviews.html">机场测评</a></li>
+                        <li><a href="index.html#tutorials">使用教程</a></li>
+                        <li><a href="index.html#faq">常见问题</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 柳如烟. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
