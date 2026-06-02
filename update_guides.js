@@ -2,6 +2,18 @@ const fs = require('fs');
 
 const articles = [
     {
+        title: "2024终极指南：如何选择最佳翻墙节点，无缝解锁Netflix与全球流媒体内容",
+        link: "best-vpn-netflix-streaming-unblock-guide-2024.html",
+        tag: "避坑指南",
+        summary: "还在为Netflix区域限制烦恼？本文揭秘最佳翻墙节点，助你无缝解锁全球流媒体，告别卡顿！"
+    },
+    {
+        title: "深度解析：IPLC专线如何构建稳定梯子，彻底解锁全球流媒体体验",
+        link: "iplc-stable-ladder-streaming-unblock-deep-dive.html",
+        tag: "硬核评测",
+        summary: "厌倦了梯子不稳定？本文深入探讨IPLC专线优势，教你打造极速流畅、稳定可靠的流媒体解锁方案。"
+    },
+    {
         title: "IEPL与IPLC专线深度解析：机场评测视角下的流媒体解锁终极指南",
         link: "iepl-iplc-streaming-unlock-ultimate-guide.html",
         tag: "硬核评测",
