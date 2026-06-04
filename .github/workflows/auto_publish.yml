@@ -24,9 +24,10 @@ jobs:
 
       - name: Generate New Articles
         env:
-          # 修改了这里：同时兼容两种密码名字，万无一失！
-          API_KEY: ${{ secrets.API_KEY || secrets.GEMINI_API_KEY }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY || secrets.API_KEY }}
+          # 修改了这里：同时兼容多种密码名字，万无一失！
+          API_KEY: ${{ secrets.API_KEY || secrets.GEMINI_API_KEY || secrets.DEEPSEEK_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY || secrets.API_KEY || secrets.DEEPSEEK_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY || secrets.API_KEY }}
           API_BASE_URL: ${{ secrets.API_BASE_URL || 'https://api.openai.com/v1' }}
           MODEL_NAME: ${{ secrets.MODEL_NAME || 'gpt-4o' }}
         run: |

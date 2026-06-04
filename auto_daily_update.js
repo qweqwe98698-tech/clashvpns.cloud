@@ -3,8 +3,8 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 // ================= 配置区域 =================
-// 自动读取您的正版 Gemini API 密码
-const API_KEY = process.env.GEMINI_API_KEY || process.env.API_KEY || 'YOUR_API_KEY_HERE';
+// 自动读取您的 API 密码 (支持环境变量 GEMINI_API_KEY 或 DEEPSEEK_API_KEY)
+const API_KEY = process.env.DEEPSEEK_API_KEY || process.env.GEMINI_API_KEY || process.env.API_KEY || 'YOUR_API_KEY_HERE';
 const DAILY_ARTICLE_COUNT = 2;
 
 const KEYWORDS = [
@@ -19,55 +19,28 @@ function getRandomKeywords(count) {
     return shuffled.slice(0, count).join('、');
 }
 
-// 📡 雷达探测！先让 Google 交出底牌
+// 📡 雷达探测！使用 DeepSeek 模型
 async function getBestModel() {
-    console.log("🔍 正在连接 Google 服务器，探测您账号专属的可用模型清单...");
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${API_KEY}`);
-    if (!response.ok) {
-        throw new Error(`无法获取模型列表: ${response.status} ${await response.text()}`);
-    }
-    
-    const data = await response.json();
-    if (!data.models || data.models.length === 0) {
-        throw new Error("🚨 严重错误：Google 服务器返回成功，但您的账号下没有任何可用模型！");
-    }
-
-    const availableModels = data.models
-        .filter(m => m.supportedGenerationMethods && m.supportedGenerationMethods.includes('generateContent') && m.name.includes('gemini'))
-        .map(m => m.name.replace('models/', ''));
-
-    console.log(`✅ 探测成功！您的账号目前支持 ${availableModels.length} 个模型`);
-
-    if (availableModels.length === 0) {
-        throw new Error("🚨 严重错误：您的账号没有任何支持生成文章的 Gemini 模型！");
-    }
-
-    let bestModel = availableModels.find(m => m.includes('flash'));
-    if (!bestModel) bestModel = availableModels.find(m => m.includes('pro'));
-    if (!bestModel) bestModel = availableModels[0];
-
-    console.log(`🎯 最终系统为您自动选择的最优模型是: ${bestModel}，准备起飞！`);
-    return bestModel;
+    console.log("🔍 准备使用 DeepSeek AI...");
+    return 'deepseek-chat';
 }
 
 async function callAI(systemPrompt, userPrompt, modelName) {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${API_KEY}`;
+    const url = `https://api.deepseek.com/chat/completions`;
 
     const response = await fetch(url, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${API_KEY}`
         },
         body: JSON.stringify({
-            systemInstruction: {
-                parts: [{ text: systemPrompt }]
-            },
-            contents: [
-                { role: "user", parts: [{ text: userPrompt }] }
+            model: modelName,
+            messages: [
+                { role: "system", content: systemPrompt },
+                { role: "user", content: userPrompt }
             ],
-            generationConfig: {
-                temperature: 0.7
-            }
+            temperature: 0.7
         })
     });
 
@@ -77,7 +50,7 @@ async function callAI(systemPrompt, userPrompt, modelName) {
     }
 
     const data = await response.json();
-    return data.candidates[0].content.parts[0].text.trim();
+    return data.choices[0].message.content.trim();
 }
 
 // ================= 核心流程 =================
