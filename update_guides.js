@@ -2,6 +2,18 @@ const fs = require('fs');
 
 const articles = [
     {
+        title: "Shadowrocket节点流媒体解锁实测：原生住宅IP是否值得付费？",
+        link: "shadowrocket-nodes-streaming-unlock-residential-ip-review.html",
+        tag: "硬核评测",
+        summary: "深度评测Shadowrocket节点对Netflix、Disney+等平台的流媒体解锁能力，对比原生住宅IP与普通IP的差异，助你避坑选对机场。"
+    },
+    {
+        title: "2025年Netflix节点与流媒体解锁深度评测：IEPL专线机场如何避免踩坑？",
+        link: "netflix-node-iepl-streaming-unlock-review.html",
+        tag: "硬核评测",
+        summary: "揭秘IEPL专线机场的Netflix节点解锁真相，实测流媒体速度与稳定性，避开伪专线陷阱，助你畅享4K无阻。"
+    },
+    {
         title: "Shadowrocket节点终极指南：游戏加速、稳定翻墙与高速连接的秘密",
         link: "shadowrocket-nodes-gaming-vpn-guide.html",
         tag: "深度解析",
