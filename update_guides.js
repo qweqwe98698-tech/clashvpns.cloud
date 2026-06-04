@@ -2,6 +2,18 @@ const fs = require('fs');
 
 const articles = [
     {
+        title: "Trojan机场评测：IPLC专线加持下的Clash订阅，速度与稳定的终极对决",
+        link: "trojan-airport-iplc-dedicated-line-clash-subscription-review.html",
+        tag: "硬核评测",
+        summary: "深度解析Trojan机场如何借助IPLC专线实现低延迟，并教你优化Clash订阅配置，避开拥堵节点，畅享丝滑网络体验。"
+    },
+    {
+        title: "2025翻墙节点深度评测：IEPL专线对比ChatGPT节点的速度与稳定性真相",
+        link: "iepl-chatgpt-vpn-node-review-2025.html",
+        tag: "硬核评测",
+        summary: "实测多款IEPL专线与ChatGPT节点，揭秘翻墙节点真实速度、延迟与解锁能力，帮您避开常见陷阱。"
+    },
+    {
         title: "Shadowrocket节点流媒体解锁实测：原生住宅IP是否值得付费？",
         link: "shadowrocket-nodes-streaming-unlock-residential-ip-review.html",
         tag: "硬核评测",
