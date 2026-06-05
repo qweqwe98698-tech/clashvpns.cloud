@@ -2,6 +2,18 @@ const fs = require('fs');
 
 const articles = [
     {
+        title: "2025年机场优选：ChatGPT节点、V2ray节点与IEPL专线深度评测，解锁极致流媒体体验",
+        link: "chatgpt-v2ray-iepl-vpn-node-review.html",
+        tag: "硬核评测",
+        summary: "专业评测ChatGPT节点、V2ray节点与IEPL专线，揭秘速度、稳定性与解锁能力，助你避开陷阱，选对机场畅享全球网络。"
+    },
+    {
+        title: "Clash订阅与高速机场：2025年最稳翻墙节点深度评测与避坑指南",
+        link: "clash-subscription-high-speed-airport-vpn-node-review.html",
+        tag: "硬核评测",
+        summary: "从Clash订阅到高速机场选择，深度评测2025年最稳翻墙节点，揭秘如何避开垃圾节点，找到真正高速稳定的科学上网方案。"
+    },
+    {
         title: "Trojan机场评测：IPLC专线加持下的Clash订阅，速度与稳定的终极对决",
         link: "trojan-airport-iplc-dedicated-line-clash-subscription-review.html",
         tag: "硬核评测",
