@@ -2,6 +2,18 @@ const fs = require('fs');
 
 const articles = [
     {
+        title: "科学上网2025：游戏加速节点与Netflix节点硬核评测，低延迟解锁全攻略",
+        link: "scientific-internet-gaming-acceleration-netflix-nodes-review-2025.html",
+        tag: "硬核评测",
+        summary: "深度评测最新科学上网方案，实测游戏加速节点和Netflix节点性能，教你避开雷区，畅享低延迟与4K流媒体。"
+    },
+    {
+        title: "2025年游戏加速节点与Netflix节点实测：稳定梯子如何选？",
+        link: "game-acceleration-netflix-node-stable-vpn-review.html",
+        tag: "硬核评测",
+        summary: "深度评测2025年最稳游戏加速节点和Netflix节点，对比多款稳定梯子，助你畅玩低延迟游戏与流媒体。"
+    },
+    {
         title: "2025年机场优选：ChatGPT节点、V2ray节点与IEPL专线深度评测，解锁极致流媒体体验",
         link: "chatgpt-v2ray-iepl-vpn-node-review.html",
         tag: "硬核评测",
