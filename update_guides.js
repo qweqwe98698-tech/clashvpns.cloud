@@ -2,6 +2,18 @@ const fs = require('fs');
 
 const articles = [
     {
+        title: "2025年稳定梯子实测：Trojan机场与V2ray节点谁更胜一筹？",
+        link: "stable-trojan-v2ray-proxy-comparison-2025.html",
+        tag: "硬核评测",
+        summary: "深度对比Trojan机场与V2ray节点在延迟、速度、稳定性上的表现，揭秘2025年最值得选择的稳定梯子，助你避开踩坑。"
+    },
+    {
+        title: "Trojan机场 vs V2ray节点：IPLC专线实测深度评测与避坑指南",
+        link: "trojan-airport-v2ray-iplc-review-guide.html",
+        tag: "硬核评测",
+        summary: "深度对比Trojan机场与V2ray节点，实测IPLC专线效果，揭秘速度、稳定与性价比，助你避开常见陷阱。"
+    },
+    {
         title: "IPLC专线高速机场深度评测：Clash订阅配置与极致速度体验",
         link: "iplc-high-speed-airport-clash-subscription-review.html",
         tag: "硬核评测",
