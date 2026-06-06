@@ -2,6 +2,18 @@ const fs = require('fs');
 
 const articles = [
     {
+        title: "2025翻墙节点与Shadowrocket节点深度评测：Netflix节点解锁4K流畅体验指南",
+        link: "2025-vpn-shadowrocket-netflix-node-review.html",
+        tag: "硬核评测",
+        summary: "揭秘翻墙节点与Shadowrocket节点真相，实测Netflix节点解锁4K无缓冲，避开常见陷阱，专业评测助你选对稳定节点。"
+    },
+    {
+        title: "2025机场推荐：IPLC专线加持下的流媒体解锁终极指南",
+        link: "2025-airport-recommendation-iplc-streaming-unlock-guide.html",
+        tag: "硬核评测",
+        summary: "深度评测主流机场的IPLC专线表现，实测Netflix、Disney+等流媒体解锁能力，帮你找到速度与稳定兼得的优选方案。"
+    },
+    {
         title: "2025科学上网终极指南：V2ray节点与Trojan机场深度横评",
         link: "scientific-internet-v2ray-trojan-airport-review-2025.html",
         tag: "硬核评测",
