@@ -2,6 +2,18 @@ const fs = require('fs');
 
 const articles = [
     {
+        title: "2025科学上网终极指南：V2ray节点与Trojan机场深度横评",
+        link: "scientific-internet-v2ray-trojan-airport-review-2025.html",
+        tag: "硬核评测",
+        summary: "深度评测主流V2ray节点与Trojan机场，揭秘速度、隐私与稳定性，帮你避开雷区，畅享高速科学上网。"
+    },
+    {
+        title: "科学上网必备：ChatGPT节点与Shadowrocket节点终极评测与避坑指南",
+        link: "scientific-internet-chatgpt-shadowrocket-node-review.html",
+        tag: "硬核评测",
+        summary: "深度解析科学上网必备的ChatGPT节点与Shadowrocket节点，评测速度、稳定性与安全性，避免踩坑，助你畅游全球网络。"
+    },
+    {
         title: "科学上网2025：游戏加速节点与Netflix节点硬核评测，低延迟解锁全攻略",
         link: "scientific-internet-gaming-acceleration-netflix-nodes-review-2025.html",
         tag: "硬核评测",
