@@ -2,6 +2,18 @@ const fs = require('fs');
 
 const articles = [
     {
+        title: "IPLC专线高速机场深度评测：Clash订阅配置与极致速度体验",
+        link: "iplc-high-speed-airport-clash-subscription-review.html",
+        tag: "硬核评测",
+        summary: "深入解析IPLC专线高速机场优势，手把手教你Clash订阅配置，实测速度与稳定性，助你避开网络拥堵陷阱。"
+    },
+    {
+        title: "2025年Shadowrocket节点与Trojan机场深度评测：解锁ChatGPT节点的最佳选择",
+        link: "shadowrocket-trojan-airport-chatgpt-node-review-2025.html",
+        tag: "硬核评测",
+        summary: "实测主流Trojan机场与Shadowrocket节点，揭秘稳定解锁ChatGPT的加速方案，避开常见坑点，助你畅享高速网络体验。"
+    },
+    {
         title: "2025翻墙节点与Shadowrocket节点深度评测：Netflix节点解锁4K流畅体验指南",
         link: "2025-vpn-shadowrocket-netflix-node-review.html",
         tag: "硬核评测",
