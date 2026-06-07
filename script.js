@@ -55,4 +55,61 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // 退出意图弹窗逻辑 (Exit-Intent Popup)
+    const exitPopup = document.getElementById('exitPopup');
+    const closePopup = document.getElementById('closePopup');
+    let hasShownPopup = false;
+
+    if (exitPopup) {
+        // 监听鼠标移出视口顶部 (代表想要关闭网页或切换标签页)
+        document.addEventListener('mouseout', (e) => {
+            if (e.clientY < 10 && !hasShownPopup) {
+                // 判断是否已经显示过，这里可以使用 localStorage 记录
+                if (!localStorage.getItem('exitPopupShown')) {
+                    exitPopup.classList.add('show');
+                    hasShownPopup = true;
+                    // 记录，防止频繁打扰
+                    localStorage.setItem('exitPopupShown', 'true');
+                }
+            }
+        });
+
+        // 关闭弹窗
+        if (closePopup) {
+            closePopup.addEventListener('click', () => {
+                exitPopup.classList.remove('show');
+            });
+        }
+
+        // 点击背景关闭
+        exitPopup.addEventListener('click', (e) => {
+            if (e.target === exitPopup) {
+                exitPopup.classList.remove('show');
+            }
+        });
+    }
+
+    // UTM 流量溯源与联盟参数穿透
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentUtmSource = urlParams.get('utm_source');
+    if (currentUtmSource) {
+        sessionStorage.setItem('utm_source', currentUtmSource);
+    }
+    
+    const savedSource = sessionStorage.getItem('utm_source');
+    if (savedSource) {
+        document.querySelectorAll('a').forEach(a => {
+            const href = a.getAttribute('href');
+            // 如果是外部推广链接 (比如机场注册链接)，把追踪代码附加上去
+            if (href && (href.includes('aff=') || href.includes('register') || (href.startsWith('http') && !href.includes(window.location.hostname)))) {
+                try {
+                    const url = new URL(href);
+                    // 追加 sub_id，方便在机场面板统计是从哪个按钮点过来的
+                    url.searchParams.set('sub_id', savedSource);
+                    a.setAttribute('href', url.toString());
+                } catch (e) {}
+            }
+        });
+    }
 });

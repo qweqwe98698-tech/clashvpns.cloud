@@ -16,11 +16,13 @@ if (match) {
 
 let articlesHtml = '';
 let sitemapXmlUrls = '';
+let rssXmlItems = '';
 const domain = 'https://clashvpns.cloud';
 const today = new Date().toISOString().split('T')[0];
 
 articles.forEach(article => {
     articlesHtml += `<li><a href="${article.link}" style="color: var(--text-main); text-decoration: none;">${article.title}</a></li>\n                    `;
+    
     sitemapXmlUrls += `
     <url>
         <loc>${domain}/${article.link}</loc>
@@ -28,6 +30,16 @@ articles.forEach(article => {
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>`;
+    
+    rssXmlItems += `
+    <item>
+        <title><![CDATA[${article.title}]]></title>
+        <link>${domain}/${article.link}</link>
+        <description><![CDATA[${article.summary}]]></description>
+        <pubDate>${new Date().toUTCString()}</pubDate>
+        <guid>${domain}/${article.link}</guid>
+    </item>`;
+
 });
 
 // Update sitemap.xml
@@ -54,6 +66,20 @@ const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
 </urlset>`;
 
 fs.writeFileSync('sitemap.xml', sitemapXml, 'utf8');
+
+// Generate RSS Feed
+const rssFeed = `<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>柳如烟 - 稳定机场推荐</title>
+        <link>${domain}</link>
+        <description>最新稳定高速机场推荐与测评，Clash/Shadowrocket教程</description>
+        <atom:link href="${domain}/feed.xml" rel="self" type="application/rss+xml" />
+        ${rssXmlItems}
+    </channel>
+</rss>`;
+fs.writeFileSync('feed.xml', rssFeed, 'utf8');
+
 
 const content = `
     <section class="section container">
