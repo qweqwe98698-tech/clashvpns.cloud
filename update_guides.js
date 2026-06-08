@@ -2,6 +2,18 @@ const fs = require('fs');
 
 const articles = [
     {
+        title: "2026年机场跑路潮+ChatGPT封号双杀！Netflix节点全灭？这3个稳定梯子能救命",
+        link: "2026-vpn-recommendation-after-airport-scam-chatgpt-ban.html",
+        tag: "突发热点",
+        summary: "ChatGPT封号、机场跑路、Telegram断连…2026年科学上网还能用谁？实测3款稳定梯子，专为Netflix节点与原生IP而生，防封号指南速看。"
+    },
+    {
+        title: "2026年ChatGPT封号潮下，某机场跑路、Telegram被重置怎么办？稳定Trojan机场与游戏加速节点推荐！",
+        link: "2026-chatgpt-ban-airport-exit-telegram-reset-trojan-vpn-gaming-nodes.html",
+        tag: "突发热点",
+        summary: "2026年ChatGPT大面积封号、机场跑路、Telegram连接重置？本文深度解析Netflix严打与iPhone原生IP需求，推荐稳定Trojan机场与游戏加速节点，防封号必备！"
+    },
+    {
         title: "2025年稳定梯子实测：Trojan机场与V2ray节点谁更胜一筹？",
         link: "stable-trojan-v2ray-proxy-comparison-2025.html",
         tag: "硬核评测",
