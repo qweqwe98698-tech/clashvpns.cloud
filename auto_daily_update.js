@@ -209,7 +209,7 @@ async function main() {
 7. 【格式规范】：只输出文章主体的 HTML 代码（只包含 <p>, <h2>, <h3>, <ul>, <li>, <strong>, <a> 等标签），绝对不要输出 <html>、<body> 或 \`\`\`html 这种代码块标记。千万不要写“结语”二字。`;
         
         console.log(`正在生成文章正文 (请稍候，可能需要 10-30 秒)...`);
-        const articleHtmlContent = await callAIWithRetry("你是一个专业的 HTML 文章内容生成器，只输出 HTML 代码。", articlePrompt, modelName);
+        let articleHtmlContent = await callAIWithRetry("你是一个专业的 HTML 文章内容生成器，只输出 HTML 代码。", articlePrompt, modelName);
         articleHtmlContent = autoLinkKeywords(articleHtmlContent);
         console.log(`文章正文生成完毕，字数: ${articleHtmlContent.length}`);
 
