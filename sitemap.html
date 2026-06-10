@@ -223,5 +223,34 @@
 
     <script src="globe.js"></script>
     <script src="script.js"></script>
+
+    <!-- A/B Testing CTA Script -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const ctaTextElement = document.querySelector('.sticky-cta-text span');
+        const ctaBtnElement = document.querySelector('.sticky-cta .btn');
+        if (ctaTextElement && ctaBtnElement) {
+            const variations = [
+                { text: "获取 2026 最新特惠稳定机场", btn: "立即查看", utm: "cta_v1_default" },
+                { text: "博主自用防失联专属推荐", btn: "获取链接", utm: "cta_v2_personal" },
+                { text: "限时低价，解锁全球流媒体", btn: "抢先体验", utm: "cta_v3_urgency" }
+            ];
+            const randomIndex = Math.floor(Math.random() * variations.length);
+            const selected = variations[randomIndex];
+            ctaTextElement.innerText = selected.text;
+            ctaBtnElement.innerText = selected.btn;
+            
+            // Update URL with UTM
+            let href = ctaBtnElement.getAttribute('href');
+            if (href.includes('?')) {
+                href = href.replace(/utm_source=[^&]*/, 'utm_source=' + selected.utm);
+            } else {
+                href += '?utm_source=' + selected.utm;
+            }
+            ctaBtnElement.setAttribute('href', href);
+        }
+    });
+    </script>
+
 </body>
 </html>

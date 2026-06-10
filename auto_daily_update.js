@@ -372,6 +372,14 @@ async function main() {
         console.log('create_sitemap_html.js 执行可能有误，可忽略');
     }
 
+    console.log('执行: 全局 SEO 进阶优化 (FAQ, LazyLoad, AB Testing, SpiderWeb)');
+    try {
+        execSync('node build_seo_spider_web.js');
+        execSync('node apply_all_optimizations.js');
+    } catch (e) {
+        console.log('优化脚本运行报错，请忽略: ', e.message);
+    }
+
     if (newGeneratedUrls.length > 0) {
         await pushToIndexNow(newGeneratedUrls);
     }

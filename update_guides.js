@@ -573,3 +573,31 @@ if (startIndex !== -1 && endIndex !== -1) {
 } else {
     console.log('Could not find markers in index.html');
 }
+
+// === 新增：自动生成 RSS/Atom Feed ===
+let feedXml = `<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>柳如烟推荐机场</title>
+  <link href="https://clashvpns.cloud/feed.xml" rel="self"/>
+  <link href="https://clashvpns.cloud/"/>
+  <updated>${new Date().toISOString()}</updated>
+  <id>https://clashvpns.cloud/</id>
+  <author>
+    <name>柳如烟</name>
+  </author>
+`;
+
+// 取前 20 篇文章输出到 Feed 中
+articles.slice(0, 20).forEach(article => {
+    feedXml += `  <entry>
+    <title>${article.title.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</title>
+    <link href="https://clashvpns.cloud/${article.link}"/>
+    <id>https://clashvpns.cloud/${article.link}</id>
+    <updated>${new Date().toISOString()}</updated>
+    <summary>${article.summary.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</summary>
+  </entry>\n`;
+});
+
+feedXml += `</feed>`;
+fs.writeFileSync('feed.xml', feedXml, 'utf8');
+console.log('✅ Updated feed.xml with latest articles.');
