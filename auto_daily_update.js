@@ -147,13 +147,22 @@ function autoLinkKeywords(html) {
         "专线机场": "recommend.html",
         "机场测评": "airport-reviews.html",
         "快连": "letsvpn-vs-airport-ecosystem-2026.html",
-        "免费节点": "cheap-airport-free-nodes-risk.html"
+        "免费节点": "cheap-airport-free-nodes-risk.html",
+        "光速云": "guangsuyun.html",
+        "大哥云": "dageyun.html",
+        "肥猫云": "feimaoyun.html",
+        "Gatern": "gatern.html",
+        "龙猫云": "longmaoyun.html",
+        "奈云": "naiyun.html",
+        "青云梯": "qingyunti.html",
+        "瞬云": "shunyun.html",
+        "一云梯": "yiyunti.html"
     };
     let newHtml = html;
     for (const [kw, url] of Object.entries(links)) {
         // 匹配第一次出现的词（不在 a 标签等 html 标签内的才匹配）
         const regex = new RegExp(`(?<!<[^>]*)${kw}(?![^<]*>)`, 'i');
-        newHtml = newHtml.replace(regex, `<a href="${url}" style="color: #3b82f6; font-weight: 500; text-decoration: underline;" title="${kw}教程与推荐">async function main()</a>`);
+        newHtml = newHtml.replace(regex, `<a href="${url}" style="color: #3b82f6; font-weight: 500; text-decoration: underline;" title="${kw}教程与评测">$&</a>`);
     }
     return newHtml;
 }
