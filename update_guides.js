@@ -2,6 +2,18 @@ const fs = require('fs');
 
 const articles = [
     {
+        title: "2026年ChatGPT封号潮与机场跑路危机：如何找到稳定Netflix、Shadowrocket和ChatGPT节点？防封号终极指南",
+        link: "2026-chatgpt-ban-airport-shutdown-netflix-shadowrocket-guide.html",
+        tag: "突发热点",
+        summary: "ChatGPT大面积封号、某机场跑路、Telegram连接重置、Netflix严打密码共享，2026年翻墙节点危机四伏！本文教你选择稳定Netflix/Shadowrocket/ChatGPT节点，防封号避坑。"
+    },
+    {
+        title: "2026年ChatGPT封号潮下，IPLC专线翻墙节点才是稳如泰山的唯一选择？附最新机场防跑路指南",
+        link: "2026-chatgpt-ban-iplc-vpn-airport-recommendation.html",
+        tag: "突发热点",
+        summary: "ChatGPT大规模封号、机场跑路、Netflix严打密码共享…2026年翻墙用户如何自救？IPLC专线节点实测，推荐稳定防封科学上网机场。"
+    },
+    {
         title: "2026年ChatGPT封号潮、机场跑路不断？Netflix严打、Telegram被重置！手把手教你选稳定梯子与游戏加速节点，防坑防封号终极指南",
         link: "2026-chatgpt-ban-vpn-recommendation-stable-trojan-gaming-node.html",
         tag: "防坑指南",
