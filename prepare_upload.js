@@ -32,6 +32,11 @@ for (const element of elements) {
     // 如果在黑名单里，就跳过不搬
     if (ignoreList.includes(element)) continue;
     
+    // 过滤掉所有不应该上传到前端的后台 Node.js 脚本 (只保留前端需要的 script.js)
+    if (element.endsWith('.js') && element !== 'script.js') {
+        continue;
+    }
+    
     const srcPath = path.join(sourceDir, element);
     const destPath = path.join(targetDir, element);
     
@@ -39,4 +44,4 @@ for (const element of elements) {
     fs.cpSync(srcPath, destPath, { recursive: true });
 }
 
-console.log('✅ 所有网站文件（包含最新生成的 AI 文章）已成功打包完毕，准备起飞上传 FTP！');
+console.log('✅ 所有网站文件（包含最新生成的 AI 文章与英文版站点）已成功打包完毕，准备起飞上传 FTP！');
