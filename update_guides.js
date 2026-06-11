@@ -584,26 +584,12 @@ articles.forEach(article => {
 `;
 });
 
-// Update index.html
-const startIndex = html.indexOf('<!-- 柳如烟机场指南 -->');
-const endIndex = html.indexOf('<!-- 用户评价 -->');
-
-if (startIndex !== -1 && endIndex !== -1) {
-    let newHtml = html.substring(0, startIndex) + guidesHTML + `                </div>
-            </div>
-        </section>\n\n        ` + html.substring(endIndex);
-    fs.writeFileSync('index.html', newHtml, 'utf8');
-    console.log('Updated index.html guides structure.');
-} else {
-    console.log('Could not find markers in index.html');
-}
-
 // Update guides.html
 try {
     let guidesPageHtml = fs.readFileSync('guides.html', 'utf8');
     const gStartIndex = guidesPageHtml.indexOf('<!-- 柳如烟机场指南 -->');
     if (gStartIndex !== -1) {
-        // guides.html has no "用户评价" comment probably, let's find the end of the section
+        // Find the end of the div containing the guides list
         const gEndIndex = guidesPageHtml.indexOf('</section>', gStartIndex);
         if (gEndIndex !== -1) {
             let newGuidesPageHtml = guidesPageHtml.substring(0, gStartIndex) + guidesHTML + `                </div>
@@ -611,7 +597,11 @@ try {
         </section>\n\n        ` + guidesPageHtml.substring(gEndIndex + 10);
             fs.writeFileSync('guides.html', newGuidesPageHtml, 'utf8');
             console.log('Updated guides.html guides structure.');
+        } else {
+            console.log('Could not find end marker in guides.html');
         }
+    } else {
+        console.log('Could not find start marker in guides.html');
     }
 } catch (e) {
     console.log('Could not update guides.html: ' + e.message);
