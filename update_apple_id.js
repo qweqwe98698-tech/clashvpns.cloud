@@ -80,14 +80,14 @@ const puppeteer = require('puppeteer');
                     <span class="acc-label">账号 (Apple ID)</span>
                     <div class="acc-value-group">
                         <span class="acc-value" id="email-${index}">${acc.email}</span>
-                        <button class="copy-btn" onclick="copyToClipboard('email-${index}')" title="复制账号">复制</button>
+                        <button class="copy-btn" onclick="copyToClipboard('email-${index}', this)" title="复制账号">复制</button>
                     </div>
                 </div>
                 <div class="acc-row">
                     <span class="acc-label">密码 (Password)</span>
                     <div class="acc-value-group">
                         <span class="acc-value" id="pwd-${index}">${acc.password}</span>
-                        <button class="copy-btn" onclick="copyToClipboard('pwd-${index}')" title="复制密码">复制</button>
+                        <button class="copy-btn" onclick="copyToClipboard('pwd-${index}', this)" title="复制密码">复制</button>
                     </div>
                 </div>
                 <div class="acc-row">

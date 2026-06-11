@@ -115,24 +115,52 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // 复制 Apple ID 到剪贴板
-function copyToClipboard(elementId) {
+function copyToClipboard(elementId, btnObj) {
     const textToCopy = document.getElementById(elementId).innerText.trim();
+    const btn = btnObj || (window.event ? window.event.currentTarget || window.event.target : null);
     
-    // 使用新的 Clipboard API
-    navigator.clipboard.writeText(textToCopy).then(() => {
-        // 寻找被点击的按钮并显示成功状态
-        const btn = event.currentTarget;
-        const originalText = btn.innerText;
-        btn.innerText = "已复制";
-        btn.classList.add("copied");
+    function showSuccess() {
+        if(btn) {
+            const originalText = btn.innerText;
+            btn.innerText = "已复制";
+            btn.classList.add("copied");
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.classList.remove("copied");
+            }, 2000);
+        }
+    }
+
+    // fallback: 如果是本地打开(file://)或者http，navigator.clipboard 可能不存在
+    if (!navigator.clipboard) {
+        const textArea = document.createElement("textarea");
+        textArea.value = textToCopy;
         
-        // 2秒后恢复原样
-        setTimeout(() => {
-            btn.innerText = originalText;
-            btn.classList.remove("copied");
-        }, 2000);
+        // 避免滚动
+        textArea.style.top = "0";
+        textArea.style.left = "0";
+        textArea.style.position = "fixed";
+        
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+            document.execCommand('copy');
+            showSuccess();
+        } catch (err) {
+            console.error('Fallback: 复制失败', err);
+            alert('复制失败，请手动长按复制');
+        }
+        document.body.removeChild(textArea);
+        return;
+    }
+
+    // 现代浏览器 HTTPS
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        showSuccess();
     }).catch(err => {
         console.error('复制失败:', err);
-        alert('复制失败，请手动选择复制');
+        alert('复制失败，请手动长按复制');
     });
 }
