@@ -1306,4 +1306,32 @@ body.recommend-page {
         -webkit-backdrop-filter: none;
         background: white;
     }
+}
+
+/* --- Copy Button CSS --- */
+.acc-value-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.copy-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.copy-btn:hover {
+    background: var(--accent-blue);
+}
+
+.copy-btn.copied {
+    background: #10B981;
 }\n

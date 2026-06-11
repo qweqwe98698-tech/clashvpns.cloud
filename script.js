@@ -113,3 +113,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// 复制 Apple ID 到剪贴板
+function copyToClipboard(elementId) {
+    const textToCopy = document.getElementById(elementId).innerText.trim();
+    
+    // 使用新的 Clipboard API
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        // 寻找被点击的按钮并显示成功状态
+        const btn = event.currentTarget;
+        const originalText = btn.innerText;
+        btn.innerText = "已复制";
+        btn.classList.add("copied");
+        
+        // 2秒后恢复原样
+        setTimeout(() => {
+            btn.innerText = originalText;
+            btn.classList.remove("copied");
+        }, 2000);
+    }).catch(err => {
+        console.error('复制失败:', err);
+        alert('复制失败，请手动选择复制');
+    });
+}
