@@ -1313,7 +1313,8 @@ body.recommend-page {
     display: flex;
     align-items: center;
     gap: 10px;
-    width: 100%;
+    width: auto;
+    justify-content: flex-end;
 }
 
 .copy-btn {
