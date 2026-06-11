@@ -178,14 +178,14 @@ ul {
 
 .nav-links {
     display: flex;
-    gap: 15px;
+    gap: 30px;
     flex-wrap: wrap;
     justify-content: center;
 }
 
 .nav-links a {
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 1.15rem;
     color: var(--text-main);
     white-space: nowrap;
 }
