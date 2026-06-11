@@ -22,7 +22,31 @@ const links = {
     "奈云": "naiyun.html",
     "青云梯": "qingyunti.html",
     "瞬云": "shunyun.html",
-    "一云梯": "yiyunti.html"
+    "一云梯": "yiyunti.html",
+    "Netflix": "netflix-youtube-airport-node-guide-2026.html",
+    "ChatGPT": "chatgpt-airport-node-selection-2026.html",
+    "节点": "2026-beginner-guide-stable-nodes.html",
+    "梯子": "what-is-ladder-proxy.html",
+    "跑路": "airport-runaway-warning-2026.html",
+    "IPLC": "iplc-iepl-dedicated-line-airport-guide-2026.html",
+    "IEPL": "iplc-iepl-dedicated-line-airport-guide-2026.html",
+    "V2ray": "scientific-internet-v2ray-trojan-airport-review-2025.html",
+    "Trojan": "trojan-airport-v2ray-iplc-review-guide.html",
+    "流媒体": "netflix-youtube-airport-node-guide-2026.html",
+    "原生IP": "iplc-native-ip-chatgpt-node-speed-guide.html",
+    "游戏加速": "shadowrocket-nodes-gaming-vpn-guide.html",
+    "翻墙": "vpn-airport-combo-strategy-2026.html",
+    "科学上网": "vpn-airport-proxy-differences-2026.html",
+    "网址导航": "nav.html",
+    "出海工具": "nav.html",
+    "免费Apple ID": "apple-id-shared.html",
+    "美区Apple ID": "apple-id-shared.html",
+    "免费苹果账号": "apple-id-shared.html",
+    "客户端下载": "download.html",
+    "官方下载": "download.html",
+    "免费节点": "free-nodes.html",
+    "白嫖节点": "free-nodes.html",
+    "免费订阅": "free-nodes.html"
 };
 
 function autoLinkKeywords(html) {

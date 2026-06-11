@@ -1,0 +1,44 @@
+name: Daily Apple ID Scraper
+
+on:
+  schedule:
+    # Run every day at 00:00 UTC (08:00 Beijing Time)
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  scrape-and-update:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: |
+          npm init -y
+          npm install puppeteer
+
+      - name: Run scraper script
+        run: node update_apple_id.js
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add apple-id-shared.html
+          git commit -m "Auto-update: Refresh Apple ID accounts" || echo "No changes to commit"
+          git push
+
+      - name: Notify Search Engines
+        run: |
+          curl -s "https://www.bing.com/ping?sitemap=https://clashvpns.cloud/sitemap.xml" || true
+          curl -s "https://www.google.com/ping?sitemap=https://clashvpns.cloud/sitemap.xml" || true

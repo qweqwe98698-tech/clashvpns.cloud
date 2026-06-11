@@ -87,25 +87,82 @@ htmlFiles.forEach(file => {
     // Skip index, recommend, airport-reviews, sitemap
     const excludeRelated = ['index.html', 'recommend.html', 'airport-reviews.html', 'sitemap.html', 'clash-verge-rev.html', 'shadowrocket.html', 'v2rayn.html', 'stash.html'];
     if (!excludeRelated.includes(relativePath)) {
-        if (content.includes('<div class="article-content">') && !content.includes('相关阅读推荐：') && articlesData.length > 0) {
-            // Find a place to insert it. Usually right before </div></article>
-            let insertPos = content.indexOf('</div>\n        </article>');
-            if (insertPos === -1) insertPos = content.indexOf('</article>');
+        if (content.includes('<div class="article-content">') && articlesData.length > 0) {
+            // First, remove old spider-web-links if they exist
+            const oldSpiderRegex = /<div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var\(--border-color\);" class="spider-web-links">[\s\S]*?<\/div>\s*<\/div>/g;
+            // Wait, the previous block was just one </div> at the end, but the new one has nested divs.
+            // Let's use a simpler regex to remove the old block based on its class
+            const oldSpiderRegexAlternative = /<div[^>]*class="spider-web-links"[^>]*>[\s\S]*?<\/div>(\s*<\/div>)?/g;
             
-            if (insertPos !== -1) {
-                // Pick 4 random related articles
-                const shuffled = articlesData.filter(a => a.link !== relativePath).sort(() => 0.5 - Math.random()).slice(0, 4);
-                if (shuffled.length > 0) {
-                    const relatedHtml = `
-                    <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color);" class="spider-web-links">
-                        <h3 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--text-main);">相关阅读推荐：</h3>
-                        <ul style="list-style: none; padding-left: 0;">
-                            ${shuffled.map(item => `<li style="margin-bottom: 10px;">👉 <a href="${item.link}" style="color: var(--accent-blue); text-decoration: underline;">${item.title}</a></li>`).join('')}
-                        </ul>
-                    </div>\n                `;
-                    
-                    content = content.slice(0, insertPos) + relatedHtml + content.slice(insertPos);
-                    isModified = true;
+            // To be safe, let's just use string manipulation to remove from '<div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color);" class="spider-web-links">'
+            // up to the closing </div> before </article>
+            let hasOld = content.indexOf('class="spider-web-links"');
+            if (hasOld !== -1) {
+                // remove the old spider web section
+                let startToRemove = content.lastIndexOf('<div', hasOld);
+                // find the next </article>
+                let articleEnd = content.indexOf('</article>', startToRemove);
+                if(articleEnd !== -1) {
+                    // Just replace everything from startToRemove to articleEnd - if it's safe.
+                    // Actually, let's just remove the block with a regex that matches from <div ... class="spider-web-links"... to the next </div></div> or similar.
+                }
+            }
+            
+            // A safer way is to just do it via regex
+            content = content.replace(/<div[^>]*class="spider-web-links"[^>]*>[\s\S]*?(?=<\/article>|<\/div>\s*<\/article>)/, '');
+
+            // Ensure we don't duplicate
+            if (!content.includes('🔥 热门机场探讨：')) {
+                let insertPos = content.indexOf('</div>\n        </article>');
+                if (insertPos === -1) insertPos = content.indexOf('</article>');
+                
+                if (insertPos !== -1) {
+                    // Pick 10 random related articles to create a massive spiderweb
+                    const shuffled = articlesData.filter(a => a.link !== relativePath).sort(() => 0.5 - Math.random()).slice(0, 10);
+                    if (shuffled.length > 0) {
+                        const hotArticles = shuffled.slice(0, 5);
+                        const relatedArticles = shuffled.slice(5, 10);
+                        
+                        let listsHtml = '';
+                        if (hotArticles.length > 0) {
+                            listsHtml += `
+                                <div style="flex: 1; min-width: 300px;">
+                                    <h3 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--text-main);">🔥 热门机场探讨：</h3>
+                                    <ul style="list-style: none; padding-left: 0;">
+                                        ${hotArticles.map(item => `<li style="margin-bottom: 10px; font-size: 0.95rem;">👉 <a href="${item.link}" style="color: var(--accent-blue); text-decoration: underline;" title="${item.title}">${item.title}</a></li>`).join('')}
+                                    </ul>
+                                </div>`;
+                        }
+                        if (relatedArticles.length > 0) {
+                            listsHtml += `
+                                <div style="flex: 1; min-width: 300px;">
+                                    <h3 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--text-main);">📚 深度阅读与拓展：</h3>
+                                    <ul style="list-style: none; padding-left: 0;">
+                                        ${relatedArticles.map(item => `<li style="margin-bottom: 10px; font-size: 0.95rem;">👉 <a href="${item.link}" style="color: var(--accent-blue); text-decoration: underline;" title="${item.title}">${item.title}</a></li>`).join('')}
+                                    </ul>
+                                </div>`;
+                        }
+
+                        // Add External Links (Friendly Links)
+                        listsHtml += `
+                            <div style="flex: 1; min-width: 300px;">
+                                <h3 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--text-main);">🌐 推荐资源：</h3>
+                                <ul style="list-style: none; padding-left: 0;">
+                                    <li style="margin-bottom: 10px; font-size: 0.95rem;">👉 <a href="https://clashwiki.cc/" target="_blank" style="color: var(--accent-blue); text-decoration: underline;" title="机场推荐科学上网教程">机场推荐科学上网教程</a></li>
+                                    <li style="margin-bottom: 10px; font-size: 0.95rem;">👉 <a href="https://jichangxuanze.com/" target="_blank" style="color: var(--accent-blue); text-decoration: underline;" title="高性价比机场推荐指南">高性价比机场推荐指南</a></li>
+                                </ul>
+                            </div>`;
+
+                        const relatedHtml = `
+                        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color);" class="spider-web-links">
+                            <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between;">
+                                ${listsHtml}
+                            </div>
+                        </div>\n                `;
+                        
+                        content = content.slice(0, insertPos) + relatedHtml + content.slice(insertPos);
+                        isModified = true;
+                    }
                 }
             }
         }
