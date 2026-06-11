@@ -584,7 +584,7 @@ articles.forEach(article => {
 `;
 });
 
-// Since regex replace might be tricky with large chunks, let's just do a string slice
+// Update index.html
 const startIndex = html.indexOf('<!-- 柳如烟机场指南 -->');
 const endIndex = html.indexOf('<!-- 用户评价 -->');
 
@@ -596,6 +596,25 @@ if (startIndex !== -1 && endIndex !== -1) {
     console.log('Updated index.html guides structure.');
 } else {
     console.log('Could not find markers in index.html');
+}
+
+// Update guides.html
+try {
+    let guidesPageHtml = fs.readFileSync('guides.html', 'utf8');
+    const gStartIndex = guidesPageHtml.indexOf('<!-- 柳如烟机场指南 -->');
+    if (gStartIndex !== -1) {
+        // guides.html has no "用户评价" comment probably, let's find the end of the section
+        const gEndIndex = guidesPageHtml.indexOf('</section>', gStartIndex);
+        if (gEndIndex !== -1) {
+            let newGuidesPageHtml = guidesPageHtml.substring(0, gStartIndex) + guidesHTML + `                </div>
+            </div>
+        </section>\n\n        ` + guidesPageHtml.substring(gEndIndex + 10);
+            fs.writeFileSync('guides.html', newGuidesPageHtml, 'utf8');
+            console.log('Updated guides.html guides structure.');
+        }
+    }
+} catch (e) {
+    console.log('Could not update guides.html: ' + e.message);
 }
 
 // === 新增：自动生成 RSS/Atom Feed ===
