@@ -1,0 +1,144 @@
+---
+import Layout from '../layouts/Layout.astro';
+import airports from '../data/airports.json';
+
+const featured = airports[0];
+const subFeatured = airports.slice(1, 4); // Show 3 Side Stories
+const mentions = airports.slice(4); // Show the rest in Mentions
+---
+
+<Layout title="精选机场推荐 - 柳如烟的奇妙小报">
+  <div class="fixed inset-0 z-[-1] pointer-events-none" style="background-color: #FDFBF7; background-image: radial-gradient(#E5E7EB 1px, transparent 1px); background-size: 20px 20px;"></div>
+
+  <section class="max-w-6xl mx-auto px-4 py-16">
+    <!-- 报纸报头风格标题 -->
+    <header class="text-center mb-16 border-b-4 border-double border-sakura-primary/40 pb-8 relative">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-sakura-primary/20"></div>
+      <p class="text-xs text-sakura-text/50 tracking-[0.3em] uppercase mb-4 font-bold">The Sakura Times • 2026 Edition</p>
+      <h1 class="text-6xl md:text-7xl font-handwriting text-sakura-primary mb-4 drop-shadow-sm">✨ 柳如烟甄选专栏</h1>
+      <p class="text-sakura-text/80 max-w-2xl mx-auto font-medium text-lg italic">"打破信息差，在这里找到最适合你的网络引擎。基于稳定性、速度与极致性价比的深度报道。"</p>
+    </header>
+
+    <div class="flex flex-col lg:flex-row gap-10">
+      
+      <!-- 左侧：头条版面 (Top Story) -->
+      <div class="lg:w-2/3">
+        <div class="bg-white p-8 md:p-12 shadow-[4px_6px_0px_rgba(255,182,193,0.3)] border-2 border-sakura-primary/20 relative group">
+          <div class="absolute -top-3 -left-3 w-16 h-16 bg-yellow-300 rounded-full flex items-center justify-center transform -rotate-12 shadow-md border-2 border-white z-10">
+            <span class="text-yellow-800 font-bold text-sm text-center leading-tight">本期<br/>头牌</span>
+          </div>
+
+          <div class="flex flex-col md:flex-row justify-between items-end border-b-2 border-sakura-secondary/50 pb-6 mb-6">
+            <div>
+              <h2 class="text-5xl font-handwriting text-sakura-text/90 group-hover:text-sakura-primary transition-colors">{featured.name}</h2>
+              <div class="text-yellow-400 tracking-widest text-xl mt-2">{featured.rating}</div>
+            </div>
+            <div class="flex flex-wrap gap-2 mt-4 md:mt-0 justify-end">
+              {featured.tags.map(tag => (
+                <span class="text-sm bg-[#FFF8FA] text-sakura-primary px-3 py-1 border border-sakura-primary/20 shadow-sm transform rotate-1">{tag}</span>
+              ))}
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8 text-sakura-text/80 text-lg leading-relaxed mb-10">
+            <div>
+              <p class="mb-4"><strong class="text-sakura-primary/90 text-xl font-handwriting block mb-1">💰 资费评测：</strong>{featured.price}</p>
+              <p><strong class="text-sakura-primary/90 text-xl font-handwriting block mb-1">🎯 目标人群：</strong>{featured.audience}</p>
+            </div>
+            <div class="bg-sakura-secondary/10 p-5 border-l-4 border-sakura-primary italic relative">
+              <span class="text-3xl text-sakura-primary/30 absolute -top-2 left-2">"</span>
+              <strong class="text-sakura-primary/90 text-xl font-handwriting block mb-2 not-italic">核心优势：</strong>
+              <span class="relative z-10">{featured.advantage}</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href={featured.url} target="_blank" rel="nofollow noopener" class="flex-1 inline-flex items-center justify-center px-8 py-4 bg-sakura-primary text-white text-xl font-bold rounded hover:bg-sakura-primary/90 hover:-translate-y-1 hover:shadow-lg transition-all shadow-[2px_4px_0px_#D6336C]">
+              🎀 立即体验 {featured.name}
+            </a>
+            <a href={`/reviews/${featured.id}`} class="flex-1 inline-flex items-center justify-center px-8 py-4 bg-white border-2 border-sakura-primary text-sakura-primary text-xl font-bold rounded hover:bg-sakura-secondary/20 hover:-translate-y-1 transition-all">
+              📖 深度手账评测
+            </a>
+          </div>
+        </div>
+        
+        <!-- 底部简报 (Mentions) -->
+        <div class="mt-10 border-t-2 border-dashed border-gray-300 pt-8">
+          <h3 class="text-xl font-bold text-sakura-text/60 mb-6 uppercase tracking-wider flex justify-between items-center">
+            <span>短讯：更多精选平替与专线选择</span>
+          </h3>
+          <div class="grid sm:grid-cols-2 gap-6">
+            {mentions.map(airport => (
+              <div class="bg-gray-50 hover:bg-white p-4 border border-gray-200 hover:border-sakura-primary/30 transition-colors group flex flex-col h-full">
+                <a href={airport.url} target="_blank" rel="nofollow noopener" class="block flex-grow">
+                  <div class="flex justify-between items-center mb-2 border-b border-gray-200 pb-2">
+                    <h4 class="text-lg font-bold text-gray-800 group-hover:text-sakura-primary">{airport.name}</h4>
+                    <span class="text-yellow-400 text-sm">{airport.rating}</span>
+                  </div>
+                  <div class="flex flex-wrap gap-1 mb-2">
+                    {airport.tags.slice(0, 3).map(tag => (
+                      <span class="text-[9px] bg-gray-100 text-gray-500 px-1.5 py-0.5 rounded">{tag}</span>
+                    ))}
+                  </div>
+                  <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">{airport.advantage}</p>
+                </a>
+                <div class="flex justify-between items-center mt-3 pt-3 border-t border-gray-100 border-dashed">
+                  <div class="text-[10px] text-sakura-primary font-medium line-clamp-1 flex-1">💰 {airport.price.split('，')[0]}</div>
+                  <a href={`/reviews/${airport.id}`} class="text-[10px] font-bold text-sakura-primary bg-sakura-primary/10 hover:bg-sakura-primary hover:text-white px-2 py-1 rounded transition-colors whitespace-nowrap ml-2">
+                    📖 评测
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- 右侧：侧边栏推荐 (Side Stories) -->
+      <div class="lg:w-1/3 flex flex-col gap-8">
+        <h3 class="text-2xl font-handwriting text-sakura-primary border-b border-sakura-primary/20 pb-2">本期次推 📌</h3>
+        {subFeatured.map((airport, index) => (
+          <div class="bg-[#FFFDF8] p-6 shadow-sm border border-gray-200 relative group hover:shadow-md transition-shadow flex flex-col">
+            <div class={`absolute top-0 right-0 w-8 h-8 bg-sakura-secondary/40 ${index === 0 ? 'rounded-bl-full' : 'clip-triangle'}`}></div>
+            
+            <h4 class="text-3xl font-handwriting text-sakura-text/90 mb-1">{airport.name}</h4>
+            <div class="text-yellow-400 tracking-widest text-sm mb-4">{airport.rating}</div>
+            
+            <div class="flex flex-wrap gap-1 mb-4">
+              {airport.tags.slice(0,3).map(tag => (
+                <span class="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded border border-gray-200">{tag}</span>
+              ))}
+            </div>
+
+            <p class="text-sm text-sakura-text/70 mb-3"><strong class="text-gray-800 block mb-1">🎯 适合群体：</strong>{airport.audience}</p>
+            <p class="text-sm text-sakura-text/70 mb-6 flex-grow"><strong class="text-gray-800 block mb-1">✨ 核心优势：</strong>{airport.advantage}</p>
+
+            <div class="flex flex-col gap-2 mt-auto">
+              <a href={airport.url} target="_blank" rel="nofollow noopener" class="block text-center py-2 bg-sakura-primary text-white font-bold hover:bg-sakura-primary/90 shadow-sm transition-all rounded-sm">
+                前往官网
+              </a>
+              <a href={`/reviews/${airport.id}`} class="block text-center py-2 bg-white border-2 border-sakura-primary/50 text-sakura-primary font-bold hover:bg-sakura-secondary/20 transition-colors rounded-sm">
+                📖 查看深度评测
+              </a>
+            </div>
+          </div>
+        ))}
+        
+        <!-- 广告位占位 / 寄语 -->
+        <div class="bg-[#FEF9C3] p-6 mt-auto transform rotate-2 shadow-sm border border-yellow-200">
+          <p class="font-handwriting text-yellow-800 text-xl leading-relaxed text-center">
+            "好的节点就像隐形的翅膀，带你飞越所有的数字高墙。深入评测，了解每一家的底牌！"
+          </p>
+          <div class="text-right mt-2 text-yellow-700/60 text-sm">- 柳如烟评测室</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .clip-triangle {
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+  }
+</style>

@@ -1,0 +1,103 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+  return articles.map(article => ({
+    params: { slug: article.id },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const { Content } = await render(article);
+---
+
+<Layout title={`${article.data.title} - 储物戒`}>
+  <!-- Journal Background -->
+  <div class="fixed inset-0 z-[-1] pointer-events-none" style="background-color: #FAFAFA; background-image: linear-gradient(0deg, transparent 24%, #E1E1E1 25%, #E1E1E1 26%, transparent 27%, transparent 74%, #E1E1E1 75%, #E1E1E1 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, #E1E1E1 25%, #E1E1E1 26%, transparent 27%, transparent 74%, #E1E1E1 75%, #E1E1E1 76%, transparent 77%, transparent); background-size: 50px 50px;"></div>
+
+  <article class="max-w-3xl mx-auto px-4 py-8 md:py-16">
+    
+    <!-- 面包屑导航 (Breadcrumbs) -->
+    <nav class="flex text-sm text-gray-500 mb-8 font-medium pl-4" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-sakura-primary transition-colors">首页</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2">/</span>
+            <a href="/ring" class="hover:text-sakura-primary transition-colors">储物戒</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2">/</span>
+            <span class="text-gray-800 truncate max-w-[150px] sm:max-w-[300px]" title={article.data.title}>{article.data.title}</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <div class="bg-white p-8 md:p-12 shadow-[8px_8px_0px_rgba(255,107,157,0.2)] border-2 border-sakura-primary/20 rounded-xl relative transform -rotate-1 hover:rotate-0 transition-transform duration-500">
+      
+      <!-- Binder holes -->
+      <div class="absolute left-4 top-10 flex flex-col gap-8 hidden md:flex">
+        <div class="w-4 h-4 rounded-full bg-gray-100 border inset-shadow-sm"></div>
+        <div class="w-4 h-4 rounded-full bg-gray-100 border inset-shadow-sm"></div>
+        <div class="w-4 h-4 rounded-full bg-gray-100 border inset-shadow-sm"></div>
+        <div class="w-4 h-4 rounded-full bg-gray-100 border inset-shadow-sm"></div>
+        <div class="w-4 h-4 rounded-full bg-gray-100 border inset-shadow-sm"></div>
+      </div>
+
+      <div class="md:pl-8">
+        <header class="mb-10 text-center border-b-2 border-dashed border-sakura-secondary/50 pb-8">
+          <div class="flex flex-wrap justify-center gap-2 mb-4">
+            {article.data.tags.map(tag => (
+              <span class="px-3 py-1 bg-sakura-primary/10 text-sakura-primary rounded-full text-sm font-bold">{tag}</span>
+            ))}
+          </div>
+          <h1 class="text-4xl md:text-5xl font-handwriting text-gray-800 mb-6 leading-tight">
+            {article.data.title}
+          </h1>
+          <div class="flex items-center justify-center gap-4 text-gray-500 text-sm font-medium">
+            <span class="flex items-center gap-1">🖋️ {article.data.author}</span>
+            <span>•</span>
+            <span>📅 {article.data.date.toLocaleDateString('zh-CN')}</span>
+          </div>
+        </header>
+
+        <!-- Markdown Content -->
+        <div class="prose prose-lg prose-pink prose-img:rounded-xl prose-headings:font-handwriting prose-headings:text-sakura-primary max-w-none">
+          <Content />
+        </div>
+      </div>
+      
+      <!-- Signature -->
+      <div class="mt-16 pt-8 border-t border-gray-100 flex justify-end">
+        <div class="text-right">
+          <p class="font-handwriting text-2xl text-gray-400 transform -rotate-6">柳如烟</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 悬浮引流便利贴 (Floating Sticky Note CTA) -->
+  <a href="/recommend" class="fixed bottom-8 right-8 z-50 transform hover:-translate-y-2 hover:rotate-3 transition-all duration-300 group hidden md:block">
+    <div class="bg-[#FFF9C4] p-4 shadow-lg rounded-sm w-48 border border-yellow-200 relative">
+      <!-- 便利贴胶带 -->
+      <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-12 h-5 bg-white/60 rotate-2 shadow-sm border border-gray-100"></div>
+      <p class="font-handwriting text-xl text-gray-800 leading-tight text-center">
+        还在头疼怎么选？<br>
+        <span class="text-sakura-primary">点我看机场推荐库 🌸</span>
+      </p>
+      <!-- 手绘小星星 -->
+      <div class="absolute bottom-2 right-2 text-yellow-500/50 group-hover:text-yellow-500 animate-pulse">
+        ✨
+      </div>
+    </div>
+  </a>
+
+</Layout>

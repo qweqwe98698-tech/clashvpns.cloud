@@ -1,0 +1,82 @@
+---
+import Layout from '../layouts/Layout.astro';
+import clients from '../data/clients.json';
+---
+
+<Layout title="客户端下载大全 - 柳如烟的手账本">
+  <!-- Scrapbook Grid Background -->
+  <div class="fixed inset-0 z-[-1] pointer-events-none" style="background-color: #FFFDF8; background-image: linear-gradient(transparent 23px, #FFD6E7 24px), linear-gradient(90deg, transparent 23px, #FFD6E7 24px); background-size: 24px 24px;">
+    <!-- Fade out edges slightly to look like a page -->
+    <div class="absolute inset-0 shadow-[inset_0_0_100px_rgba(0,0,0,0.05)]"></div>
+  </div>
+
+  <section class="max-w-6xl mx-auto px-4 py-16">
+    <!-- Header -->
+    <div class="text-center mb-16 transform -rotate-1 relative z-10">
+      <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-32 h-8 bg-[#BFDBFE]/80 rotate-2 backdrop-blur-sm shadow-sm z-[-1]" style="mix-blend-mode: multiply;"></div>
+      
+      <h1 class="text-4xl md:text-5xl font-handwriting text-sakura-primary inline-block relative bg-white px-8 py-6 shadow-md border border-gray-100">
+        📦 客户端下载仓库
+        <svg class="absolute -bottom-2 left-0 w-full h-3 text-sakura-primary/40" viewBox="0 0 100 20" preserveAspectRatio="none">
+          <path d="M0 10 Q 50 20 100 10" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </svg>
+      </h1>
+      
+      <div class="mt-8 max-w-2xl mx-auto bg-[#FEF9C3] p-4 shadow-sm border-l-4 border-yellow-400 transform rotate-1 relative">
+        <div class="absolute -top-3 left-4 text-xl drop-shadow-sm">📌</div>
+        <p class="text-yellow-800/80 font-medium text-sm text-left pl-4 leading-relaxed">
+          站长碎碎念：这里收集了全网最全的代理软件客户端，直接点击卡片上的链接即可下载对应的官方原版！遇到不会配置的软件，可以直接去看咱们的<a href="/guides" class="text-sakura-primary font-bold hover:underline">新手保姆教程</a>噢~ 🎀
+        </p>
+      </div>
+    </div>
+
+    <!-- Client Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {clients.map((client, index) => {
+        // Generate pseudo-random styles for scrapbook look
+        const rotations = ['-rotate-2', '-rotate-1', 'rotate-0', 'rotate-1', 'rotate-2'];
+        const rotationClass = rotations[index % rotations.length];
+        
+        const tapeColors = ['bg-[#FFB6C1]', 'bg-[#A7F3D0]', 'bg-[#BFDBFE]', 'bg-[#FDE68A]', 'bg-[#E9D5FF]'];
+        const tapeColor = tapeColors[index % tapeColors.length];
+        const tapeRotation = index % 2 === 0 ? '-rotate-6' : 'rotate-6';
+        const tapePosition = index % 3 === 0 ? '-top-3 left-4' : (index % 3 === 1 ? '-top-3 right-4' : '-bottom-3 right-4');
+        
+        return (
+          <div class={`bg-white p-6 shadow-md border border-gray-100 relative group transition-all duration-300 hover:z-20 hover:scale-105 hover:shadow-xl transform ${rotationClass}`}>
+            <!-- Washi Tape -->
+            <div class={`absolute ${tapePosition} w-16 h-6 ${tapeColor}/80 ${tapeRotation} backdrop-blur-sm shadow-sm z-10 transition-transform group-hover:scale-110`} style="mix-blend-mode: multiply;"></div>
+            
+            <div class="flex items-start gap-4 mb-4">
+              <div class="w-14 h-14 bg-gray-50 border border-gray-200 rounded-md shadow-inner flex items-center justify-center flex-shrink-0 text-3xl transform -rotate-3 group-hover:rotate-0 transition-transform">
+                {client.icon}
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold text-sakura-text/90 mb-2 leading-tight">{client.name}</h3>
+                
+                <!-- OS Tags -->
+                <div class="flex flex-wrap gap-1">
+                  {client.os.map(osName => (
+                    <span class="text-[10px] font-bold text-white bg-sakura-primary/80 px-2 py-0.5 rounded shadow-sm">
+                      {osName}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+            
+            <!-- Protocols Preview -->
+            <div class="bg-gray-50 p-2 rounded text-xs text-sakura-text/70 mb-4 border border-dashed border-gray-200 line-clamp-2" title={client.protocols.join(', ')}>
+              <span class="font-bold text-sakura-text/90">协议:</span> {client.protocols.slice(0, 5).join(', ')}{client.protocols.length > 5 ? '...' : ''}
+            </div>
+            
+            <!-- Download Button -->
+            <a href={client.downloadLink} target="_blank" rel="noopener noreferrer" class="block w-full text-center py-2.5 bg-[#FFF8FA] hover:bg-sakura-primary hover:text-white text-sakura-primary font-bold rounded-md border-2 border-dashed border-sakura-primary/50 transition-all transform group-hover:-translate-y-1">
+              📥 去下载
+            </a>
+          </div>
+        )
+      })}
+    </div>
+  </section>
+</Layout>

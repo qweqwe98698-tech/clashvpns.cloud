@@ -1,0 +1,708 @@
+[
+  {
+    "name": "ClashBox",
+    "os": [
+      "Android"
+    ],
+    "protocols": [],
+    "downloadLink": "https://github.com/xiaobaigroup/ClashBox/releases",
+    "icon": "🐱"
+  },
+  {
+    "name": "V2Box",
+    "os": [
+      "Android",
+      "iOS",
+      "macOS",
+      "Windows"
+    ],
+    "protocols": [],
+    "downloadLink": "https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690",
+    "icon": "📱"
+  },
+  {
+    "name": "Throne",
+    "os": [
+      "Linux",
+      "macOS",
+      "Windows"
+    ],
+    "protocols": [],
+    "downloadLink": "https://github.com/throneproj/Throne/releases",
+    "icon": "🖥️"
+  },
+  {
+    "name": "Pharos",
+    "os": [
+      "iOS"
+    ],
+    "protocols": [],
+    "downloadLink": "https://apps.apple.com/us/app/pharos-pro/id1456610173",
+    "icon": "📱"
+  },
+  {
+    "name": "LanceX",
+    "os": [
+      "iOS"
+    ],
+    "protocols": [],
+    "downloadLink": "https://apps.apple.com/us/app/lancex/id1536754048",
+    "icon": "📱"
+  },
+  {
+    "name": "ClashBar",
+    "os": [
+      "macOS"
+    ],
+    "protocols": [],
+    "downloadLink": "https://github.com/Sitoi/ClashBar/releases",
+    "icon": "🐱"
+  },
+  {
+    "name": "Egern",
+    "os": [
+      "iOS"
+    ],
+    "protocols": [],
+    "downloadLink": "https://apps.apple.com/us/app/egern/id1616105820",
+    "icon": "📱"
+  },
+  {
+    "name": "Bettbox",
+    "os": [
+      "Android",
+      "Linux",
+      "macOS",
+      "Windows"
+    ],
+    "protocols": [],
+    "downloadLink": "https://github.com/appshubcc/Bettbox/releases",
+    "icon": "📱"
+  },
+  {
+    "name": "Sparkle",
+    "os": [
+      "Linux",
+      "macOS",
+      "Windows"
+    ],
+    "protocols": [
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "Trojan",
+      "V2Ray"
+    ],
+    "downloadLink": "https://github.com/xishang0128/sparkle/releases",
+    "icon": "🖥️"
+  },
+  {
+    "name": "Karing",
+    "os": [
+      "Android",
+      "Apple TV",
+      "iOS",
+      "Linux",
+      "macOS",
+      "Windows"
+    ],
+    "protocols": [
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "Trojan",
+      "V2Ray"
+    ],
+    "downloadLink": "https://github.com/KaringX/karing/releases",
+    "icon": "📱"
+  },
+  {
+    "name": "Loon",
+    "os": [
+      "Apple TV",
+      "iOS"
+    ],
+    "protocols": [
+      "HTTP",
+      "HTTPS",
+      "Hysteria2",
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "Socks5",
+      "Trojan",
+      "V2Ray",
+      "WireGuard"
+    ],
+    "downloadLink": "https://apps.apple.com/in/app/loon/id1373567447",
+    "icon": "📱"
+  },
+  {
+    "name": "Clash Party",
+    "os": [
+      "Linux",
+      "macOS",
+      "Windows"
+    ],
+    "protocols": [
+      "Hysteria",
+      "Hysteria2",
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "Trojan",
+      "V2Ray"
+    ],
+    "downloadLink": "https://github.com/mihomo-party-org/clash-party/releases",
+    "icon": "🐱"
+  },
+  {
+    "name": "Mihomo Party",
+    "os": [
+      "Linux",
+      "macOS",
+      "Windows"
+    ],
+    "protocols": [
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "Trojan",
+      "V2Ray"
+    ],
+    "downloadLink": "https://github.com/mihomo-party-org/mihomo-party/releases",
+    "icon": "🖥️"
+  },
+  {
+    "name": "Clash Mi",
+    "os": [
+      "Android",
+      "iOS",
+      "Linux",
+      "macOS",
+      "Windows"
+    ],
+    "protocols": [
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "Trojan",
+      "V2Ray"
+    ],
+    "downloadLink": "https://github.com/KaringX/clashmi/releases",
+    "icon": "🐱"
+  },
+  {
+    "name": "ClashX Meta",
+    "os": [
+      "macOS"
+    ],
+    "protocols": [
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "Trojan",
+      "V2Ray"
+    ],
+    "downloadLink": "https://github.com/MetaCubeX/ClashX.Meta/releases",
+    "icon": "🐱"
+  },
+  {
+    "name": "Hiddify Next",
+    "os": [
+      "Android",
+      "iOS",
+      "Linux",
+      "macOS",
+      "Windows"
+    ],
+    "protocols": [
+      "Hysteria",
+      "Relay",
+      "SSH",
+      "TUIC",
+      "V2Ray",
+      "WireGuard",
+      "Xray"
+    ],
+    "downloadLink": "https://github.com/hiddify/hiddify-next/releases",
+    "icon": "📱"
+  },
+  {
+    "name": "Clash Meta For Android",
+    "os": [
+      "Android"
+    ],
+    "protocols": [
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "Trojan",
+      "V2Ray"
+    ],
+    "downloadLink": "https://github.com/MetaCubeX/ClashMetaForAndroid/releases",
+    "icon": "🐱"
+  },
+  {
+    "name": "FlClash",
+    "os": [
+      "Android",
+      "Linux",
+      "macOS",
+      "Windows"
+    ],
+    "protocols": [
+      "Hysteria",
+      "V2Ray",
+      "Xray"
+    ],
+    "downloadLink": "https://github.com/chen08209/FlClash/releases",
+    "icon": "🐱"
+  },
+  {
+    "name": "Qv2ray",
+    "os": [
+      "Linux",
+      "macOS",
+      "Windows"
+    ],
+    "protocols": [
+      "HTTP",
+      "HTTPS",
+      "Shadowsocks (SS)",
+      "Socks5",
+      "V2Ray",
+      "Xray"
+    ],
+    "downloadLink": "https://github.com/Qv2ray/Qv2ray/releases",
+    "icon": "🚀"
+  },
+  {
+    "name": "clashN",
+    "os": [
+      "Windows"
+    ],
+    "protocols": [
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "Socks5",
+      "Trojan",
+      "V2Ray",
+      "Xray"
+    ],
+    "downloadLink": "https://github.com/2dust/clashN/releases",
+    "icon": "🐱"
+  },
+  {
+    "name": "Clash Verge Rev",
+    "os": [
+      "Linux",
+      "macOS",
+      "Windows"
+    ],
+    "protocols": [
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "Trojan",
+      "V2Ray"
+    ],
+    "downloadLink": "https://github.com/clash-verge-rev/clash-verge-rev/releases",
+    "icon": "🐱"
+  },
+  {
+    "name": "Clash Nyanpasu",
+    "os": [
+      "Linux",
+      "macOS",
+      "Windows"
+    ],
+    "protocols": [
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "Trojan",
+      "V2Ray"
+    ],
+    "downloadLink": "https://github.com/LibNyanpasu/clash-nyanpasu/releases",
+    "icon": "🐱"
+  },
+  {
+    "name": "WinXray",
+    "os": [
+      "Windows"
+    ],
+    "protocols": [
+      "HTTP",
+      "HTTPS",
+      "NaïveProxy",
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "Socks5",
+      "Trojan",
+      "V2Ray",
+      "Xray"
+    ],
+    "downloadLink": "https://github.com/TheMRLL/WinXray/releases",
+    "icon": "🖥️"
+  },
+  {
+    "name": "NekoBox for Android",
+    "os": [
+      "Android"
+    ],
+    "protocols": [
+      "HTTPS",
+      "Hysteria",
+      "NaïveProxy",
+      "Shadowsocks (SS)",
+      "Socks5",
+      "SSH",
+      "Trojan",
+      "TUIC",
+      "V2Ray",
+      "WireGuard",
+      "Xray"
+    ],
+    "downloadLink": "https://github.com/MatsuriDayo/NekoBoxForAndroid/releases",
+    "icon": "📱"
+  },
+  {
+    "name": "NekoRay",
+    "os": [
+      "Linux",
+      "Windows"
+    ],
+    "protocols": [
+      "HTTP",
+      "Hysteria",
+      "Hysteria2",
+      "NaïveProxy",
+      "Shadowsocks (SS)",
+      "Socks5",
+      "Trojan",
+      "TUIC",
+      "V2Ray",
+      "Xray"
+    ],
+    "downloadLink": "https://github.com/MatsuriDayo/nekoray/releases",
+    "icon": "🖥️"
+  },
+  {
+    "name": "Surge",
+    "os": [
+      "Apple TV",
+      "iOS",
+      "macOS"
+    ],
+    "protocols": [
+      "HTTP",
+      "HTTPS",
+      "Hysteria2",
+      "Shadowsocks (SS)",
+      "Snell",
+      "Socks5",
+      "Socks5 Over TLS",
+      "SSH",
+      "Trojan",
+      "TUIC",
+      "TUIC V5",
+      "V2Ray",
+      "WireGuard"
+    ],
+    "downloadLink": "https://apps.apple.com/us/app/surge-5/id1442620678",
+    "icon": "📱"
+  },
+  {
+    "name": "sing-box",
+    "os": [
+      "Android",
+      "Apple TV",
+      "iOS",
+      "Linux",
+      "macOS",
+      "Windows"
+    ],
+    "protocols": [
+      "Hysteria",
+      "Shadowsocks (SS)",
+      "Trojan"
+    ],
+    "downloadLink": "https://github.com/SagerNet/sing-box/releases",
+    "icon": "📱"
+  },
+  {
+    "name": "Potatso",
+    "os": [
+      "iOS"
+    ],
+    "protocols": [
+      "HTTP",
+      "HTTPS",
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "Socks5",
+      "Socks5 Over TLS"
+    ],
+    "downloadLink": "https://apps.apple.com/us/app/potatso/id1239860606",
+    "icon": "📱"
+  },
+  {
+    "name": "Clash for Windows",
+    "os": [
+      "Linux",
+      "macOS",
+      "Windows"
+    ],
+    "protocols": [
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "Trojan",
+      "V2Ray"
+    ],
+    "downloadLink": "https://clashforwindows.org/clash-for-windows-download/",
+    "icon": "🐱"
+  },
+  {
+    "name": "v2rayN",
+    "os": [
+      "Linux",
+      "macOS",
+      "Windows"
+    ],
+    "protocols": [
+      "Hysteria2",
+      "Shadowsocks (SS)",
+      "Socks5",
+      "Socks5 Over TLS",
+      "Trojan",
+      "V2Ray",
+      "Xray"
+    ],
+    "downloadLink": "https://github.com/2dust/v2rayN/releases",
+    "icon": "🚀"
+  },
+  {
+    "name": "V2rayU",
+    "os": [
+      "macOS"
+    ],
+    "protocols": [
+      "Shadowsocks (SS)",
+      "Socks5",
+      "Trojan",
+      "V2Ray",
+      "Xray"
+    ],
+    "downloadLink": "https://github.com/yanue/V2rayU/releases",
+    "icon": "🚀"
+  },
+  {
+    "name": "ClashX",
+    "os": [
+      "macOS"
+    ],
+    "protocols": [
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "Trojan",
+      "V2Ray"
+    ],
+    "downloadLink": "https://clashx.org/clashx-download/",
+    "icon": "🐱"
+  },
+  {
+    "name": "ClashX Pro",
+    "os": [
+      "macOS"
+    ],
+    "protocols": [
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "Trojan",
+      "V2Ray"
+    ],
+    "downloadLink": "https://clashxpro.org/clashx-pro-download/",
+    "icon": "🐱"
+  },
+  {
+    "name": "v2rayNG",
+    "os": [
+      "Android"
+    ],
+    "protocols": [
+      "Shadowsocks (SS)",
+      "Socks5",
+      "Trojan",
+      "V2Ray",
+      "Xray"
+    ],
+    "downloadLink": "https://github.com/2dust/v2rayNG/releases",
+    "icon": "🚀"
+  },
+  {
+    "name": "Clash for Android",
+    "os": [
+      "Android"
+    ],
+    "protocols": [
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "Trojan",
+      "V2Ray"
+    ],
+    "downloadLink": "https://clashforandroid.org/clash-for-android-download/",
+    "icon": "🐱"
+  },
+  {
+    "name": "Shadowrocket",
+    "os": [
+      "Apple TV",
+      "iOS",
+      "macOS"
+    ],
+    "protocols": [
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "Trojan",
+      "V2Ray"
+    ],
+    "downloadLink": "https://apps.apple.com/us/app/shadowrocket/id932747118",
+    "icon": "📱"
+  },
+  {
+    "name": "Quantumult",
+    "os": [
+      "iOS"
+    ],
+    "protocols": [
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "V2Ray"
+    ],
+    "downloadLink": "https://apps.apple.com/us/app/quantumult/id1252015438",
+    "icon": "📱"
+  },
+  {
+    "name": "Quantumult X",
+    "os": [
+      "Apple TV",
+      "iOS",
+      "macOS"
+    ],
+    "protocols": [
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "Trojan",
+      "V2Ray"
+    ],
+    "downloadLink": "https://apps.apple.com/us/app/quantumult-x/id1443988620",
+    "icon": "📱"
+  },
+  {
+    "name": "OpenClash",
+    "os": [
+      "Router"
+    ],
+    "protocols": [
+      "HTTPS",
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "Snell",
+      "Socks5",
+      "Trojan",
+      "V2Ray"
+    ],
+    "downloadLink": "https://github.com/vernesong/OpenClash/releases",
+    "icon": "🐱"
+  },
+  {
+    "name": "ShadowsocksR Plus+",
+    "os": [
+      "Router"
+    ],
+    "protocols": [
+      "HTTP",
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "Socks5",
+      "Trojan",
+      "V2Ray",
+      "WireGuard",
+      "Xray"
+    ],
+    "downloadLink": "https://github.com/fw876/helloworld",
+    "icon": "🛜"
+  },
+  {
+    "name": "Stash",
+    "os": [
+      "Apple TV",
+      "iOS",
+      "macOS"
+    ],
+    "protocols": [
+      "Direct",
+      "HTTP",
+      "Hysteria",
+      "Hysteria2",
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "Snell",
+      "Socks5",
+      "Trojan",
+      "TUIC",
+      "V2Ray",
+      "WireGuard",
+      "Xray"
+    ],
+    "downloadLink": "https://apps.apple.com/us/app/stash-rule-based-proxy/id1596063349",
+    "icon": "📱"
+  },
+  {
+    "name": "Surfboard",
+    "os": [
+      "Android"
+    ],
+    "protocols": [
+      "HTTP",
+      "HTTPS",
+      "Shadowsocks (SS)",
+      "Socks5",
+      "Socks5 Over TLS",
+      "Trojan",
+      "V2Ray",
+      "WireGuard"
+    ],
+    "downloadLink": "https://github.com/getsurfboard/surfboard/releases",
+    "icon": "📱"
+  },
+  {
+    "name": "PassWall2",
+    "os": [
+      "Router"
+    ],
+    "protocols": [
+      "HTTP",
+      "Hysteria",
+      "Hysteria2",
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "sing-box",
+      "Socks5",
+      "Trojan",
+      "TUIC",
+      "V2Ray",
+      "WireGuard",
+      "Xray"
+    ],
+    "downloadLink": "https://github.com/Openwrt-Passwall/openwrt-passwall2/releases",
+    "icon": "🛜"
+  },
+  {
+    "name": "Clash Verge",
+    "os": [
+      "Linux",
+      "macOS",
+      "Windows"
+    ],
+    "protocols": [
+      "Shadowsocks (SS)",
+      "ShadowsocksR (SSR)",
+      "Trojan",
+      "V2Ray"
+    ],
+    "downloadLink": "https://github.com/zzzgydi/clash-verge/releases",
+    "icon": "🐱"
+  }
+]

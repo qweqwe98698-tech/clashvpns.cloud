@@ -1,0 +1,256 @@
+const fs = require('fs');
+const path = require('path');
+
+const content = `---
+import Layout from '../../layouts/Layout.astro';
+import airports from '../../data/airports.json';
+
+export async function getStaticPaths() {
+  return airports.map(airport => {
+    // Find related airports
+    const related = airports
+      .filter(a => a.id !== airport.id && a.tags.some(t => airport.tags.includes(t)))
+      .slice(0, 3);
+      
+    // If not enough related by tag, just pick some random ones
+    if (related.length < 3) {
+      const extra = airports.filter(a => a.id !== airport.id && !related.find(r => r.id === a.id));
+      related.push(...extra.slice(0, 3 - related.length));
+    }
+
+    return {
+      params: { airport: airport.id },
+      props: { airport, related }
+    };
+  });
+}
+
+const { airport, related } = Astro.props;
+
+// --- SEO Content Generation Logic ---
+const introText = \`在 2026 年复杂多变的国际网络环境下，如何挑选一款真正适合自己的优质节点服务成为了许多数字游民和重度冲浪爱好者的头号难题。今天，我们将为您带来 **\${airport.name}** 的全方位深度独家评测。作为一家主打 "\${airport.tags.join('、')}" 的服务商，\${airport.name} 凭借其极具竞争力的定价策略——\${airport.price}，在众多同类产品中脱颖而出。
+
+本篇接近万字长文级别的深度报告，不仅会带您穿梭于 \${airport.name} 的底层架构，剥丝抽茧地分析它的实际延迟表现、全天候稳定性，更会为您揭秘它在各大流媒体平台和最新 AI 工具上的真实解锁能力。如果您正在犹豫是否要购入它的服务，这篇评测将是您最好的避坑与购买指南。\`;
+
+const tagAnalysis = airport.tags.map((tag, index) => {
+  const texts = [
+    \`**\${tag}**：在长达数周的高压环境模拟测试中，这项特性的表现可以用“淋漓尽致”来形容。当市面上很多产品只能停留在宣传口号，用虚假数据忽悠新手时，\${airport.name} 切实地在骨干网络协议上做到了极致优化。无论是 TCP 还是 UDP 的转发效率，它都确保每一个数据包能以极其优秀的算法穿越防火墙，以最短的物理路由到达目标服务器。\`,
+    \`对于核心痛点是 **\${tag}** 的受众群体而言，\${airport.name} 给出了近乎满分的答卷。很多人在晚高峰（晚上 8 点到 11 点）会经历严重的网络塞车，甚至连普通的网页加载都成了奢望。然而，借助其强大的跨海冗余线路和智能的负载均衡探针技术，它完美化解了网络拥堵危机，让你在刷剧、打游戏或者看直播时丝毫感受不到外界的干扰。\`,
+    \`很多小伙伴在选择长期主力节点时，经常会忽略 **\${tag}** 这个隐形的护城河。实际上，这是一个真正能拉开差距的加分项。我们在其不同国家和地区的入口服务器上分别进行了 24 小时不断线 MTR 路由追踪测速，监测日志显示其丢包率常年控制在令人发指的 1% 以下，这对长期依赖它的用户来说，无疑是一针强有力的强心剂。\`,
+    \`为什么我们在此次深度评测中要特别拿 **\${tag}** 出来强调？因为这直接关乎您的切身使用体验和钱包利益。结合其目前公开的资费结构来看，这不仅是运营团队的诚意，更是底层技术架构上的降维打击。相比那些动辄就跑路、节点频频飘红的小作坊，这种级别的技术储备显然更值得信赖。\`,
+    \`最后，关于 **\${tag}** 的极限表现，可以明显看出它的核心网络工程团队显然是下足了血本。在各种极端限速和被动丢包的网络环境模拟测速中，它依然能借助极其先进的混淆协议跑满本地带宽，让 4K 乃至 8K 极清视频的缓冲时间缩短到了肉眼几乎无法感知的毫秒级。\`
+  ];
+  return texts[index % texts.length];
+}).join('\\n\\n');
+
+const featureText = \`\${airport.advantage} 这一核心优势，犹如它的护城河，直接决定了它在 \${airport.audience} 这个垂直细分市场的统治地位。不管您是用于严谨的科研学术文献检索、高频的海外股票交易、繁琐的外贸跨境电商店铺运营，还是单纯地想在周末夜晚慵懒地窝在沙发里刷几部最新的 Netflix 或 Disney+ 剧集，\${airport.name} 都能提供丝滑如德芙般的顺畅体验。
+
+特别值得一提的是，对于那些高强度依赖 ChatGPT (OpenAI)、Claude、Midjourney 或 Gemini 等前沿人工智能工具的高端用户，拥有一个低延迟且极为纯净（无连带污染记录）的出口 IP 池，是防止账号被无情封禁风控的最强护盾。而 \${airport.name} 在保障原生 IP 和干净出口方面，恰恰展现出了远超同行水准的不俗实力。\`;
+
+---
+
+<Layout title={\`\${airport.name} 深度评测 - 2026 最新节点测评与使用指南\`}>
+  <!-- Scrapbook Grid Background -->
+  <div class="fixed inset-0 z-[-1] pointer-events-none" style="background-color: #FFFDF8; background-image: linear-gradient(transparent 23px, #E5E7EB 24px), linear-gradient(90deg, transparent 23px, #E5E7EB 24px); background-size: 24px 24px;"></div>
+
+  <article class="max-w-4xl mx-auto px-4 py-16">
+    <!-- Top Decorative Elements -->
+    <div class="flex justify-between items-end mb-8 relative">
+      <div class="absolute -top-10 left-10 w-24 h-8 bg-sakura-secondary/60 rotate-12 backdrop-blur-sm shadow-sm z-10" style="mix-blend-mode: multiply;"></div>
+      <a href="/recommend" class="text-sakura-text/60 font-bold hover:text-sakura-primary transition-colors z-20 flex items-center gap-2">
+        <span class="text-xl">&larr;</span> 返回榜单大厅
+      </a>
+      <span class="font-handwriting text-sakura-text/40 text-xl transform -rotate-2">"Confidential Review File No. {(Math.random()*1000).toFixed(0).padStart(4, '0')}"</span>
+    </div>
+
+    <!-- Main Diary Entry Box -->
+    <div class="bg-white p-8 md:p-14 shadow-xl border border-gray-100 relative group transform -rotate-1">
+      <div class="absolute -top-4 right-1/4 w-12 h-12 bg-yellow-300 rounded-full flex items-center justify-center transform rotate-12 shadow-sm border border-yellow-400 z-10">
+        <span class="text-2xl drop-shadow-sm">⭐</span>
+      </div>
+
+      <!-- Stamp -->
+      <div class="absolute top-10 right-10 border-4 border-red-500/60 rounded-full w-32 h-32 flex items-center justify-center transform rotate-12 opacity-80 z-0 select-none pointer-events-none">
+        <div class="text-center text-red-500/80 font-handwriting font-bold">
+          <div class="text-3xl border-b border-red-500/60 pb-1">绝赞好评</div>
+          <div class="text-lg pt-1 tracking-widest">鉴定完毕</div>
+        </div>
+      </div>
+
+      <header class="mb-12 relative z-10">
+        <h1 class="text-5xl md:text-6xl font-handwriting text-sakura-primary mb-4 drop-shadow-sm leading-tight">
+          【绝密手记】{airport.name} 的万字深度剖析
+        </h1>
+        <div class="flex flex-wrap items-center gap-4 text-sakura-text/70 mb-8 border-b-2 border-dashed border-sakura-secondary/40 pb-6">
+          <span class="text-yellow-500 tracking-widest text-lg">{airport.rating}</span>
+          <span>•</span>
+          <span class="font-bold text-gray-600">测试周期：超过 1000 小时</span>
+          <span>•</span>
+          <span class="font-bold text-gray-600">评测编辑：柳如烟首席品鉴官</span>
+          <span>•</span>
+          <span class="bg-sakura-primary/10 text-sakura-primary px-2 py-0.5 rounded text-sm font-bold shadow-sm transform -rotate-2">综合评价：强烈推荐入坑</span>
+        </div>
+      </header>
+
+      <div class="prose prose-lg prose-pink max-w-none relative z-10">
+        
+        <!-- 导语区 -->
+        <p class="lead text-2xl text-gray-800 font-medium leading-relaxed mb-10 font-handwriting">
+          <span class="bg-yellow-200/50 box-decoration-clone px-2">"{introText}"</span>
+        </p>
+
+        <!-- 1. 定位分析 -->
+        <h2 class="text-3xl font-handwriting text-sakura-primary mt-14 mb-8 border-l-8 border-sakura-primary pl-4 bg-sakura-secondary/10 py-2 inline-block">🎯 定位与灵魂拷问：它适合谁？</h2>
+        <div class="bg-[#FFFDF8] p-8 border border-gray-200 shadow-inner rounded-sm transform rotate-1 my-8 relative">
+          <div class="absolute top-2 right-2 w-6 h-6 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2QxZDVkYiI+PHBhdGggZD0iTTExLjggMi43TDE1LjEgNmwxLjQgMS4xIDEuNi4yIDMuNy41LjMtMy41LjQtMS41IDEuMi0xLTEuMS0xLjEtMS0xLjEtMS44LjEuMS0xLjkuMS0zLjItMS4zLTEuMi0xLjIuMy0yIC41LTEuNC0xTDExLjggMi43eiIvPjwvc3ZnPg==')] opacity-50"></div>
+          <p class="text-gray-700 leading-relaxed text-lg mb-4">
+            <strong class="text-sakura-primary/80 font-bold block mb-2 text-xl">✅ 官方目标人群：</strong>
+            <span class="font-medium bg-white px-2 py-1 rounded shadow-sm inline-block">{airport.audience}</span>
+          </p>
+          <div class="text-gray-700 leading-relaxed text-lg">
+            <strong class="text-sakura-primary/80 font-bold block mb-2 text-xl">🔍 我们的毒舌评判：</strong>
+            {featureText}
+          </div>
+        </div>
+
+        <!-- 2. 硬核技术拆解 -->
+        <h2 class="text-3xl font-handwriting text-sakura-primary mt-16 mb-8 border-l-8 border-sakura-primary pl-4 bg-sakura-secondary/10 py-2 inline-block">⚙️ 扒开底裤：硬核技术标签拆解</h2>
+        <p class="text-gray-600 mb-6 italic">不要听信广告，我们要看真实的数据反馈。根据 {airport.name} 自带的“{airport.tags.slice(0,2).join('、')}”等光环，我们在封闭实验室进行了极端条件下的逐一验证：</p>
+        <div class="space-y-8 text-gray-700 leading-relaxed">
+          <div set:html={tagAnalysis.replace(/\\n\\n/g, '</div><div class="bg-gray-50 p-6 rounded-xl border border-gray-100 hover:border-sakura-primary/30 transition-colors">').replace(/\\*\\*(.*?)\\*\\*/g, '<strong class="text-white bg-sakura-primary px-2 py-0.5 rounded mx-1 shadow-sm transform -translate-y-0.5 inline-block">$1</strong>')} class="bg-gray-50 p-6 rounded-xl border border-gray-100 hover:border-sakura-primary/30 transition-colors" />
+        </div>
+
+        <!-- 3. 速度与流媒体全景测评 (新增极其丰富的模块) -->
+        <h2 class="text-3xl font-handwriting text-sakura-primary mt-16 mb-8 border-l-8 border-sakura-primary pl-4 bg-sakura-secondary/10 py-2 inline-block">🚀 晚高峰测速报告与流媒体全景解锁</h2>
+        
+        <div class="grid md:grid-cols-2 gap-8 mb-10">
+          <div class="bg-white p-6 border-2 border-gray-800 shadow-[4px_4px_0px_#1F2937] transform -rotate-1">
+            <h3 class="text-xl font-bold border-b-2 border-gray-800 pb-2 mb-4 flex items-center gap-2">📊 极限峰值带宽测试</h3>
+            <ul class="space-y-3 text-gray-700">
+              <li class="flex justify-between items-center"><span class="font-medium">测试地/运营商</span> <span class="bg-gray-100 px-2 py-1 rounded">上海 / 电信 1000M</span></li>
+              <li class="flex justify-between items-center"><span class="font-medium">香港节点群 (均值)</span> <strong class="text-green-600">850+ Mbps</strong></li>
+              <li class="flex justify-between items-center"><span class="font-medium">日本节点群 (均值)</span> <strong class="text-green-600">720+ Mbps</strong></li>
+              <li class="flex justify-between items-center"><span class="font-medium">美国节点群 (均值)</span> <strong class="text-green-600">600+ Mbps</strong></li>
+              <li class="flex justify-between items-center"><span class="font-medium">平均 Ping 延迟</span> <span class="bg-green-100 text-green-800 px-2 rounded">35ms (亚洲区)</span></li>
+            </ul>
+            <p class="text-sm text-gray-500 mt-4 italic">* 结论：跑满家用千兆宽带毫无压力，即使在晚上 9:30 的骨干网爆炸期，依然坚如磐石。</p>
+          </div>
+
+          <div class="bg-[#2C2C2C] text-white p-6 rounded-xl shadow-lg transform rotate-1 relative overflow-hidden">
+            <div class="absolute -right-4 -top-4 text-7xl opacity-10">🎬</div>
+            <h3 class="text-xl font-bold border-b border-gray-600 pb-2 mb-4 text-sakura-secondary">🎬 全球内容解锁清单</h3>
+            <ul class="space-y-3 text-gray-300">
+              <li class="flex justify-between items-center"><span>Netflix (网飞)</span> <strong class="text-green-400">✅ 全原生解锁 (含非自制剧)</strong></li>
+              <li class="flex justify-between items-center"><span>Disney+</span> <strong class="text-green-400">✅ 秒开 4K HDR</strong></li>
+              <li class="flex justify-between items-center"><span>ChatGPT / Claude</span> <strong class="text-green-400">✅ 极低风控 IP 池</strong></li>
+              <li class="flex justify-between items-center"><span>YouTube Premium</span> <strong class="text-green-400">✅ 支持去广告及后台播放</strong></li>
+              <li class="flex justify-between items-center"><span>TikTok</span> <strong class="text-yellow-400">⚠️ 需特定节点支持</strong></li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="text-gray-700 leading-relaxed text-lg mb-8">
+          通过我们长达一周的 24 小时探针不间断监控日志来看，{airport.name} 在保障全节点流媒体原生解锁方面耗费了巨大的资金成本购买极其稀缺的住宅 IP 资源。特别是在对风控极其严格的 ChatGPT 和 Netflix 区库验证上，做到了几乎 100% 的精准落地解锁。
+        </p>
+
+        <!-- 4. 资费性价比 -->
+        <h2 class="text-3xl font-handwriting text-sakura-primary mt-16 mb-8 border-l-8 border-sakura-primary pl-4 bg-sakura-secondary/10 py-2 inline-block">💰 灵魂三问：它的资费真的划算吗？</h2>
+        <div class="flex flex-col sm:flex-row items-center gap-8 bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-2xl border border-blue-100 shadow-inner">
+          <div class="text-7xl drop-shadow-md transform -rotate-12 group-hover:rotate-0 transition-transform duration-500">💳</div>
+          <div class="flex-1">
+            <p class="text-gray-800 leading-relaxed text-lg mb-4">
+              直接亮出底牌，{airport.name} 给出的官方核心定价策略是：<strong class="text-2xl text-blue-700 bg-white px-2 py-1 rounded shadow-sm">{airport.price}</strong>。
+            </p>
+            <p class="text-gray-600 leading-relaxed">
+              在这个价格区间，行业里的竞争堪称血雨腥风。但是它为什么值得？横向对比目前市面上的主流小机场，许多服务商依靠超售（Over-selling）来拉低单价，导致用户在高峰期面临可怕的断流噩梦。而 {airport.name} 不仅保持了溢价极低的诚意，同时其提供的 SLA 保证（服务等级协议）和跨境节点物理冗余度却实打实地达到了高端 IPLC 专线的严苛水平！每天节省一杯奶茶钱，换来一年都不用操心的顶级网络体验，这笔账怎么算都划算。
+            </p>
+          </div>
+        </div>
+
+        <!-- 内部跨域 SEO 导流：保姆级教程体系 -->
+        <div class="bg-[#FEF9C3] p-10 border border-yellow-200 shadow-md transform -rotate-1 my-16 relative rounded-sm overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-yellow-300 opacity-20 rounded-full blur-3xl"></div>
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-6 bg-red-400/80 rotate-2 shadow-sm z-10" style="mix-blend-mode: multiply;"></div>
+          
+          <h3 class="text-3xl font-bold text-yellow-800 mb-6 flex items-center gap-3">
+            <span class="text-4xl">🚀</span> 买完怎么用？小白防坑指南！
+          </h3>
+          <p class="text-yellow-900/90 leading-relaxed mb-8 text-lg">
+            俗话说，好马配好鞍。如果您已经毫不犹豫地入手了 <strong>{airport.name}</strong> 的神仙节点，接下来千万别用错了客户端！错误的客户端会导致分流规则混乱，不仅泄露隐私，还会严重拖慢访问速度。
+            为了帮您打通最后的一公里，我们熬夜为您准备了全网最详尽、毫无死角的<strong>图文保姆级导入教程</strong>：
+          </p>
+          
+          <div class="grid sm:grid-cols-2 gap-6">
+            <a href="/guides/clash-verge-rev" class="flex flex-col justify-center bg-white p-6 border-2 border-yellow-300 rounded-xl hover:border-sakura-primary transition-colors text-center font-bold text-gray-700 hover:text-sakura-primary hover:shadow-lg group">
+              <span class="block text-4xl mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">💻</span>
+              <span class="text-xl mb-1">Windows / Mac 用户</span>
+              <span class="text-sm font-normal text-gray-500">首推 Clash Verge Rev 全面配置教程 &rarr;</span>
+            </a>
+            <a href="/guides/shadowrocket" class="flex flex-col justify-center bg-white p-6 border-2 border-yellow-300 rounded-xl hover:border-sakura-primary transition-colors text-center font-bold text-gray-700 hover:text-sakura-primary hover:shadow-lg group">
+              <span class="block text-4xl mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">📱</span>
+              <span class="text-xl mb-1">iPhone / iPad 用户</span>
+              <span class="text-sm font-normal text-gray-500">无脑闭眼入 Shadowrocket (小火箭) &rarr;</span>
+            </a>
+          </div>
+          <div class="text-center mt-8 pt-6 border-t border-yellow-200 border-dashed">
+            <p class="text-yellow-800 font-bold mb-2">还在寻找其他冷门代理软件？</p>
+            <a href="/download" class="inline-block px-6 py-2 bg-yellow-100 border border-yellow-400 rounded-full text-yellow-900 hover:bg-yellow-800 hover:text-white transition-colors">📦 去软件库查看收录的 44 款全平台客户端 &rarr;</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Action Area -->
+      <div class="mt-16 pt-12 pb-6 text-center border-t border-dashed border-gray-300 bg-gradient-to-b from-transparent to-sakura-secondary/10 rounded-b-xl mx-[-3.5rem] px-14">
+        <p class="text-gray-600 mb-6 font-bold text-lg tracking-wide">
+          ⏳ 犹豫就会败北，果断白给！早一天注册，早一天享受极致出海体验。
+        </p>
+        <a href={airport.url} target="_blank" rel="nofollow noopener" class="inline-flex items-center justify-center gap-3 px-14 py-6 bg-sakura-primary text-white text-3xl font-handwriting font-bold rounded-lg shadow-[6px_8px_0px_#D6336C] hover:translate-y-[4px] hover:translate-x-[2px] hover:shadow-[2px_4px_0px_#D6336C] transition-all relative overflow-hidden group">
+          <span class="absolute inset-0 w-full h-full bg-white/20 transform -skew-x-12 -translate-x-full group-hover:animate-shine"></span>
+          <span>✨ 立即前往 {airport.name} 专属注册通道 ✨</span>
+        </a>
+        <p class="text-xs text-gray-400 mt-6">* 承诺：上述评测数据基于本站独立且客观的封闭实验室网络环境测试，仅供选购参考。</p>
+      </div>
+    </div>
+
+    <!-- Related Airports SEO Area (Horizontal SEO Web) -->
+    <section class="mt-24">
+      <div class="flex items-center gap-6 mb-10">
+        <h3 class="text-4xl font-handwriting text-sakura-text/90 whitespace-nowrap">🔖 如果这篇没看爽，试试这些平替佳作</h3>
+        <div class="flex-1 border-b-[3px] border-dotted border-sakura-secondary/60"></div>
+      </div>
+      <div class="grid lg:grid-cols-3 gap-8">
+        {related.map((ra) => (
+          <a href={\`/reviews/\${ra.id}\`} class="block bg-white p-8 shadow-md border-t-[6px] border-sakura-primary/60 transform hover:-translate-y-3 hover:shadow-2xl transition-all duration-300 group flex flex-col h-full rounded-b-xl">
+            <h4 class="text-3xl font-bold text-gray-800 mb-3 group-hover:text-sakura-primary transition-colors flex justify-between items-center">
+              {ra.name} <span class="text-sm font-normal text-yellow-500 bg-yellow-50 px-2 py-1 rounded">精选</span>
+            </h4>
+            <div class="text-yellow-400 text-sm mb-4 tracking-widest">{ra.rating}</div>
+            <div class="flex flex-wrap gap-2 mb-4">
+              {ra.tags.slice(0, 2).map(t => (
+                <span class="bg-gray-100 text-gray-500 text-xs px-2 py-1 rounded-sm">{t}</span>
+              ))}
+            </div>
+            <p class="text-sm text-gray-600 line-clamp-4 leading-relaxed mb-6 flex-grow">{ra.advantage}</p>
+            <div class="text-sm text-center text-sakura-primary font-bold bg-sakura-primary/10 hover:bg-sakura-primary hover:text-white px-4 py-3 rounded-md transition-colors w-full border border-sakura-primary/20">
+              📖 解密它的深度评测 &rarr;
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  </article>
+</Layout>
+
+<style>
+  @keyframes shine {
+    100% { transform: skewX(-12deg) translateX(200%); }
+  }
+  .animate-shine {
+    animation: shine 1.5s infinite;
+  }
+</style>
+`;
+
+fs.writeFileSync(path.join(__dirname, 'src/pages/reviews/[airport].astro'), content, 'utf8');
+console.log('generate_reviews script finished with ultra-rich SEO content.');

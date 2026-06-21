@@ -1,0 +1,78 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import clientsData from '../../data/clients.json';
+
+// Get Markdown guides using import.meta.glob
+const mdGuides = Object.values(import.meta.glob('./*.md', { eager: true }));
+
+// Helper for slugs
+const slugify = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+
+// Combine both sources
+const allGuides = [
+  ...mdGuides.map(g => ({
+    title: g.frontmatter.title,
+    platform: g.frontmatter.platform,
+    date: g.frontmatter.date,
+    url: g.url,
+    type: 'markdown',
+    icon: '📄'
+  })),
+  ...clientsData.map(c => ({
+    title: `${c.name} 终极配置保姆级教程与下载`,
+    platform: c.os.join('/'),
+    date: '2026-06-21',
+    url: `/guides/${slugify(c.name)}`,
+    type: 'dynamic',
+    icon: c.icon || '🖥️'
+  }))
+];
+---
+
+<Layout title="新手保姆教程大全 - 柳如烟的手账本">
+  <div class="fixed inset-0 z-[-1] pointer-events-none" style="background-color: #FFFDF8; background-image: linear-gradient(transparent 23px, #FFD6E7 24px), linear-gradient(90deg, transparent 23px, #FFD6E7 24px); background-size: 24px 24px;">
+    <div class="absolute inset-0 shadow-[inset_0_0_100px_rgba(0,0,0,0.05)]"></div>
+  </div>
+
+  <section class="max-w-5xl mx-auto px-4 py-16 text-center relative z-10">
+    <div class="absolute -top-4 right-20 w-16 h-8 bg-[#A7F3D0]/80 rotate-6 backdrop-blur-sm shadow-sm z-[-1]" style="mix-blend-mode: multiply;"></div>
+
+    <h1 class="text-4xl md:text-5xl font-handwriting text-sakura-primary mb-6 inline-block bg-white px-8 py-4 border border-sakura-secondary/30 shadow-md transform -rotate-1">
+      📖 新手保姆教程大全
+    </h1>
+    <p class="text-sakura-text/80 mb-12 font-medium bg-[#FEF9C3] inline-block px-6 py-2 border border-yellow-400 transform rotate-1 shadow-sm">
+      无论你是电脑小白还是手机新手，跟着教程走，百分百能学会！🌸
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 text-left">
+      {allGuides.map((guide, index) => {
+        const rotation = (index % 3) === 0 ? '-rotate-1' : ((index % 3) === 1 ? 'rotate-1' : 'rotate-0');
+        const tapeColors = ['bg-[#FFB6C1]', 'bg-[#BFDBFE]', 'bg-[#FDE68A]'];
+        const tapeColor = tapeColors[index % tapeColors.length];
+
+        return (
+          <a href={guide.url} class={`group block bg-white p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all transform hover:-translate-y-1 ${rotation} relative`}>
+            <div class={`absolute -top-3 left-4 w-12 h-5 ${tapeColor}/80 -rotate-3 shadow-sm z-10 transition-transform group-hover:scale-110`} style="mix-blend-mode: multiply;"></div>
+            
+            <div class="flex gap-4 items-center">
+              <div class="text-3xl bg-gray-50 w-12 h-12 flex items-center justify-center rounded border border-gray-200 flex-shrink-0 group-hover:rotate-6 transition-transform">
+                {guide.icon}
+              </div>
+              <div>
+                <h2 class="text-lg font-bold text-sakura-text/90 group-hover:text-sakura-primary mb-2 line-clamp-2 leading-snug">{guide.title}</h2>
+                <div class="flex items-center gap-3">
+                  <span class="text-[10px] font-bold bg-sakura-primary/10 text-sakura-primary px-2 py-0.5 rounded">{guide.platform}</span>
+                  <span class="text-[10px] text-gray-400">📅 {guide.date}</span>
+                </div>
+              </div>
+            </div>
+          </a>
+        )
+      })}
+    </div>
+    
+    <div class="mt-16 bg-white p-4 border border-dashed border-sakura-secondary/50 inline-block transform rotate-1">
+      <a href="/" class="text-sakura-primary font-bold hover:bg-sakura-primary/10 px-6 py-2 rounded transition-colors">&larr; 返回首页写手账</a>
+    </div>
+  </section>
+</Layout>
