@@ -157,38 +157,38 @@ async function main() {
     
     // 4. 组装 Frontmatter
     const dateStr = new Date().toISOString().split('T')[0];
-    const slug = \`daily-auto-\${Date.now()}\`;
+    const slug = `daily-auto-${Date.now()}`;
     
     const tags = ['自动更新', title.includes('教程') ? '客户端教程' : (title.includes('机场') ? '机场评测' : '深度干货')];
     
-    const frontmatter = \`---
-title: "\${title}"
-date: \${new Date().toISOString()}
-description: "\${markdownBody.substring(0, 80).replace(/[\\n\\r"]/g, '')}..."
+    const frontmatter = `---
+title: "${title}"
+date: ${new Date().toISOString()}
+description: "${markdownBody.substring(0, 80).replace(/[\n\r"]/g, '')}..."
 author: "柳如烟 (AI自动化引擎)"
-tags: \${JSON.stringify(tags)}
----\n\n\`;
+tags: ${JSON.stringify(tags)}
+---\n\n`;
 
     const fullContent = frontmatter + markdownBody;
-    const filePath = path.join(ARTICLES_DIR, \`\${dateStr}-\${slug}.md\`);
+    const filePath = path.join(ARTICLES_DIR, `${dateStr}-${slug}.md`);
     
     // 5. 保存文件
     fs.writeFileSync(filePath, fullContent, 'utf8');
-    console.log(\`✅ 文章已成功保存至: \${filePath}\`);
+    console.log(`✅ 文章已成功保存至: ${filePath}`);
     
     // 6. 记录历史，防止重复
     history.push(title);
     fs.writeFileSync(HISTORY_FILE, JSON.stringify(history, null, 2));
     
     // 7. 自动执行打包
-    console.log(\`\n🔨 正在编译静态网站 (npm run build)...\`);
+    console.log(`\n🔨 正在编译静态网站 (npm run build)...`);
     execSync('npm run build', { stdio: 'inherit', cwd: path.join(__dirname, '..') });
-    console.log(\`✅ 编译完成！Sitemap 已更新。\`);
+    console.log(`✅ 编译完成！Sitemap 已更新。`);
     
     // 8. 自动 FTP 上传
     await deployToLaoXueHost();
     
-    console.log(\`\n🎉 所有的日常维护工作已全自动完成！祝您今天流量爆棚！\`);
+    console.log(`\n🎉 所有的日常维护工作已全自动完成！祝您今天流量爆棚！`);
     
   } catch (error) {
     console.error("❌ 致命错误：", error);
